@@ -3,13 +3,24 @@
 - name: Introduction
   href: introduction.md
 
+
+
 - name: Part Documents 
 - name: Part Documents
   expanded: true 
   items: 
   - name: Add Mass Center
     href: addmasscenter.md
+
+
+- name: Assembly Documents 
+- name: Assembly Documents
+  expanded: true 
+  items: 
+  - name: Export All SheetMetal Components to DXF
+    href: assembly_export_dxf.md
     
+
 - name: Bill Of Materials
 - name: Bill Of Materials
   expanded: true 

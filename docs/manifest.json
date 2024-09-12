@@ -77,6 +77,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/assembly_export_dxf.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/assembly_export_dxf.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/exportbomtoexcelwiththumbnails.md",
       "output": {
         ".html": {

@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Export Sheet Metal to DXF in SOLIDWORKS | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Export Sheet Metal to DXF in SOLIDWORKS | &#129513; SOLIDWORKS VBA Macros Library ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/assembly_export_dxf.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/fav.png" alt="&#129513; SOLIDWORKS VBA Macros Library">
+            &#129513; SOLIDWORKS VBA Macros Library
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="export-sheet-metal-to-dxf-in-solidworks">Export Sheet Metal to DXF in SOLIDWORKS</h1>
+
+<h2 id="macro-description">Macro Description</h2>
+<p>This VBA macro automates the process of exporting all sheet metal parts from a SOLIDWORKS assembly to DXF files. The macro loops through each component in the assembly, checks if it's a sheet metal part, and exports the flat pattern of the part to a DXF file. The macro ensures that duplicate parts are not processed more than once, preventing redundant exports.</p>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">' ********************************************************************
+' DISCLAIMER: 
+' This code is provided as-is with no warranty or liability by 
+' Blue Byte Systems Inc. The company assumes no responsibility for 
+' any issues arising from the use of this code in production.
+' ********************************************************************
+
+' Enum for Sheet Metal export options
+Enum SheetMetalOptions_e
+    ExportFlatPatternGeometry = 1
+    IncludeHiddenEdges = 2
+    ExportBendLines = 4
+    IncludeSketches = 8
+    MergeCoplanarFaces = 16
+    ExportLibraryFeatures = 32
+    ExportFormingTools = 64
+    ExportBoundingBox = 2048
+End Enum
+
+' Declare SolidWorks and component variables
+Dim swApp As SldWorks.SldWorks
+Dim swAssemblyDoc As AssemblyDoc
+Dim swcomponent As Component2
+Dim vcomponents As Variant
+Dim processedFiles As New Collection
+Dim component
+
+Sub main()
+
+    ' Get the active SolidWorks application
+    Set swApp = Application.SldWorks
+
+    ' Get the active document (assembly)
+    Set swAssemblyDoc = swApp.ActiveDoc
+
+    ' Ensure that the active document is an assembly
+    If swAssemblyDoc Is Nothing Then
+        MsgBox &quot;Please open an assembly document.&quot;, vbExclamation
+        Exit Sub
+    End If
+
+    ' Get all components of the assembly
+    vcomponents = swAssemblyDoc.GetComponents(False)
+
+    ' Loop through each component in the assembly
+    For Each component In vcomponents
+
+        ' Set the component
+        Set swcomponent = component
+
+        ' Get the ModelDoc2 (part or assembly) for the component
+        Dim swmodel As ModelDoc2
+        Set swmodel = swcomponent.GetModelDoc2
+
+        ' Check if the model is valid
+        If Not swmodel Is Nothing Then
+
+            ' Check if the model has already been processed
+            If ExistsInCollection(processedFiles, swmodel.GetTitle()) = False Then
+
+                ' Export the sheet metal part to DXF
+                PrintDXF swmodel
+
+                ' Add the processed file to the collection to avoid duplicates
+                processedFiles.Add swmodel.GetTitle(), swmodel.GetTitle()
+
+            End If
+
+        End If
+
+    Next
+
+End Sub
+
+' Function to export a sheet metal part to DXF
+Function PrintDXF(ByRef swmodel As ModelDoc2) As String
+
+    ' Check if the document is a part file
+    If swmodel.GetType() = SwConst.swDocumentTypes_e.swDocPART Then
+
+        Dim swPart As PartDoc
+        Set swPart = swmodel
+
+        ' Get the model path
+        Dim modelPath As String
+        modelPath = swPart.GetPathName
+
+        ' Define the output DXF path
+        Dim OUT_PATH As String
+        OUT_PATH = Left(modelPath, Len(modelPath) - 6) ' Remove &quot;.SLDPRT&quot; extension
+        OUT_PATH = OUT_PATH + &quot;dxf&quot;
+
+        ' Make the model visible before exporting
+        swmodel.Visible = True
+
+        ' Export the sheet metal part to DXF using specified options
+        If False = swPart.ExportToDWG2(OUT_PATH, modelPath, swExportToDWG_e.swExportToDWG_ExportSheetMetal, _
+                                       True, Empty, False, False, _
+                                       SheetMetalOptions_e.ExportFlatPatternGeometry + _
+                                       SheetMetalOptions_e.ExportBendLines, Empty) Then
+            ' Raise error if export fails
+            err.Raise vbError, &quot;&quot;, &quot;Failed to export flat pattern&quot;
+        End If
+
+        ' Hide the model after exporting
+        swmodel.Visible = False
+
+    End If
+
+    ' Print the model path to the debug console
+    Debug.Print swmodel.GetPathName()
+
+End Function
+
+' Function to check if an item exists in a collection
+Public Function ExistsInCollection(col As Collection, key As Variant) As Boolean
+    On Error GoTo err
+    ExistsInCollection = True
+    IsObject (col.Item(key)) ' Check if the item exists in the collection
+    Exit Function
+err:
+    ExistsInCollection = False ' Return false if the item does not exist
+End Function
+</code></pre>
+<h2 id="system-requirements">System Requirements</h2>
+<p>To run this VBA macro, ensure that your system meets the following requirements:</p>
+<ul>
+<li>SOLIDWORKS Version: SOLIDWORKS 2017 or later</li>
+<li>VBA Environment: Pre-installed with SOLIDWORKS (Access via Tools &gt; Macro &gt; New or Edit)</li>
+<li>Operating System: Windows 7, 8, 10, or later</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Pre-conditions</p>
+<ul>
+<li>The active document must be an assembly (.sldasm) in SOLIDWORKS.</li>
+<li>Ensure that the components contain valid sheet metal parts for export.</li>
+</ul>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Post-conditions
+The flat pattern of each sheet metal part will be exported as a DXF file.</p>
+</div>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/assembly_export_dxf.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

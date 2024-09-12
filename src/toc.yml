@@ -9,5 +9,12 @@
   items: 
   - name: Add Mass Center
     href: addmasscenter.md
- 
+    
+- name: Bill Of Materials
+- name: Bill Of Materials
+  expanded: true 
+  items: 
+  - name: Export BOM To Excel with Thumbnails
+    href: exportbomtoexcelwiththumbnails.md
+
  

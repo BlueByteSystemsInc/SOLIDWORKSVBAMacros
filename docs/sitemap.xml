@@ -2,25 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://solidworksvbamacros.bluebyte.biz/README.html</loc>
-    <lastmod>2024-09-12T12:02:29-07:00</lastmod>
+    <lastmod>2024-09-12T12:40:37-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://solidworksvbamacros.bluebyte.biz/index.html</loc>
-    <lastmod>2024-09-12T12:02:29-07:00</lastmod>
+    <lastmod>2024-09-12T12:40:37-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://solidworksvbamacros.bluebyte.biz/src/addmasscenter.html</loc>
-    <lastmod>2024-09-12T12:02:29-07:00</lastmod>
+    <lastmod>2024-09-12T12:40:37-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://solidworksvbamacros.bluebyte.biz/src/exportbomtoexcelwiththumbnails.html</loc>
+    <lastmod>2024-09-12T12:40:37-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://solidworksvbamacros.bluebyte.biz/src/introduction.html</loc>
-    <lastmod>2024-09-12T12:02:29-07:00</lastmod>
+    <lastmod>2024-09-12T12:40:37-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

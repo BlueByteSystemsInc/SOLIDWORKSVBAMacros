@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Options Setup Page | Products Helper Center </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Options Setup Page | Products Helper Center ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/docs/blob/main/src/optionssetuppagepdmconverttaskextended.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/fav.png" alt="Products Helper Center">
+            Products Helper Center
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="options-setup-page">Options Setup Page</h1>
+
+<p>When you choose PDM Task Convert Extended from the dropdown in the new task dialog, you will be prompted a window that is similar to the one below:</p>
+<p><img src="../images/pdmconverttaskextendedoptionssetuppage.png" alt="Options Setup Page"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Option</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Output</strong></td>
+<td style="text-align: left;">This is where you specify the location where you want the exported documents to be saved. This location can be inside or outside the vault.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Extensions</strong></td>
+<td style="text-align: left;">These are the extensions the task should export. Supported extensions are: <ul><li>PDF</li><li>DXF</li><li>DWG</li><li>IGES</li><li>X_T</li><li>STEP</li><li>eDrawings<ul><li>eprt</li><li>easm</li><li>edrw</li></ul><li>U3D (3D PDF)</li><li>HTML (You need eDrawings Professional 2019-2023 installed on the machine that runs the task.)</li></ul></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Logging</strong></td>
+<td style="text-align: left;"><ul><li>Specify if you want the logs to be stored in the cloud.</li><li>Specify where you want the logs to be saved. The location must be in PDM.</li></ul></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Export</strong></td>
+<td style="text-align: left;"><ul><li>Export referenced documents of assemblies: This means that if the processed file is an assembly, the task will attempt to export all the available references from the assembly.</li><li>Merge referenced documents<ul><li>This will merge all exported PDFs.</li></ul><li>Export all configurations<ul><li>This will attempt to export all configurations of parts and assemblies.</li><li>Please make sure you include the configuration name alias in the output filename.</li></ul></li><li>Work with latest version<ul><li>Task will attempt to get the latest version of the file to be printed.</li></ul></li><li>QuickView<ul><li>Opens documents in quick view or large design mode.</li><li>This option will increase performance with large documents.</li></ul><li>Archive<ul><li>Creates a zip file of the processed files</li></ul></li><li>Applies conditions<ul><li>Does not apply conditions when processing assemblies.</li></ul><li>Export sheet metal parts<ul><li>When enabled, task attempt to open referenced sheet metal parts from their drawing document and export their flat pattern as the specified dxf or dwg extension.</li><li>This option will not work if drawings are opened in quick view mode.</li><li>The notation flatPattern will be appended to the filename of the flat pattern.</li></ul></li></ul></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Watermark</strong></td>
+<td style="text-align: left;">Add a watermark to the printed PDF. You can use the special value <strong>($CustomProperty)</strong> if the value of the desired watermark is found in a custom property.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Quantity</strong></td>
+<td style="text-align: left;">Add the document quantity from the calculated BOM of the top-level assembly. Two options:<ul><li>Using custom property in your sheet format. Task writes quantity to custom property and rebuilds drawing.</li><li>Define the location and pretext of a note the task adds to drawing before printing to DPF. Use this option if you do not have a predefined custom property in your sheet format</li></ul></td>
+</tr>
+</tbody>
+</table>
+<h2 id="important-notes-about-creating-tasks">Important Notes About Creating Tasks</h2>
+<p>Please consider the following recommendations when creating a new task using PDM Convert Task Extended:</p>
+<ol>
+<li><strong>Execution method</strong>
+<ol>
+<li>In the execution method tab that appears on the blue left sidebar, please:</li>
+<li>Choose the radio box option <strong>“Let the system decide which computer to execute the task“</strong>.</li>
+<li>Choose <strong>one computer</strong>. We recommend that our customers opt for the server. The server needs to have a SOLIDWORKS PDM Client installed with a local view as well as SOLIDWORKS 3D.</li>
+</ol>
+</li>
+<li>On the first page of the task, execute the task with a user that has the right workflow and file/folder permissions.</li>
+</ol>
+<div class="TIP">
+<h5>Tip</h5>
+<p>We also recommend disabling the auto-add extensions by removing all the extensions the task uses including txt.<br>
+This prevents race conditions between SOLIDWORKS PDM and the task during files add process.</p>
+</div>
+<p>To change the auto-add extensions list,</p>
+<ol>
+<li><em>Go to</em> the PDM Administration tool</li>
+<li><em>Right click</em> on the username (or all users)</li>
+<li><em>Select</em> <em><strong>settings</strong></em></li>
+<li><em>Click</em> on the <em><strong>“Adding Files”</strong></em> selection and edit the file extensions</li>
+</ol>
+<p><img src="../images/pdmconverttaskextendedaddingfiles.png" alt="Adding Files"></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/docs/blob/main/src/optionssetuppagepdmconverttaskextended.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span><a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

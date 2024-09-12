@@ -1,0 +1,120 @@
+{
+  "sitemap": {
+    "baseUrl": "https://SOLIDWORKSVBAMacros.bluebyte.biz/",
+    "changefreq": "daily",
+    "priority": 0.5
+  },
+  "source_base_path": "C:/Users/jlili/source/repos/BlueByteSystemsInc/SOLIDWORKSVBAMacros",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/addmasscenter.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/addmasscenter.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/fav.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/fav.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/addmasscenter.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/addmasscenter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "src/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "src/toc.html"
+        },
+        ".json": {
+          "relative_path": "src/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

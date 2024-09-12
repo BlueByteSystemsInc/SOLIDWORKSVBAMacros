@@ -1,0 +1,13 @@
+
+- name: 🧩 SOLIDWORKS VBA Macros
+- name: Introduction
+  href: introduction.md
+
+- name: Part Documents 
+- name: Part Documents
+  expanded: true 
+  items: 
+  - name: Add Mass Center
+    href: addmasscenter.md
+ 
+ 

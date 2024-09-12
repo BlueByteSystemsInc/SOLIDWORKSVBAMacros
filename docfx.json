@@ -1,0 +1,39 @@
+{
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "docs/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "sitemap": {
+      "baseUrl": "https://SOLIDWORKSVBAMacros.bluebyte.biz",
+      "priority": 0.5,
+      "changefreq": "daily"
+    },
+    "output": "docs",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "🧩 SOLIDWORKS VBA Macros Library",
+      "_appTitle": "🧩 SOLIDWORKS VBA Macros Library",
+      "_appFooter": "<span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>",
+      "_appLogoPath": "images/fav.png",
+      "_enableSearch": true,
+      "pdf": false
+    }
+  }
+}

@@ -119,6 +119,16 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "src/traverse_assembly_component_tree_recursively_solidworks_vba_macro.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/traverse_assembly_component_tree_recursively_solidworks_vba_macro.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {

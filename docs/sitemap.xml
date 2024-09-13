@@ -2,37 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://solidworksvbamacros.bluebyte.biz/README.html</loc>
-    <lastmod>2024-09-12T01:11:03-07:00</lastmod>
+    <lastmod>2024-09-12T05:06:53-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://solidworksvbamacros.bluebyte.biz/index.html</loc>
-    <lastmod>2024-09-12T01:11:03-07:00</lastmod>
+    <lastmod>2024-09-12T05:06:53-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://solidworksvbamacros.bluebyte.biz/src/addmasscenter.html</loc>
-    <lastmod>2024-09-12T01:11:03-07:00</lastmod>
+    <lastmod>2024-09-12T05:06:53-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://solidworksvbamacros.bluebyte.biz/src/assembly_export_dxf.html</loc>
-    <lastmod>2024-09-12T01:11:03-07:00</lastmod>
+    <lastmod>2024-09-12T05:06:53-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://solidworksvbamacros.bluebyte.biz/src/exportbomtoexcelwiththumbnails.html</loc>
-    <lastmod>2024-09-12T01:11:03-07:00</lastmod>
+    <lastmod>2024-09-12T05:06:53-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://solidworksvbamacros.bluebyte.biz/src/introduction.html</loc>
-    <lastmod>2024-09-12T01:11:03-07:00</lastmod>
+    <lastmod>2024-09-12T05:06:53-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://solidworksvbamacros.bluebyte.biz/src/traverse_assembly_component_tree_recursively_solidworks_vba_macro.html</loc>
+    <lastmod>2024-09-12T05:06:53-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

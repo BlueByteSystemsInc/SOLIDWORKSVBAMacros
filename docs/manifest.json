@@ -87,6 +87,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/create_boundingbox_feature_for_all_components.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/create_boundingbox_feature_for_all_components.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/exportbomtoexcelwiththumbnails.md",
       "output": {
         ".html": {

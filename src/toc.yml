@@ -21,7 +21,12 @@
     href: traverse_assembly_component_tree_recursively_solidworks_vba_macro.md  
   - name: Create Bounding Box for Assembly and Components
     href: create_boundingbox_feature_for_all_components.md
-
+- name: Drawing Documents 
+- name: Drawing Documents
+  expanded: true 
+  items: 
+  - name: Rebuild & Save All Drawings in a Directory as PDF
+    href: Rebuild_Save_All_Drawings_in_a_Directory_as_PDF.md
 - name: Bill Of Materials
 - name: Bill Of Materials
   expanded: true 

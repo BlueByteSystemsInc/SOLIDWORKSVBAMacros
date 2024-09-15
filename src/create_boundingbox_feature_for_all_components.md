@@ -1,5 +1,9 @@
 # Create Bounding Box for Assembly and Components
 
+
+>[!WARNING]
+> This macro creates the **SOLIDWORKS bounding box feature** and a not custom one. It requires SOLIDWORKS 2018 or newer. We have an alternative macro that uses sketch entities that create a tightest-fit bounding box.
+
 ## Macro Description
 
 This macro creates a bounding box for the main assembly and its components within the active document in SOLIDWORKS. It traverses each component in the assembly, checking if a bounding box has already been created for the component. If not, the bounding box is created, and the component is processed.
@@ -93,7 +97,7 @@ End Function
 ## System Requirements
 To run this VBA macro, ensure that your system meets the following requirements:
 
-- SOLIDWORKS Version: SOLIDWORKS 2017 or later
+- SOLIDWORKS Version: SOLIDWORKS 2018 or later
 - VBA Environment: Pre-installed with SOLIDWORKS (Access via Tools > Macro > New or Edit)
 - Operating System: Windows 7, 8, 10, or later
 

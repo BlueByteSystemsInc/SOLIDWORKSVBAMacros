@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Create Bounding Box for Assembly and Components | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <title>Rebuild &amp; Save All Drawings in a Directory as PDF | &#129513; SOLIDWORKS VBA Macros Library </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Create Bounding Box for Assembly and Components | &#129513; SOLIDWORKS VBA Macros Library ">
+      <meta name="title" content="Rebuild &amp; Save All Drawings in a Directory as PDF | &#129513; SOLIDWORKS VBA Macros Library ">
       
       
       <link rel="icon" href="../favicon.ico">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/create_boundingbox_feature_for_all_components.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Save_All_Drawings_in_a_Directory_as_PDF.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -85,110 +85,126 @@
         </div>
 
         <article data-uid="">
-<h1 id="create-bounding-box-for-assembly-and-components">Create Bounding Box for Assembly and Components</h1>
+<h1 id="rebuild--save-all-drawings-in-a-directory-as-pdf">Rebuild &amp; Save All Drawings in a Directory as PDF</h1>
 
-<div class="WARNING">
-<h5>Warning</h5>
-<p>This macro creates the <strong>SOLIDWORKS bounding box feature</strong> and a not custom one. It requires SOLIDWORKS 2018 or newer. We have an alternative macro that uses sketch entities that create a tightest-fit bounding box.</p>
-</div>
-<h2 id="macro-description">Macro Description</h2>
-<p>This macro creates a bounding box for the main assembly and its components within the active document in SOLIDWORKS. It traverses each component in the assembly, checking if a bounding box has already been created for the component. If not, the bounding box is created, and the component is processed.</p>
-<h2 id="vba-macro-code">VBA Macro Code</h2>
-<pre><code class="lang-vbnet">Dim swApp As SldWorks.SldWorks
-Dim swModel As ModelDoc2
-Dim swAssembly As AssemblyDoc
-Dim vComponents As Variant
-Dim ProcessedFiles As New Collection
-
-Sub main()
-
-    Set swApp = Application.SldWorks
-    Set swModel = swApp.ActiveDoc
-
-    ' Ensure the active document is an assembly
-    Set swAssembly = swModel
-    
-    ' Create bounding box for the main assembly
-    CreateBoundingBox swModel
-    
-    ' Get all components of the assembly
-    vComponents = swAssembly.GetComponents(False)
-    
-    Dim component
-    For Each component In vComponents
-        Dim swComponent As Component2
-        Set swComponent = component
-        
-        Dim swComponentModelDoc As ModelDoc2
-        Set swComponentModelDoc = swComponent.GetModelDoc2
-        
-        If Not swComponentModelDoc Is Nothing Then
-            ' Check if component already processed
-            If ExistsInCollection(ProcessedFiles, swComponentModelDoc.GetTitle()) = False Then
-                ' Create bounding box for the component
-                CreateBoundingBox swComponentModelDoc
-                
-                ' Add component to processed list
-                ProcessedFiles.Add swComponentModelDoc.GetTitle(), swComponentModelDoc.GetTitle()
-                
-                ' Output component path for debugging
-                Debug.Print swComponentModelDoc.GetPathName()
-            End If
-        End If
-    Next component
-End Sub
-
-Sub CreateBoundingBox(ByRef swComponentModelDoc As ModelDoc2)
-    
-    ' Make the document visible
-    swComponentModelDoc.Visible = True
-
-    Dim swFeatureManager As featureManager
-    Dim swBoundingBoxFeatureDefinition As BoundingBoxFeatureData
-    Dim swBoundingBoxFeature As Feature
-    
-    ' Access the FeatureManager
-    Set swFeatureManager = swComponentModelDoc.featureManager
-    
-    ' Define the bounding box feature
-    Set swBoundingBoxFeatureDefinition = swFeatureManager.CreateDefinition(swConst.swFmBoundingBox)
-    
-    ' Set options for bounding box creation
-    swBoundingBoxFeatureDefinition.ReferenceFaceOrPlane = swConst.swGlobalBoundingBoxFitOptions_e.swBoundingBoxType_BestFit
-    swBoundingBoxFeatureDefinition.IncludeHiddenBodies = False
-    swBoundingBoxFeatureDefinition.IncludeSurfaces = False
-    
-    ' Create the bounding box feature
-    Set swBoundingBoxFeature = swFeatureManager.CreateFeature(swBoundingBoxFeatureDefinition)
-    
-    ' Make the document invisible again
-    swComponentModelDoc.Visible = False
-End Sub
-
-Public Function ExistsInCollection(col As Collection, key As Variant) As Boolean
-    On Error GoTo err
-    ExistsInCollection = True
-    IsObject (col.Item(key))
-    Exit Function
-err:
-    ExistsInCollection = False
-End Function
-
-</code></pre>
+<h2 id="description">Description</h2>
+<p>This macro rebuilds all SolidWorks drawing files (.SLDDRW) in a specified directory and saves them as PDF files in the same location. It automates the process of batch exporting drawings to PDFs, making it ideal for users who need to handle large quantities of files efficiently.</p>
 <h2 id="system-requirements">System Requirements</h2>
-<p>To run this VBA macro, ensure that your system meets the following requirements:</p>
 <ul>
-<li>SOLIDWORKS Version: SOLIDWORKS 2018 or later</li>
-<li>VBA Environment: Pre-installed with SOLIDWORKS (Access via Tools &gt; Macro &gt; New or Edit)</li>
-<li>Operating System: Windows 7, 8, 10, or later</li>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 10 or later</li>
+<li><strong>Excel Version</strong>: Microsoft Excel 2010 or later (for Excel integration features)</li>
 </ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>The folder containing the SolidWorks drawings must be specified in the code.</li>
+<li>SolidWorks must be installed and running on the machine.</li>
+</ul>
+</div>
+<h2 id="post-conditions">Post-Conditions</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>PDF files will be saved in the same location as the SolidWorks drawings.</li>
+<li>The original drawing files will remain unchanged.</li>
+</ul>
+</div>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">' Disclaimer:
+' The code provided should be used at your own risk.  
+' Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code.  
+' For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
+
+Option Explicit
+
+' Define the main variables for SolidWorks application and model
+Dim swApp As SldWorks.SldWorks
+Dim swModel As ModelDoc2
+Dim swFilename As String
+Dim swRet As Boolean
+Dim swErrors As Long
+Dim swWarnings As Long
+Dim swResponse As String
+
+' Main subroutine
+Sub Main()
+
+    ' Initialize SolidWorks application
+    Set swApp = Application.SldWorks
+
+    ' Specify the folder location containing the SolidWorks drawings
+    RebuildAndSaveAllDrawingsAsPDF &quot;C:\SOLIDWORKS&quot;, &quot;.SLDDRW&quot;, True
+
+End Sub
+
+' Subroutine to rebuild drawing and save as PDF
+Sub RebuildAndSaveAllDrawingsAsPDF(swFolder As String, swExt As String, swSilent As Boolean)
+
+    Dim swDocTypeLong As Long
+
+    ' Ensure the file extension is in uppercase
+    swExt = UCase$(swExt)
+    swDocTypeLong = Switch(swExt = &quot;.SLDDRW&quot;, swDocDRAWING, True, -1)
+
+    ' If the file type is not supported, exit the subroutine
+    If swDocTypeLong = -1 Then
+        Exit Sub
+    End If
+
+    ' Change directory to the folder
+    ChDir (swFolder)
+
+    ' Get the first file in the folder
+    swResponse = Dir(swFolder)
+    Do Until swResponse = &quot;&quot;
+
+        swFilename = swFolder &amp; swResponse
+
+        ' Check if the file extension matches
+        If Right(UCase$(swResponse), 7) = swExt Then
+
+            ' Open the SolidWorks document
+            Set swModel = swApp.OpenDoc6(swFilename, swDocTypeLong, swOpenDocOptions_Silent, &quot;&quot;, swErrors, swWarnings)
+
+            ' Rebuild the drawing if it's a drawing file
+            If swDocTypeLong &lt;&gt; swDocDRAWING Then
+                swModel.ShowNamedView2 &quot;*Isometric&quot;, -1
+            End If
+
+            ' Define file path variables
+            Dim swFilePath As String
+            Dim swPathSize As Long
+            Dim swPathNoExtension As String
+            Dim swNewFilePath As String
+
+            swFilePath = swModel.GetPathName
+            swPathSize = Strings.Len(swFilePath)
+            swPathNoExtension = Strings.Left(swFilePath, swPathSize - 6)
+            swNewFilePath = swPathNoExtension &amp; &quot;PDF&quot;
+
+            ' Save the document as PDF
+            swRet = swModel.SaveAs3(swNewFilePath, 0, 0)
+
+            ' Close the document
+            swApp.CloseDoc swModel.GetTitle
+
+        End If
+
+        ' Get the next file in the folder
+        swResponse = Dir
+    Loop
+
+End Sub
+</code></pre>
 <h2 id="customization">Customization</h2>
 <p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/create_boundingbox_feature_for_all_components.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Save_All_Drawings_in_a_Directory_as_PDF.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

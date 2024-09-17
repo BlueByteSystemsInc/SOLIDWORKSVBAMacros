@@ -29,6 +29,10 @@
     href: Rebuild_Save_All_Drawings_in_a_Directory_as_PDF.md
   - name: Align All Dimensions Automatically
     href: Align_All_Dimensions_Automatically.md
+  - name: Export Sheets to PDF Automatically
+    href: Save_Each_Sheet_As_PDF.md
+
+  
 - name: Bill Of Materials
 - name: Bill Of Materials
   expanded: true 

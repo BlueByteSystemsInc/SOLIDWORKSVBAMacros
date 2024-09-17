@@ -15,8 +15,10 @@
 - name: Assembly Documents
   expanded: true 
   items: 
-  - name: Export All SheetMetal Components to DXF
+  - name: Export All Sheet Metal Components to DXF
     href: assembly_export_dxf.md
+  - name: Traverse and Export SOLIDWORKS Components to DXF
+    href: Traverse and Export SOLIDWORKS Components to DXF.md
   - name: Traverse Assembly Component Tree Recursively 
     href: traverse_assembly_component_tree_recursively_solidworks_vba_macro.md  
   - name: Create Bounding Box for Assembly and Components

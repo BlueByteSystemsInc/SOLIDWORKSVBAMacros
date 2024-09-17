@@ -97,6 +97,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/Traverse and Export SOLIDWORKS Components to DXF.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Traverse and Export SOLIDWORKS Components to DXF.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/addmasscenter.md",
       "output": {
         ".html": {

@@ -33,6 +33,10 @@
     href: Align_All_Dimensions_Automatically.md
   - name: Export Sheets to PDF Automatically
     href: Save_Each_Sheet_As_PDF.md
+  - name: Reload All Sheet Formats.md
+    href: Reload_All_Sheet_Formats.md
+  - name: Rebuild Referenced Models in All Drawing Sheets
+  - href: Rebuild_Referenced_File.md
 
   
 - name: Bill Of Materials

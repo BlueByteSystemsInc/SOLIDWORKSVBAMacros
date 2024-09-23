@@ -11,6 +11,9 @@
   items: 
   - name: Add Mass Center
     href: addmasscenter.md
+  - name: Check For Missing Hole Callouts
+    href: Check For Missing Hole Callouts.md
+
 - name: Assembly Documents 
 - name: Assembly Documents
   expanded: true 

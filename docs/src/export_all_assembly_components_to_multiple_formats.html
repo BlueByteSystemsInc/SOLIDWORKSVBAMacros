@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Export Configurations of Assembly Components to Multiple Formats | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Export Configurations of Assembly Components to Multiple Formats | &#129513; SOLIDWORKS VBA Macros Library ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/export_all_assembly_components_to_multiple_formats.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/fav.png" alt="&#129513; SOLIDWORKS VBA Macros Library">
+            &#129513; SOLIDWORKS VBA Macros Library
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="export-configurations-of-assembly-components-to-multiple-formats">Export Configurations of Assembly Components to Multiple Formats</h1>
+
+<h2 id="description">Description</h2>
+<p>This macro automates the process of exporting all configurations of components within an active SOLIDWORKS assembly to multiple file formats. It iterates through each component in the assembly, checks if it has already been processed to avoid duplicates, and then exports each configuration of the component to <code>.step</code>, <code>.igs</code>, and <code>.x_t</code> formats. The exported files are saved in a specified directory with filenames that include the component name and configuration name.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SOLIDWORKS Version</strong>: SOLIDWORKS 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="vba-code">VBA Code</h2>
+<pre><code class="lang-vbnet">'*********************************************************
+' Blue Byte Systems Inc.
+' Disclaimer: Blue Byte Systems Inc. provides this macro &quot;as-is&quot; without any warranties.
+' Use at your own risk. The company is not liable for any damages resulting from its use.
+'*********************************************************
+
+Option Explicit
+
+Dim swApp As SldWorks.SldWorks
+Dim swAssembly As SldWorks.AssemblyDoc
+Dim swComponent As SldWorks.Component2
+Dim vComponents As Variant
+Dim processedFiles As Collection
+Dim component As Variant
+
+Sub Main()
+
+    Dim errors As Long
+    Dim warnings As Long
+
+    ' Initialize the collection to keep track of processed files
+    Set processedFiles = New Collection
+
+    ' Get the SOLIDWORKS application object
+    Set swApp = Application.SldWorks
+
+    ' Get the active document and ensure it is an assembly
+    Set swAssembly = swApp.ActiveDoc
+    If swAssembly Is Nothing Then
+        MsgBox &quot;No active document found.&quot;, vbExclamation, &quot;Error&quot;
+        Exit Sub
+    End If
+
+    If swAssembly.GetType &lt;&gt; swDocumentTypes_e.swDocASSEMBLY Then
+        MsgBox &quot;The active document is not an assembly.&quot;, vbExclamation, &quot;Error&quot;
+        Exit Sub
+    End If
+
+    ' Get all components in the assembly
+    vComponents = swAssembly.GetComponents(False)
+
+    ' Iterate through each component
+    For Each component In vComponents
+
+        Set swComponent = component
+
+        Dim swModel As SldWorks.ModelDoc2
+        Set swModel = swComponent.GetModelDoc2
+
+        If Not swModel Is Nothing Then
+
+            ' Check if the model has already been processed
+            If Not ExistsInCollection(processedFiles, swModel.GetTitle()) Then
+
+                ' Save configurations of the model
+                SaveConfigurations swModel
+
+                ' Add the model to the processed files collection
+                processedFiles.Add swModel.GetTitle(), swModel.GetTitle()
+
+            End If
+
+        End If
+
+    Next component
+
+    MsgBox &quot;Export completed successfully.&quot;, vbInformation, &quot;Done&quot;
+
+End Sub
+
+Sub SaveConfigurations(ByRef swModel As SldWorks.ModelDoc2)
+
+    Dim extensions(1 To 3) As String
+    extensions(1) = &quot;.step&quot;
+    extensions(2) = &quot;.igs&quot;
+    extensions(3) = &quot;.x_t&quot;
+
+    swModel.Visible = True
+
+    Dim configurationNames As Variant
+    configurationNames = swModel.GetConfigurationNames
+
+    Dim configName As Variant
+    For Each configName In configurationNames
+
+        swModel.ShowConfiguration2 configName
+
+        Dim extension As Variant
+        For Each extension In extensions
+
+            Dim outputPath As String
+            outputPath = &quot;C:\BOM Export\&quot;
+            outputPath = outputPath &amp; Left(swModel.GetTitle(), 6) &amp; &quot;_&quot; &amp; configName &amp; extension
+
+            Dim saveSuccess As Boolean
+            Dim errors As Long
+            Dim warnings As Long
+
+            saveSuccess = swModel.Extension.SaveAs3(outputPath, _
+                            swSaveAsVersion_e.swSaveAsCurrentVersion, _
+                            swSaveAsOptions_e.swSaveAsOptions_Silent, _
+                            Nothing, Nothing, errors, warnings)
+
+            If Not saveSuccess Then
+                MsgBox &quot;Failed to save: &quot; &amp; outputPath, vbExclamation, &quot;Error&quot;
+            End If
+
+        Next extension
+
+    Next configName
+
+    swModel.Visible = False
+
+End Sub
+
+Function ExistsInCollection(col As Collection, key As Variant) As Boolean
+    On Error GoTo ErrHandler
+    ExistsInCollection = True
+    Dim temp As Variant
+    temp = col.Item(key)
+    Exit Function
+ErrHandler:
+    ExistsInCollection = False
+End Function
+</code></pre>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/export_all_assembly_components_to_multiple_formats.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

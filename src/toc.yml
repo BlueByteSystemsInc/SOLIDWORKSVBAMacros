@@ -18,6 +18,8 @@
 - name: Assembly Documents
   expanded: true 
   items: 
+  - name: Export All Assembly Component to Multiple Formats (Configuration Ripper)
+    href: export_all_assembly_components_to_multiple_formats.md
   - name: Export All Sheet Metal Components to DXF
     href: assembly_export_dxf.md
   - name: Traverse and Export SOLIDWORKS Components to DXF

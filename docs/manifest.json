@@ -167,6 +167,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/export_all_assembly_components_to_multiple_formats.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/export_all_assembly_components_to_multiple_formats.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/exportbomtoexcelwiththumbnails.md",
       "output": {
         ".html": {

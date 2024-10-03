@@ -9,6 +9,10 @@ A **macro** is a small, self-contained program that automates repetitive tasks i
 ## Getting Started
 Explore the **VBA Macro Library** to find pre-built automation solutions for your SOLIDWORKS projects.
 
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/045b01f618234f89aaad54cea8fbabce?sid=fa27fe1c-9d4f-4ff9-83f0-a126a0eff89b" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
+
 ## Free and Organized by Category
 All of our VBA macros are **free** to use and are carefully organized into the following categories:
 

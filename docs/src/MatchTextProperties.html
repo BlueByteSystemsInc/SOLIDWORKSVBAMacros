@@ -1,0 +1,370 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Match Text Properties in SolidWorks Drawing | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Match Text Properties in SolidWorks Drawing | &#129513; SOLIDWORKS VBA Macros Library ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/MatchTextProperties.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/fav.png" alt="&#129513; SOLIDWORKS VBA Macros Library">
+            &#129513; SOLIDWORKS VBA Macros Library
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="match-text-properties-in-solidworks-drawing">Match Text Properties in SolidWorks Drawing</h1>
+
+<h2 id="description">Description</h2>
+<p>This macro matches text properties such as height and font of the selected text to a parent text object in a SolidWorks drawing. The macro enables users to ensure consistency in text properties across multiple notes and dimensions by using a single function call to apply the formatting of the selected parent text.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>The active document must be a drawing file.</li>
+<li>The user must first select the parent text object (either a note or dimension) whose properties will be matched.</li>
+<li>Subsequent selections must include the text objects to be modified.</li>
+</ul>
+</div>
+<h2 id="results">Results</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>The selected text objects will have their properties (font, height) updated to match the parent text.</li>
+<li>A confirmation message will be shown in the Immediate window for each updated text object.</li>
+</ul>
+</div>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">' Disclaimer:
+' The code provided should be used at your own risk.  
+' Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code.  
+' For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
+
+Option Explicit
+
+' Global variables for the SolidWorks application, selected text objects, and text object counters
+Public swApp As SldWorks.SldWorks
+Public vNoteObjects() As Object      ' Array to hold selected note objects
+Public vdisDimObjects() As Object    ' Array to hold selected dimension objects
+Dim iDisDim As Integer               ' Counter for dimension objects
+Dim iNote As Integer                 ' Counter for note objects
+Dim parentNote As Note               ' Parent note object for text matching
+Dim parentDisDim As DisplayDimension ' Parent dimension object for text matching
+Dim isNote As Boolean                ' Flag indicating if a note is selected
+Dim isDisDim As Boolean              ' Flag indicating if a dimension is selected
+
+' Constants for SolidWorks selection types
+Const vSelNote As Integer = SwConst.swSelectType_e.swSelNOTES       ' Selection type for notes
+Const vSelDims As Integer = SwConst.swSelectType_e.swSelDIMENSIONS  ' Selection type for dimensions
+
+' Subroutine to get the selected text objects and populate arrays
+Public Sub GetTheTextObjects()
+    Dim swSelMgr As SelectionMgr    ' Selection manager object
+    Dim swPart As ModelDoc2         ' Active document object
+    Dim i As Integer                ' Number of selected objects
+    Dim t As Integer                ' Loop counter
+
+    ' Initialize objects
+    Set swPart = swApp.ActiveDoc
+    Set swSelMgr = swPart.SelectionManager
+    i = swSelMgr.GetSelectedObjectCount2(-1)
+
+    ' Check if no text objects are selected
+    If i = 0 Then
+        MsgBox &quot;No text objects selected.&quot;
+        Exit Sub
+    End If
+
+    On Error GoTo Errhandler
+    ' Load the arrays with the selected text objects
+    For t = 0 To i
+        ' Check if selected object is a note
+        If swSelMgr.GetSelectedObjectType3(t, -1) = vSelNote Then
+            isNote = True
+            If iNote = 0 Then
+                ReDim vNoteObjects(0)
+                iNote = 1
+            Else
+                ReDim Preserve vNoteObjects(UBound(vNoteObjects) + 1)
+            End If
+            Set vNoteObjects(UBound(vNoteObjects)) = swSelMgr.GetSelectedObject6(t, -1)
+        End If
+        ' Check if selected object is a dimension
+        If swSelMgr.GetSelectedObjectType3(t, -1) = vSelDims Then
+            isDisDim = True
+            If iDisDim = 0 Then
+                ReDim vdisDimObjects(0)
+                iDisDim = 1
+            Else
+                ReDim Preserve vdisDimObjects(UBound(vdisDimObjects) + 1)
+            End If
+            Set vdisDimObjects(UBound(vdisDimObjects)) = swSelMgr.GetSelectedObject6(t, -1)
+        End If
+    Next
+    On Error GoTo 0
+
+    ' Call subroutine to apply text properties
+    Call changeText
+    Exit Sub
+
+Errhandler:
+    MsgBox &quot;Error occurred while getting text objects: &quot; &amp; Err.Description
+    Resume Next
+End Sub
+
+' Function to grab the parent text properties for matching
+Public Function GrabParentText() As Boolean
+    Dim swSelMgr As SelectionMgr    ' Selection manager object
+    Dim swPart As ModelDoc2         ' Active document object
+    Dim retVal As Boolean           ' Return value indicating if a parent text is found
+    Dim i As Integer                ' Number of selected objects
+    Dim t As Integer                ' Loop counter
+
+    retVal = False  ' Initialize return value to False
+
+    ' Initialize objects
+    Set parentNote = Nothing
+    Set parentDisDim = Nothing
+    Set swPart = swApp.ActiveDoc
+    Set swSelMgr = swPart.SelectionManager
+    i = swSelMgr.GetSelectedObjectCount2(-1)
+
+    ' Check if no objects are selected
+    If i = 0 Then
+        MsgBox &quot;No objects selected.&quot;
+        GrabParentText = retVal
+        Exit Function
+    End If
+
+    On Error GoTo Errhandler
+    ' Loop through selected objects to find a parent text object
+    For t = 0 To i
+        ' Check if selected object is a note
+        If swSelMgr.GetSelectedObjectType3(t, -1) = vSelNote Then
+            Set parentNote = swSelMgr.GetSelectedObject6(t, -1)
+            retVal = True
+            Exit For
+        End If
+        ' Check if selected object is a dimension
+        If swSelMgr.GetSelectedObjectType3(t, -1) = vSelDims Then
+            Set parentDisDim = swSelMgr.GetSelectedObject6(t, -1)
+            retVal = True
+            Exit For
+        End If
+    Next
+
+Errhandler:
+    ' Show message if no valid parent text object is found
+    If parentNote Is Nothing And parentDisDim Is Nothing Then
+        MsgBox &quot;No text objects selected.&quot;
+    End If
+    GrabParentText = retVal
+End Function
+
+' Subroutine to apply parent text properties to the selected text objects
+Sub changeText()
+    Dim sdModel As ModelDoc2             ' Active document object
+    Dim swSelMgr As SelectionMgr         ' Selection manager object
+    Dim pFont As String                  ' Parent text font
+    Dim pCharHt As Double                ' Parent text character height
+    Dim pAnn As Annotation               ' Parent annotation object
+    Dim pTextFor As TextFormat           ' Parent text format object
+    Dim pIsUseDocFormat As Boolean       ' Flag for using document format
+    Dim swAnn As Annotation              ' Annotation object for selected text
+    Dim swTxtFormat As TextFormat        ' Text format object for selected text
+    Dim swNote As Note                   ' Note object
+    Dim swdisdim As DisplayDimension     ' Display dimension object
+    Dim nAngle As Double                 ' Angle for the note
+
+    ' Retrieve parent text properties
+    If Not parentNote Is Nothing Then
+        Set pAnn = parentNote.GetAnnotation
+    ElseIf Not parentDisDim Is Nothing Then
+        Set pAnn = parentDisDim.GetAnnotation
+    End If
+
+    ' Get text format properties from parent annotation
+    pIsUseDocFormat = pAnn.GetUseDocTextFormat(0)
+    Set pTextFor = pAnn.GetTextFormat(0)
+    pFont = pTextFor.TypeFaceName
+    pCharHt = pTextFor.CharHeight
+
+    Set sdModel = swApp.ActiveDoc
+    Set swSelMgr = sdModel.SelectionManager
+
+    ' Apply parent properties to selected note objects
+    If isNote = True Then
+        On Error GoTo Errhandler
+        For i = 0 To UBound(vNoteObjects)
+            Set swNote = vNoteObjects(i)
+            nAngle = swNote.Angle
+            Set swAnn = swNote.GetAnnotation
+            Set swTxtFormat = swAnn.GetTextFormat(0)
+            swTxtFormat.CharHeight = pCharHt
+            swTxtFormat.TypeFaceName = pFont
+            swAnn.SetTextFormat 0, pIsUseDocFormat, swTxtFormat
+            swNote.Angle = nAngle
+        Next
+    End If
+
+    ' Apply parent properties to selected dimension objects
+    If isDisDim = True Then
+        On Error GoTo Errhandler1
+        For i = 0 To UBound(vdisDimObjects)
+            Set swdisdim = vdisDimObjects(i)
+            Set swAnn = swdisdim.GetAnnotation
+            Set swTxtFormat = swAnn.GetTextFormat(0)
+            swTxtFormat.CharHeight = pCharHt
+            swTxtFormat.TypeFaceName = pFont
+            swAnn.SetTextFormat 0, pIsUseDocFormat, swTxtFormat
+        Next
+    End If
+
+    ' Redraw graphics to apply changes
+    sdModel.GraphicsRedraw2
+    Exit Sub
+
+Errhandler:
+    MsgBox &quot;Error occurred while applying note properties: &quot; &amp; Err.Description
+    Resume Next
+
+Errhandler1:
+    MsgBox &quot;Error occurred while applying dimension properties: &quot; &amp; Err.Description
+    Resume Next
+End Sub
+
+' Main subroutine to initialize the macro
+Sub main()
+    Dim swPart As ModelDoc2  ' Active document object
+    Set swApp = Application.SldWorks
+    Set swPart = swApp.ActiveDoc
+
+    ' Check if the active document is a drawing
+    If swPart Is Nothing Then
+        MsgBox &quot;No Active File.&quot;, vbCritical, &quot;Wrong File Type&quot;
+        End
+    End If
+
+    ' Check if the active document type is a drawing
+    If swPart.GetType &lt;&gt; 3 Then
+        MsgBox &quot;Can only run in a drawing.&quot; &amp; vbNewLine &amp; &quot;Active document must be a drawing file.&quot;
+        End
+    End If
+
+    ' Initialize counters
+    iNote = 0
+    iDisDim = 0
+
+    ' Rebuild the drawing to ensure proper updates
+    swPart.ForceRebuild3 True
+
+    ' Show form for user interaction (assumes a form named frmSelect exists)
+    frmSelect.Show vbModeless
+End Sub
+</code></pre>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/MatchTextProperties.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

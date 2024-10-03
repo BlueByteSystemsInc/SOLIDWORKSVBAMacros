@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Rebuild Referenced Models in All Drawing Sheets | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <title>Set Layer &amp; Draw Line in SolidWorks Drawing | &#129513; SOLIDWORKS VBA Macros Library </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Rebuild Referenced Models in All Drawing Sheets | &#129513; SOLIDWORKS VBA Macros Library ">
+      <meta name="title" content="Set Layer &amp; Draw Line in SolidWorks Drawing | &#129513; SOLIDWORKS VBA Macros Library ">
       
       
       <link rel="icon" href="../favicon.ico">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Referenced_File.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/SetLayersAndDrawLine.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -85,29 +85,29 @@
         </div>
 
         <article data-uid="">
-<h1 id="rebuild-referenced-models-in-all-drawing-sheets">Rebuild Referenced Models in All Drawing Sheets</h1>
+<h1 id="set-layer--draw-line-in-solidworks-drawing">Set Layer &amp; Draw Line in SolidWorks Drawing</h1>
 
 <h2 id="description">Description</h2>
-<p>This macro rebuilds all referenced models for each sheet in an active SOLIDWORKS drawing document.It validates the active document, iterates through all sheets, and for each sheet, rebuilds the models referenced by the views. After rebuilding, it closes the models to free up memory.</p>
+<p>This macro sets the specified layer as the current layer in the active SolidWorks drawing document and adds a sketched line on that layer. It automates the process of layer management and drawing creation, ensuring that all subsequent sketched entities are added to the specified layer. This is particularly useful for organizing different sketch entities in separate layers.</p>
 <h2 id="system-requirements">System Requirements</h2>
 <ul>
-<li><strong>SOLIDWORKS Version</strong>: SOLIDWORKS 2014 or newer</li>
-<li><strong>Operating System</strong>: Windows 10 or later</li>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
 </ul>
 <h2 id="pre-conditions">Pre-Conditions</h2>
 <div class="NOTE">
 <h5>Note</h5>
 <ul>
-<li>SOLIDWORKS must be installed and running on the machine.</li>
-<li>An active drawing with multiple sheets and views is open.</li>
+<li>The active document must be a drawing document.</li>
+<li>The specified layer (<code>Grain</code>) must already exist in the active drawing.</li>
 </ul>
 </div>
-<h2 id="post-conditions">Post-Conditions</h2>
+<h2 id="results">Results</h2>
 <div class="NOTE">
 <h5>Note</h5>
 <ul>
-<li>The referenced files will be opened, rebuilt, and closed.</li>
-<li>The original drawing views will update.</li>
+<li>The specified layer (<code>Grain</code>) will be set as the active layer.</li>
+<li>A new sketch line will be created on the specified layer at the given coordinates.</li>
 </ul>
 </div>
 <h2 id="vba-macro-code">VBA Macro Code</h2>
@@ -117,74 +117,66 @@
 ' For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
 
 Option Explicit
-
-' Declare variables
-Dim swApp As SldWorks.SldWorks
-Dim swModel As SldWorks.ModelDoc2
-Dim swDrawModel As SldWorks.ModelDoc2
-Dim swDraw As SldWorks.DrawingDoc
-Dim swView As SldWorks.View
-Dim swSheet As SldWorks.Sheet
-Dim vSheetNameArr As Variant
-Dim vSheetName As Variant
-Dim bRet As Boolean
-Dim sFileName As String
-Dim nErrors As Long
+' Define necessary variables for SolidWorks application, drawing, and layer manager
+Dim swApp As Object                 ' Application object (SldWorks)
+Dim pDrawing As Object              ' Active drawing document object
+Dim pLayerMgr As Object             ' Layer manager object
+Dim pSketchSegment1 As Object       ' Sketch segment object (line)
 
 Sub main()
-
-    ' Initialize SOLIDWORKS application object
+    
+    ' Initialize SolidWorks application
     Set swApp = Application.SldWorks
-    Set swModel = swApp.ActiveDoc
-
-    ' Check if a drawing document is active
-    If swModel Is Nothing Then
-        swApp.SendMsgToUser2 &quot;A drawing document must be open and the active document.&quot;, swMbWarning, swMbOk
+    
+    ' Get the active drawing document
+    Set pDrawing = swApp.ActiveDoc
+    
+    ' Check if the active document is a drawing
+    If pDrawing Is Nothing Then
+        swApp.SendMsgToUser &quot;No active drawing document found. Please open a drawing and try again.&quot;
         Exit Sub
     End If
     
-    ' Verify the document is a drawing
-    If swModel.GetType &lt;&gt; SwConst.swDocDRAWING Then
-        swApp.SendMsgToUser2 &quot;A drawing document must be open and the active document.&quot;, swMbWarning, swMbOk
+    ' Get LayerMgr object from the active drawing document
+    Set pLayerMgr = pDrawing.GetLayerManager
+    
+    ' Check if LayerMgr was obtained successfully
+    If pLayerMgr Is Nothing Then
+        swApp.SendMsgToUser &quot;Failed to get Layer Manager. Make sure you are in a drawing document.&quot;
         Exit Sub
     End If
     
-    ' Cast the active document as a drawing
-    Set swDraw = swModel
+    ' Set &quot;Grain&quot; as the current layer
+    Dim res As Boolean
+    res = pLayerMgr.SetCurrentLayer(&quot;Grain&quot;)
     
-    ' Get the current sheet and sheet names
-    Set swSheet = swDraw.GetCurrentSheet
-    vSheetNameArr = swDraw.GetSheetNames
-
-    ' Loop through each sheet
-    For Each vSheetName In vSheetNameArr
-        ' Activate each sheet
-        bRet = swDraw.ActivateSheet(vSheetName)
-        Set swView = swDraw.GetFirstView
-        Set swView = swView.GetNextView ' Skip the sheet's overall view
-
-        ' Loop through all views in the sheet
-        Do While Not swView Is Nothing
-            ' Get the referenced model for the view
-            Set swDrawModel = swView.ReferencedDocument
-            sFileName = swDrawModel.GetPathName
-            
-            ' Open and rebuild the referenced model
-            Set swDrawModel = swApp.ActivateDoc3(sFileName, True, swRebuildActiveDoc, nErrors)
-            
-            ' Rebuild  the referenced model
-            swDrawModel.EditRebuild3
-            
-            ' Close the referenced model after rebuild
-            swApp.CloseDoc swDrawModel.GetTitle
-            
-            ' Move to the next view
-            Set swView = swView.GetNextView
-        Loop
-    Next vSheetName
+    ' Check if the layer activation was successful
+    If res = False Then
+        swApp.SendMsgToUser &quot;Error activating the layer 'Grain'. Please ensure the layer exists in the drawing.&quot;
+        Exit Sub
+    End If
     
-    ' Notify the user that the rebuild is complete
-    MsgBox &quot;Rebuild is done.&quot;
+    ' Enable adding objects to the database without displaying them
+    pDrawing.SetAddToDB True
+    
+    ' Create a line sketch on the active layer
+    Set pSketchSegment1 = pDrawing.CreateLine2(0.15, 0.25, 0, 0.45, 0.25, 0)
+    
+    ' Check if the line was created successfully
+    If pSketchSegment1 Is Nothing Then
+        swApp.SendMsgToUser &quot;Failed to create the sketch line. Please check the sketch coordinates.&quot;
+        pDrawing.SetAddToDB False
+        Exit Sub
+    End If
+    
+    ' Disable adding objects to the database
+    pDrawing.SetAddToDB False
+    
+    ' Clear all selections in the drawing
+    pDrawing.ClearSelection
+    
+    ' Notify user of successful operation
+    swApp.SendMsgToUser &quot;Layer set and line created successfully on the active layer.&quot;
 
 End Sub
 </code></pre>
@@ -194,7 +186,7 @@ End Sub
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Referenced_File.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/SetLayersAndDrawLine.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

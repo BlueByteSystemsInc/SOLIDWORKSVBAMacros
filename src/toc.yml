@@ -12,7 +12,13 @@
   - name: Add Mass Center
     href: addmasscenter.md
   - name: Check For Missing Hole Callouts
-    href: Check For Missing Hole Callouts.md
+    href: Check For Missing Hole Callouts.md  
+  - name: Convert Inner Loop
+    href: ConvertInnerLoop.md
+  - name: Fully Define All Part Sketches
+    href: FullyDefineAllPartSketches.md
+  - name: Centre Of Gravity Macro
+    href: CGPoint.md
 
 - name: Assembly Documents 
 - name: Assembly Documents
@@ -42,6 +48,16 @@
     href: Reload_All_Sheet_Formats.md
   - name: Rebuild Referenced Models in All Drawing Sheets
     href: Rebuild_Referenced_File.md
+  - name: Set Layer And Draw Line
+    href: SetLayersAndDrawLine.md
+  - name: Inser Block Automatically
+    href: InserBlock.md
+  - name: Match Text Properties Automatically
+    href: MatchTextProperties.md
+  - name: Format Line Automatically
+    href: FormatLine.md
+  - name: Save Drawing To Pdf Automatically
+    href: SaveDrawingToPDF.md
 - name: Bill Of Materials
 - name: Bill Of Materials
   expanded: true 

@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Rebuild Referenced Models in All Drawing Sheets | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <title>Create Center of Gravity Point in SolidWorks | &#129513; SOLIDWORKS VBA Macros Library </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Rebuild Referenced Models in All Drawing Sheets | &#129513; SOLIDWORKS VBA Macros Library ">
+      <meta name="title" content="Create Center of Gravity Point in SolidWorks | &#129513; SOLIDWORKS VBA Macros Library ">
       
       
       <link rel="icon" href="../favicon.ico">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Referenced_File.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/CGPoint.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -85,29 +85,31 @@
         </div>
 
         <article data-uid="">
-<h1 id="rebuild-referenced-models-in-all-drawing-sheets">Rebuild Referenced Models in All Drawing Sheets</h1>
+<h1 id="create-center-of-gravity-point-in-solidworks">Create Center of Gravity Point in SolidWorks</h1>
 
 <h2 id="description">Description</h2>
-<p>This macro rebuilds all referenced models for each sheet in an active SOLIDWORKS drawing document.It validates the active document, iterates through all sheets, and for each sheet, rebuilds the models referenced by the views. After rebuilding, it closes the models to free up memory.</p>
+<p>This macro creates a 3D sketch point at the Center of Gravity (CoG) of the active part or assembly document in SolidWorks. It can be used to quickly identify the center of mass location within a part or assembly for analysis and design purposes.</p>
 <h2 id="system-requirements">System Requirements</h2>
 <ul>
-<li><strong>SOLIDWORKS Version</strong>: SOLIDWORKS 2014 or newer</li>
-<li><strong>Operating System</strong>: Windows 10 or later</li>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
 </ul>
 <h2 id="pre-conditions">Pre-Conditions</h2>
 <div class="NOTE">
 <h5>Note</h5>
 <ul>
-<li>SOLIDWORKS must be installed and running on the machine.</li>
-<li>An active drawing with multiple sheets and views is open.</li>
+<li>The active document must be a part or assembly file.</li>
+<li>The part or assembly must contain valid geometry to calculate the center of gravity.</li>
+<li>Ensure the part or assembly is open and active before running the macro.</li>
 </ul>
 </div>
-<h2 id="post-conditions">Post-Conditions</h2>
+<h2 id="results">Results</h2>
 <div class="NOTE">
 <h5>Note</h5>
 <ul>
-<li>The referenced files will be opened, rebuilt, and closed.</li>
-<li>The original drawing views will update.</li>
+<li>A 3D sketch will be created with a point located at the Center of Gravity.</li>
+<li>The new sketch will be named &quot;CenterOfGravity&quot; in the feature tree.</li>
+<li>An error message will be displayed if there is no geometry to process or if the document type is not valid.</li>
 </ul>
 </div>
 <h2 id="vba-macro-code">VBA Macro Code</h2>
@@ -118,73 +120,85 @@
 
 Option Explicit
 
-' Declare variables
-Dim swApp As SldWorks.SldWorks
-Dim swModel As SldWorks.ModelDoc2
-Dim swDrawModel As SldWorks.ModelDoc2
-Dim swDraw As SldWorks.DrawingDoc
-Dim swView As SldWorks.View
-Dim swSheet As SldWorks.Sheet
-Dim vSheetNameArr As Variant
-Dim vSheetName As Variant
-Dim bRet As Boolean
-Dim sFileName As String
-Dim nErrors As Long
+Dim swApp As Object                 ' SolidWorks application object
+Dim Part As Object                  ' Active document object (part or assembly)
+Dim boolstatus As Boolean           ' Boolean status variable
+Dim longstatus As Long              ' Long status variable for capturing operation results
+Dim Annotation As Object            ' Annotation object for any annotations added (not used here)
+Dim Gtol As Object                  ' Geometric tolerance object (not used here)
+Dim DatumTag As Object              ' Datum tag object (not used here)
+Dim FeatureData As Object           ' Feature data object for manipulating feature details (not used here)
+Dim Feature As Object               ' Feature object for creating/manipulating features (not used here)
+Dim Component As Object             ' Component object for assemblies (not used here)
 
+' Main subroutine to create the Center of Gravity point in a 3D sketch
 Sub main()
+    Dim mp As Variant                ' Array to hold the mass properties (center of gravity coordinates)
+    Dim PlaneObj As Object           ' Plane object (not used here)
+    Dim PlaneName As String          ' Name of the plane (not used here)
+    Dim SketchObj As Object          ' Sketch object for creating the 3D sketch (not used here)
+    Dim Version As String            ' SolidWorks version (not used here)
 
-    ' Initialize SOLIDWORKS application object
+    ' Error handling block to capture unexpected issues
+    On Error GoTo errhandlr
+
+    ' Initialize SolidWorks application
     Set swApp = Application.SldWorks
-    Set swModel = swApp.ActiveDoc
+    
 
-    ' Check if a drawing document is active
-    If swModel Is Nothing Then
-        swApp.SendMsgToUser2 &quot;A drawing document must be open and the active document.&quot;, swMbWarning, swMbOk
+    ' Check if SolidWorks application is available
+    If swApp Is Nothing Then
+        MsgBox &quot;SolidWorks application not found. Please ensure SolidWorks is installed and running.&quot;, vbCritical, &quot;SolidWorks Not Found&quot;
         Exit Sub
     End If
-    
-    ' Verify the document is a drawing
-    If swModel.GetType &lt;&gt; SwConst.swDocDRAWING Then
-        swApp.SendMsgToUser2 &quot;A drawing document must be open and the active document.&quot;, swMbWarning, swMbOk
+
+    ' Get the currently active document
+    Set Part = swApp.ActiveDoc
+
+    ' Check if there is an active document open in SolidWorks
+    If Part Is Nothing Then
+        MsgBox &quot;No active document found. Please open a part or assembly and try again.&quot;, vbCritical, &quot;No Active Document&quot;
         Exit Sub
     End If
-    
-    ' Cast the active document as a drawing
-    Set swDraw = swModel
-    
-    ' Get the current sheet and sheet names
-    Set swSheet = swDraw.GetCurrentSheet
-    vSheetNameArr = swDraw.GetSheetNames
 
-    ' Loop through each sheet
-    For Each vSheetName In vSheetNameArr
-        ' Activate each sheet
-        bRet = swDraw.ActivateSheet(vSheetName)
-        Set swView = swDraw.GetFirstView
-        Set swView = swView.GetNextView ' Skip the sheet's overall view
+    ' Check if the active document is a drawing (GetType = 3 corresponds to drawing)
+    If Part.GetType = 3 Then
+        MsgBox &quot;This macro only works on parts or assemblies. Please open a part or assembly and try again.&quot;, vbCritical, &quot;Invalid Document Type&quot;
+        Exit Sub
+    End If
 
-        ' Loop through all views in the sheet
-        Do While Not swView Is Nothing
-            ' Get the referenced model for the view
-            Set swDrawModel = swView.ReferencedDocument
-            sFileName = swDrawModel.GetPathName
-            
-            ' Open and rebuild the referenced model
-            Set swDrawModel = swApp.ActivateDoc3(sFileName, True, swRebuildActiveDoc, nErrors)
-            
-            ' Rebuild  the referenced model
-            swDrawModel.EditRebuild3
-            
-            ' Close the referenced model after rebuild
-            swApp.CloseDoc swDrawModel.GetTitle
-            
-            ' Move to the next view
-            Set swView = swView.GetNextView
-        Loop
-    Next vSheetName
-    
-    ' Notify the user that the rebuild is complete
-    MsgBox &quot;Rebuild is done.&quot;
+    ' Enable adding objects directly to the database without showing in the UI
+    Part.SetAddToDB True
+
+    ' Get the mass properties of the active part or assembly
+    ' mp array holds center of mass coordinates (mp(0) = X, mp(1) = Y, mp(2) = Z)
+    mp = Part.GetMassProperties
+
+    ' Check if mass properties are valid (in case the part has no geometry)
+    If Not IsArray(mp) Or UBound(mp) &lt; 2 Then
+        MsgBox &quot;No geometry found in the part or assembly. Cannot calculate center of gravity.&quot;, vbCritical, &quot;Invalid Geometry&quot;
+        Exit Sub
+    End If
+
+    ' Insert a new 3D sketch
+    Part.Insert3DSketch
+
+    ' Create a point at the center of gravity coordinates
+    Part.CreatePoint2 mp(0), mp(1), mp(2)
+
+    ' Exit the sketch mode
+    Part.InsertSketch
+
+    ' Rename the newly created feature to &quot;CenterOfGravity&quot; in the feature tree
+    Part.FeatureByPositionReverse(0).Name = &quot;CenterOfGravity&quot;
+
+    ' Successfully exit the subroutine
+    Exit Sub
+
+' Error handling block
+errhandlr:
+    MsgBox &quot;An error occurred. No valid geometry found to process.&quot;, vbCritical, &quot;Error&quot;
+    Exit Sub
 
 End Sub
 </code></pre>
@@ -194,7 +208,7 @@ End Sub
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Referenced_File.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/CGPoint.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Rebuild Referenced Models in All Drawing Sheets | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <title>Programmatically Insert a Block into SolidWorks Drawing | &#129513; SOLIDWORKS VBA Macros Library </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Rebuild Referenced Models in All Drawing Sheets | &#129513; SOLIDWORKS VBA Macros Library ">
+      <meta name="title" content="Programmatically Insert a Block into SolidWorks Drawing | &#129513; SOLIDWORKS VBA Macros Library ">
       
       
       <link rel="icon" href="../favicon.ico">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Referenced_File.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/InsertBlock.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -85,29 +85,29 @@
         </div>
 
         <article data-uid="">
-<h1 id="rebuild-referenced-models-in-all-drawing-sheets">Rebuild Referenced Models in All Drawing Sheets</h1>
+<h1 id="programmatically-insert-a-block-into-solidworks-drawing">Programmatically Insert a Block into SolidWorks Drawing</h1>
 
 <h2 id="description">Description</h2>
-<p>This macro rebuilds all referenced models for each sheet in an active SOLIDWORKS drawing document.It validates the active document, iterates through all sheets, and for each sheet, rebuilds the models referenced by the views. After rebuilding, it closes the models to free up memory.</p>
+<p>A one-line function call to programmatically insert a block into the active SolidWorks drawing. This macro returns the <code>SketchBlockInstance</code> for the inserted block, enabling users to efficiently place and manage sketch blocks within a drawing. It is particularly useful for automating the placement of standardized blocks, reducing repetitive tasks.</p>
 <h2 id="system-requirements">System Requirements</h2>
 <ul>
-<li><strong>SOLIDWORKS Version</strong>: SOLIDWORKS 2014 or newer</li>
-<li><strong>Operating System</strong>: Windows 10 or later</li>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
 </ul>
 <h2 id="pre-conditions">Pre-Conditions</h2>
 <div class="NOTE">
 <h5>Note</h5>
 <ul>
-<li>SOLIDWORKS must be installed and running on the machine.</li>
-<li>An active drawing with multiple sheets and views is open.</li>
+<li>The active document must be a drawing file.</li>
+<li>The block file to be inserted must exist in the specified path.</li>
 </ul>
 </div>
-<h2 id="post-conditions">Post-Conditions</h2>
+<h2 id="results">Results</h2>
 <div class="NOTE">
 <h5>Note</h5>
 <ul>
-<li>The referenced files will be opened, rebuilt, and closed.</li>
-<li>The original drawing views will update.</li>
+<li>The block will be inserted at the specified X and Y coordinates.</li>
+<li>The macro returns a <code>SketchBlockInstance</code> object for the inserted block.</li>
 </ul>
 </div>
 <h2 id="vba-macro-code">VBA Macro Code</h2>
@@ -118,75 +118,100 @@
 
 Option Explicit
 
-' Declare variables
 Dim swApp As SldWorks.SldWorks
-Dim swModel As SldWorks.ModelDoc2
-Dim swDrawModel As SldWorks.ModelDoc2
-Dim swDraw As SldWorks.DrawingDoc
-Dim swView As SldWorks.View
-Dim swSheet As SldWorks.Sheet
-Dim vSheetNameArr As Variant
-Dim vSheetName As Variant
-Dim bRet As Boolean
-Dim sFileName As String
-Dim nErrors As Long
 
+' Main subroutine to insert a block and print block attributes
 Sub main()
 
-    ' Initialize SOLIDWORKS application object
+    Dim part As ModelDoc2
+    Dim swBlkInst As SketchBlockInstance
+    Dim boolstatus As Boolean
+
+    ' Initialize SolidWorks application
     Set swApp = Application.SldWorks
-    Set swModel = swApp.ActiveDoc
+    Set part = swApp.ActiveDoc
 
-    ' Check if a drawing document is active
-    If swModel Is Nothing Then
-        swApp.SendMsgToUser2 &quot;A drawing document must be open and the active document.&quot;, swMbWarning, swMbOk
-        Exit Sub
-    End If
-    
-    ' Verify the document is a drawing
-    If swModel.GetType &lt;&gt; SwConst.swDocDRAWING Then
-        swApp.SendMsgToUser2 &quot;A drawing document must be open and the active document.&quot;, swMbWarning, swMbOk
-        Exit Sub
-    End If
-    
-    ' Cast the active document as a drawing
-    Set swDraw = swModel
-    
-    ' Get the current sheet and sheet names
-    Set swSheet = swDraw.GetCurrentSheet
-    vSheetNameArr = swDraw.GetSheetNames
+    ' Insert the block at specified location with optional scale and rotation
+    Set swBlkInst = Insert_Block(part, &quot;C:\temp\myblock.SLDBLK&quot;, 0.254, 0.254)
 
-    ' Loop through each sheet
-    For Each vSheetName In vSheetNameArr
-        ' Activate each sheet
-        bRet = swDraw.ActivateSheet(vSheetName)
-        Set swView = swDraw.GetFirstView
-        Set swView = swView.GetNextView ' Skip the sheet's overall view
+    ' Display block attributes in the Immediate window
+    Debug.Print &quot;Number of attributes: &quot; &amp; swBlkInst.GetAttributeCount
+    Debug.Print &quot;Scale: &quot; &amp; swBlkInst.Scale
+    Debug.Print &quot;Name: &quot; &amp; swBlkInst.Name
 
-        ' Loop through all views in the sheet
-        Do While Not swView Is Nothing
-            ' Get the referenced model for the view
-            Set swDrawModel = swView.ReferencedDocument
-            sFileName = swDrawModel.GetPathName
-            
-            ' Open and rebuild the referenced model
-            Set swDrawModel = swApp.ActivateDoc3(sFileName, True, swRebuildActiveDoc, nErrors)
-            
-            ' Rebuild  the referenced model
-            swDrawModel.EditRebuild3
-            
-            ' Close the referenced model after rebuild
-            swApp.CloseDoc swDrawModel.GetTitle
-            
-            ' Move to the next view
-            Set swView = swView.GetNextView
-        Loop
-    Next vSheetName
-    
-    ' Notify the user that the rebuild is complete
-    MsgBox &quot;Rebuild is done.&quot;
+    ' Set an attribute value for the inserted block
+    boolstatus = swBlkInst.SetAttributeValue(&quot;ItemNo&quot;, &quot;Value&quot;)
 
 End Sub
+
+' Function to insert a block into the active document
+Function Insert_Block(ByVal rModel As ModelDoc2, ByVal blkName As String, ByVal Xpt As Double, ByVal Ypt As Double, _
+                      Optional ByVal sAngle As Double = 0, Optional ByVal sScale As Double = 1) As Object
+    Dim swBlockDef As SketchBlockDefinition
+    Dim swBlockInst As SketchBlockInstance
+    Dim swMathPoint As MathPoint
+    Dim vBlockInst As Variant
+    Dim swMathUtil As MathUtility
+    
+    Set swMathUtil = swApp.GetMathUtility
+
+    ' Prepare coordinates for block insertion
+    Dim pt(2) As Double
+    pt(0) = Xpt
+    pt(1) = Ypt
+    pt(2) = 0
+
+    ' Turn off grid and entity snapping to facilitate block insertion
+    rModel.SetAddToDB True
+
+    ' Check if the block definition already exists in the drawing
+    Set swBlockDef = GetBlockDefination(Mid(blkName, InStrRev(blkName, &quot;\&quot;) + 1), rModel)
+    Set swMathPoint = swMathUtil.CreatePoint(pt)
+
+    ' Insert the block if definition is found, otherwise create a new one
+    If Not swBlockDef Is Nothing Then
+        Set swBlockInst = rModel.SketchManager.InsertSketchBlockInstance(swBlockDef, swMathPoint, sScale, sAngle)
+    Else
+        Set swBlockDef = rModel.SketchManager.MakeSketchBlockFromFile(swMathPoint, blkName, False, sScale, sAngle)
+        vBlockInst = swBlockDef.GetInstances
+        Set swBlockInst = vBlockInst(0)
+    End If
+
+    ' Restore grid and entity snapping
+    rModel.SetAddToDB False
+
+    ' Redraw graphics to reflect the changes
+    rModel.GraphicsRedraw2
+
+    Set Insert_Block = swBlockInst
+
+End Function
+
+' Function to get the block definition if it already exists in the drawing
+Function GetBlockDefination(ByVal blkName As String, ByVal rModel As ModelDoc2) As Object
+    Dim swBlockDef As Object
+    Dim vBlockDef As Variant
+    Dim i As Integer
+
+    ' Check if there are existing block definitions in the drawing
+    If rModel.SketchManager.GetSketchBlockDefinitionCount &gt; 0 Then
+        vBlockDef = rModel.SketchManager.GetSketchBlockDefinitions
+        If UBound(vBlockDef) &gt;= 0 Then
+            ' Loop through existing definitions to find the matching one
+            For i = 0 To UBound(vBlockDef)
+                Set swBlockDef = vBlockDef(i)
+                If UCase(Mid(swBlockDef.FileName, InStrRev(swBlockDef.FileName, &quot;\&quot;) + 1)) = UCase(blkName) Then
+                    Set GetBlockDefination = swBlockDef
+                    Exit Function
+                End If
+            Next i
+        End If
+    End If
+
+    ' Return nothing if no matching block definition is found
+    Set GetBlockDefination = Nothing
+
+End Function
 </code></pre>
 <h2 id="customization">Customization</h2>
 <p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
@@ -194,7 +219,7 @@ End Sub
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Referenced_File.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/InsertBlock.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Rebuild Referenced Models in All Drawing Sheets | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <title>Convert Entities - Select Inner Loops Only | &#129513; SOLIDWORKS VBA Macros Library </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Rebuild Referenced Models in All Drawing Sheets | &#129513; SOLIDWORKS VBA Macros Library ">
+      <meta name="title" content="Convert Entities - Select Inner Loops Only | &#129513; SOLIDWORKS VBA Macros Library ">
       
       
       <link rel="icon" href="../favicon.ico">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Referenced_File.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/ConvertInnerLoop.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -85,29 +85,29 @@
         </div>
 
         <article data-uid="">
-<h1 id="rebuild-referenced-models-in-all-drawing-sheets">Rebuild Referenced Models in All Drawing Sheets</h1>
+<h1 id="convert-entities---select-inner-loops-only">Convert Entities - Select Inner Loops Only</h1>
 
 <h2 id="description">Description</h2>
-<p>This macro rebuilds all referenced models for each sheet in an active SOLIDWORKS drawing document.It validates the active document, iterates through all sheets, and for each sheet, rebuilds the models referenced by the views. After rebuilding, it closes the models to free up memory.</p>
+<p>This macro provides a keyboard shortcut for the <code>Convert Entities</code> feature in SolidWorks, specifically targeting only the inner loops of a sketch. It automates the selection of inner loops, making it more convenient for users to quickly convert edges of inner contours in a sketch.</p>
 <h2 id="system-requirements">System Requirements</h2>
 <ul>
-<li><strong>SOLIDWORKS Version</strong>: SOLIDWORKS 2014 or newer</li>
-<li><strong>Operating System</strong>: Windows 10 or later</li>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
 </ul>
 <h2 id="pre-conditions">Pre-Conditions</h2>
 <div class="NOTE">
 <h5>Note</h5>
 <ul>
-<li>SOLIDWORKS must be installed and running on the machine.</li>
-<li>An active drawing with multiple sheets and views is open.</li>
+<li>The active document must be a part or assembly containing a sketch.</li>
+<li>The user must be in an active sketch before running the macro.</li>
 </ul>
 </div>
-<h2 id="post-conditions">Post-Conditions</h2>
+<h2 id="results">Results</h2>
 <div class="NOTE">
 <h5>Note</h5>
 <ul>
-<li>The referenced files will be opened, rebuilt, and closed.</li>
-<li>The original drawing views will update.</li>
+<li>Only inner loops of the sketch will be selected for conversion.</li>
+<li>A confirmation message or error message will be displayed based on the operation's success.</li>
 </ul>
 </div>
 <h2 id="vba-macro-code">VBA Macro Code</h2>
@@ -118,73 +118,45 @@
 
 Option Explicit
 
-' Declare variables
-Dim swApp As SldWorks.SldWorks
-Dim swModel As SldWorks.ModelDoc2
-Dim swDrawModel As SldWorks.ModelDoc2
-Dim swDraw As SldWorks.DrawingDoc
-Dim swView As SldWorks.View
-Dim swSheet As SldWorks.Sheet
-Dim vSheetNameArr As Variant
-Dim vSheetName As Variant
-Dim bRet As Boolean
-Dim sFileName As String
-Dim nErrors As Long
-
 Sub main()
 
-    ' Initialize SOLIDWORKS application object
+    ' Declare and initialize necessary SolidWorks objects
+    Dim swApp As SldWorks.SldWorks             ' SolidWorks application object
+    Dim swModel As SldWorks.ModelDoc2          ' Active document object
+    Dim swSketchManager As SldWorks.SketchManager  ' Sketch manager object to manage sketch-related functions
+    Dim boolstatus As Boolean                  ' Status variable to check the success of the operation
+
+    ' Initialize SolidWorks application and get the active document
     Set swApp = Application.SldWorks
     Set swModel = swApp.ActiveDoc
 
-    ' Check if a drawing document is active
+    ' Check if there is an active document in SolidWorks
     If swModel Is Nothing Then
-        swApp.SendMsgToUser2 &quot;A drawing document must be open and the active document.&quot;, swMbWarning, swMbOk
+        MsgBox &quot;No active document found. Please open a part or assembly and activate a sketch.&quot;, vbCritical, &quot;No Active Document&quot;
         Exit Sub
     End If
-    
-    ' Verify the document is a drawing
-    If swModel.GetType &lt;&gt; SwConst.swDocDRAWING Then
-        swApp.SendMsgToUser2 &quot;A drawing document must be open and the active document.&quot;, swMbWarning, swMbOk
+
+    ' Check if the active document is either a part or an assembly
+    If swModel.GetType &lt;&gt; swDocPART And swModel.GetType &lt;&gt; swDocASSEMBLY Then
+        MsgBox &quot;This macro only works with part or assembly documents. Please open a part or assembly and try again.&quot;, vbCritical, &quot;Invalid Document Type&quot;
         Exit Sub
     End If
-    
-    ' Cast the active document as a drawing
-    Set swDraw = swModel
-    
-    ' Get the current sheet and sheet names
-    Set swSheet = swDraw.GetCurrentSheet
-    vSheetNameArr = swDraw.GetSheetNames
 
-    ' Loop through each sheet
-    For Each vSheetName In vSheetNameArr
-        ' Activate each sheet
-        bRet = swDraw.ActivateSheet(vSheetName)
-        Set swView = swDraw.GetFirstView
-        Set swView = swView.GetNextView ' Skip the sheet's overall view
+    ' Get the Sketch Manager object from the active document
+    Set swSketchManager = swModel.SketchManager
 
-        ' Loop through all views in the sheet
-        Do While Not swView Is Nothing
-            ' Get the referenced model for the view
-            Set swDrawModel = swView.ReferencedDocument
-            sFileName = swDrawModel.GetPathName
-            
-            ' Open and rebuild the referenced model
-            Set swDrawModel = swApp.ActivateDoc3(sFileName, True, swRebuildActiveDoc, nErrors)
-            
-            ' Rebuild  the referenced model
-            swDrawModel.EditRebuild3
-            
-            ' Close the referenced model after rebuild
-            swApp.CloseDoc swDrawModel.GetTitle
-            
-            ' Move to the next view
-            Set swView = swView.GetNextView
-        Loop
-    Next vSheetName
-    
-    ' Notify the user that the rebuild is complete
-    MsgBox &quot;Rebuild is done.&quot;
+    ' Use the SketchUseEdge3 method to select only inner loops
+    ' Syntax: SketchUseEdge3(ConvertAllEntities As Boolean, SelectInnerLoops As Boolean) As Boolean
+    ' ConvertAllEntities: Set to False to avoid converting all entities in the sketch.
+    ' SelectInnerLoops: Set to True to select only inner loops for conversion.
+    boolstatus = swSketchManager.SketchUseEdge3(False, True)
+
+    ' Check if the operation was successful and notify the user
+    If boolstatus Then
+        MsgBox &quot;Inner loops have been successfully selected for conversion.&quot;, vbInformation, &quot;Operation Successful&quot;
+    Else
+        MsgBox &quot;Failed to select inner loops for conversion. Please ensure you are in an active sketch.&quot;, vbExclamation, &quot;Operation Failed&quot;
+    End If
 
 End Sub
 </code></pre>
@@ -194,7 +166,7 @@ End Sub
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Referenced_File.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/ConvertInnerLoop.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

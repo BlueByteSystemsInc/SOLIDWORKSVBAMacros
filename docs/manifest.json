@@ -77,10 +77,110 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/CGPoint.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/CGPoint.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/Check For Missing Hole Callouts.md",
       "output": {
         ".html": {
           "relative_path": "src/Check For Missing Hole Callouts.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/ConvertInnerLoop.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ConvertInnerLoop.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/ExportFlatToDxfFromAssembly.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ExportFlatToDxfFromAssembly.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/ExportToParasolid.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ExportToParasolid.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/FormatLine.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/FormatLine.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/FullyDefineAllPartSketches.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/FullyDefineAllPartSketches.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/InsertBlock.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/InsertBlock.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Isolate.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Isolate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/MatchTextProperties.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/MatchTextProperties.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/MeasureSketchAndAddLengthProperty.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/MeasureSketchAndAddLengthProperty.html"
         }
       },
       "version": ""
@@ -117,10 +217,30 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/SaveDrawingToPDF.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/SaveDrawingToPDF.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/Save_Each_Sheet_As_PDF.md",
       "output": {
         ".html": {
           "relative_path": "src/Save_Each_Sheet_As_PDF.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/SetLayersAndDrawLine.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/SetLayersAndDrawLine.html"
         }
       },
       "version": ""

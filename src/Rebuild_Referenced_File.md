@@ -1,15 +1,15 @@
 # Rebuild Referenced Models in All Drawing Sheets
 
 ## Description
-This macro rebuilds all referenced models for each sheet in an active SolidWorks drawing document.It validates the active document, iterates through all sheets, and for each sheet, rebuilds the models referenced by the views. After rebuilding, it closes the models to free up memory.
+This macro rebuilds all referenced models for each sheet in an active SOLIDWORKS drawing document.It validates the active document, iterates through all sheets, and for each sheet, rebuilds the models referenced by the views. After rebuilding, it closes the models to free up memory.
 
 ## System Requirements
-- **SolidWorks Version**: SolidWorks 2014 or newer
+- **SOLIDWORKS Version**: SOLIDWORKS 2014 or newer
 - **Operating System**: Windows 10 or later
 
 ## Pre-Conditions
 > [!NOTE]
-> - SolidWorks must be installed and running on the machine.
+> - SOLIDWORKS must be installed and running on the machine.
 > - An active drawing with multiple sheets and views is open.
 
 ## Post-Conditions
@@ -43,7 +43,7 @@ Dim nErrors As Long
 
 Sub main()
 
-    ' Initialize SolidWorks application object
+    ' Initialize SOLIDWORKS application object
     Set swApp = Application.SldWorks
     Set swModel = swApp.ActiveDoc
 

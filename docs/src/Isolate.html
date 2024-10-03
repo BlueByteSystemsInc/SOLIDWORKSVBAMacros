@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Rebuild Referenced Models in All Drawing Sheets | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <title>Isolate Selected Components in an Assembly | &#129513; SOLIDWORKS VBA Macros Library </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Rebuild Referenced Models in All Drawing Sheets | &#129513; SOLIDWORKS VBA Macros Library ">
+      <meta name="title" content="Isolate Selected Components in an Assembly | &#129513; SOLIDWORKS VBA Macros Library ">
       
       
       <link rel="icon" href="../favicon.ico">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Referenced_File.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Isolate.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -85,29 +85,29 @@
         </div>
 
         <article data-uid="">
-<h1 id="rebuild-referenced-models-in-all-drawing-sheets">Rebuild Referenced Models in All Drawing Sheets</h1>
+<h1 id="isolate-selected-components-in-an-assembly">Isolate Selected Components in an Assembly</h1>
 
 <h2 id="description">Description</h2>
-<p>This macro rebuilds all referenced models for each sheet in an active SOLIDWORKS drawing document.It validates the active document, iterates through all sheets, and for each sheet, rebuilds the models referenced by the views. After rebuilding, it closes the models to free up memory.</p>
+<p>Pre-select one or more components in an assembly and execute the macro. The selected components will become isolated in the assembly. This macro can be placed on the Graphics Area menu (which pops up when you right-click a component) for convenient access, making it ideal for users who frequently isolate components.</p>
 <h2 id="system-requirements">System Requirements</h2>
 <ul>
-<li><strong>SOLIDWORKS Version</strong>: SOLIDWORKS 2014 or newer</li>
-<li><strong>Operating System</strong>: Windows 10 or later</li>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
 </ul>
 <h2 id="pre-conditions">Pre-Conditions</h2>
 <div class="NOTE">
 <h5>Note</h5>
 <ul>
-<li>SOLIDWORKS must be installed and running on the machine.</li>
-<li>An active drawing with multiple sheets and views is open.</li>
+<li>One or more components must be pre-selected in an active assembly.</li>
+<li>The active document must be an assembly file.</li>
 </ul>
 </div>
-<h2 id="post-conditions">Post-Conditions</h2>
+<h2 id="results">Results</h2>
 <div class="NOTE">
 <h5>Note</h5>
 <ul>
-<li>The referenced files will be opened, rebuilt, and closed.</li>
-<li>The original drawing views will update.</li>
+<li>The selected components will be isolated in the assembly.</li>
+<li>A message box will be displayed if no components are selected or if the active document is not an assembly.</li>
 </ul>
 </div>
 <h2 id="vba-macro-code">VBA Macro Code</h2>
@@ -118,73 +118,41 @@
 
 Option Explicit
 
-' Declare variables
-Dim swApp As SldWorks.SldWorks
-Dim swModel As SldWorks.ModelDoc2
-Dim swDrawModel As SldWorks.ModelDoc2
-Dim swDraw As SldWorks.DrawingDoc
-Dim swView As SldWorks.View
-Dim swSheet As SldWorks.Sheet
-Dim vSheetNameArr As Variant
-Dim vSheetName As Variant
-Dim bRet As Boolean
-Dim sFileName As String
-Dim nErrors As Long
-
+' Main subroutine to isolate selected components in an assembly
 Sub main()
 
-    ' Initialize SOLIDWORKS application object
+    ' Declare SolidWorks application and active document objects
+    Dim swApp As Object                              ' SolidWorks application object
+    Dim Part As Object                               ' Active document object (assembly)
+    Dim boolstatus As Boolean                        ' Boolean status to capture operation results
+    Dim longstatus As Long, longwarnings As Long     ' Long variables for capturing status and warnings
+
+    ' Initialize SolidWorks application and get the active document
     Set swApp = Application.SldWorks
-    Set swModel = swApp.ActiveDoc
+    Set Part = swApp.ActiveDoc
 
-    ' Check if a drawing document is active
-    If swModel Is Nothing Then
-        swApp.SendMsgToUser2 &quot;A drawing document must be open and the active document.&quot;, swMbWarning, swMbOk
+    ' Check if there is an active document open
+    If Part Is Nothing Then
+        MsgBox &quot;No active document found. Please open an assembly and try again.&quot;, vbCritical, &quot;No Active Document&quot;
         Exit Sub
     End If
-    
-    ' Verify the document is a drawing
-    If swModel.GetType &lt;&gt; SwConst.swDocDRAWING Then
-        swApp.SendMsgToUser2 &quot;A drawing document must be open and the active document.&quot;, swMbWarning, swMbOk
+
+    ' Check if the active document is an assembly
+    If Part.GetType &lt;&gt; swDocASSEMBLY Then
+        MsgBox &quot;This macro only works on assemblies. Please open an assembly and try again.&quot;, vbCritical, &quot;Invalid Document Type&quot;
         Exit Sub
     End If
-    
-    ' Cast the active document as a drawing
-    Set swDraw = swModel
-    
-    ' Get the current sheet and sheet names
-    Set swSheet = swDraw.GetCurrentSheet
-    vSheetNameArr = swDraw.GetSheetNames
 
-    ' Loop through each sheet
-    For Each vSheetName In vSheetNameArr
-        ' Activate each sheet
-        bRet = swDraw.ActivateSheet(vSheetName)
-        Set swView = swDraw.GetFirstView
-        Set swView = swView.GetNextView ' Skip the sheet's overall view
+    ' Isolate the pre-selected components in the assembly
+    ' RunCommand with ID 2726 is used to isolate components in SolidWorks
+    boolstatus = Part.Extension.RunCommand(2726, &quot;&quot;)
 
-        ' Loop through all views in the sheet
-        Do While Not swView Is Nothing
-            ' Get the referenced model for the view
-            Set swDrawModel = swView.ReferencedDocument
-            sFileName = swDrawModel.GetPathName
-            
-            ' Open and rebuild the referenced model
-            Set swDrawModel = swApp.ActivateDoc3(sFileName, True, swRebuildActiveDoc, nErrors)
-            
-            ' Rebuild  the referenced model
-            swDrawModel.EditRebuild3
-            
-            ' Close the referenced model after rebuild
-            swApp.CloseDoc swDrawModel.GetTitle
-            
-            ' Move to the next view
-            Set swView = swView.GetNextView
-        Loop
-    Next vSheetName
-    
-    ' Notify the user that the rebuild is complete
-    MsgBox &quot;Rebuild is done.&quot;
+    ' Note: The following command can be used to exit isolation mode if required:
+    ' boolstatus = Part.Extension.RunCommand(2732, &quot;&quot;)   ' RunCommand ID 2732 exits isolate mode
+
+    ' Clean up by releasing references to objects
+    Set Part = Nothing
+    Set swApp = Nothing
 
 End Sub
 </code></pre>
@@ -194,7 +162,7 @@ End Sub
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Referenced_File.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Isolate.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

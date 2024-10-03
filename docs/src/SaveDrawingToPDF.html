@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Rebuild Referenced Models in All Drawing Sheets | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <title>Save Drawing as PDF in SolidWorks | &#129513; SOLIDWORKS VBA Macros Library </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Rebuild Referenced Models in All Drawing Sheets | &#129513; SOLIDWORKS VBA Macros Library ">
+      <meta name="title" content="Save Drawing as PDF in SolidWorks | &#129513; SOLIDWORKS VBA Macros Library ">
       
       
       <link rel="icon" href="../favicon.ico">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Referenced_File.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/SaveDrawingToPDF.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -85,29 +85,30 @@
         </div>
 
         <article data-uid="">
-<h1 id="rebuild-referenced-models-in-all-drawing-sheets">Rebuild Referenced Models in All Drawing Sheets</h1>
+<h1 id="save-drawing-as-pdf-in-solidworks">Save Drawing as PDF in SolidWorks</h1>
 
 <h2 id="description">Description</h2>
-<p>This macro rebuilds all referenced models for each sheet in an active SOLIDWORKS drawing document.It validates the active document, iterates through all sheets, and for each sheet, rebuilds the models referenced by the views. After rebuilding, it closes the models to free up memory.</p>
+<p>This macro instantly saves the active part or assembly drawing as a PDF file. The PDF document is saved in the same folder as the drawing with the same name. This macro works best when assigned to a keyboard shortcut, making it easy to quickly export drawings to PDF format without manually navigating through the menus.</p>
 <h2 id="system-requirements">System Requirements</h2>
 <ul>
-<li><strong>SOLIDWORKS Version</strong>: SOLIDWORKS 2014 or newer</li>
-<li><strong>Operating System</strong>: Windows 10 or later</li>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
 </ul>
 <h2 id="pre-conditions">Pre-Conditions</h2>
 <div class="NOTE">
 <h5>Note</h5>
 <ul>
-<li>SOLIDWORKS must be installed and running on the machine.</li>
-<li>An active drawing with multiple sheets and views is open.</li>
+<li>The active document must be a saved drawing file.</li>
+<li>The drawing should have at least one sheet.</li>
+<li>Ensure the drawing is open and active before running the macro.</li>
 </ul>
 </div>
-<h2 id="post-conditions">Post-Conditions</h2>
+<h2 id="results">Results</h2>
 <div class="NOTE">
 <h5>Note</h5>
 <ul>
-<li>The referenced files will be opened, rebuilt, and closed.</li>
-<li>The original drawing views will update.</li>
+<li>All sheets of the active drawing are exported as a single PDF file.</li>
+<li>The PDF is saved in the same location as the drawing file with the same name.</li>
 </ul>
 </div>
 <h2 id="vba-macro-code">VBA Macro Code</h2>
@@ -117,74 +118,64 @@
 ' For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
 
 Option Explicit
-
-' Declare variables
-Dim swApp As SldWorks.SldWorks
-Dim swModel As SldWorks.ModelDoc2
-Dim swDrawModel As SldWorks.ModelDoc2
-Dim swDraw As SldWorks.DrawingDoc
-Dim swView As SldWorks.View
-Dim swSheet As SldWorks.Sheet
-Dim vSheetNameArr As Variant
-Dim vSheetName As Variant
-Dim bRet As Boolean
-Dim sFileName As String
-Dim nErrors As Long
-
 Sub main()
 
-    ' Initialize SOLIDWORKS application object
+    ' Declare and initialize necessary SolidWorks objects
+    Dim swApp As SldWorks.SldWorks             ' SolidWorks application object
+    Dim swModel As SldWorks.ModelDoc2          ' Active document object
+    Dim swModelDocExt As SldWorks.ModelDocExtension  ' Model document extension object
+    Dim swExportData As SldWorks.ExportPdfData ' PDF export data object
+    Dim boolstatus As Boolean                  ' Status of export operation
+    Dim filename As String                     ' Filename of the PDF to be saved
+    Dim lErrors As Long                        ' Variable to capture errors during save
+    Dim lWarnings As Long                      ' Variable to capture warnings during save
+
+    ' Initialize SolidWorks application and get the active document
     Set swApp = Application.SldWorks
     Set swModel = swApp.ActiveDoc
 
-    ' Check if a drawing document is active
+    ' Check if a document is currently open in SolidWorks
     If swModel Is Nothing Then
-        swApp.SendMsgToUser2 &quot;A drawing document must be open and the active document.&quot;, swMbWarning, swMbOk
+        MsgBox &quot;No active document found. Please open a drawing and try again.&quot;, vbCritical, &quot;No Active Document&quot;
         Exit Sub
     End If
-    
-    ' Verify the document is a drawing
-    If swModel.GetType &lt;&gt; SwConst.swDocDRAWING Then
-        swApp.SendMsgToUser2 &quot;A drawing document must be open and the active document.&quot;, swMbWarning, swMbOk
+
+    ' Check if the active document is a drawing
+    If swModel.GetType &lt;&gt; swDocDRAWING Then
+        MsgBox &quot;This macro only works with drawing files. Please open a drawing and try again.&quot;, vbCritical, &quot;Invalid Document Type&quot;
         Exit Sub
     End If
-    
-    ' Cast the active document as a drawing
-    Set swDraw = swModel
-    
-    ' Get the current sheet and sheet names
-    Set swSheet = swDraw.GetCurrentSheet
-    vSheetNameArr = swDraw.GetSheetNames
 
-    ' Loop through each sheet
-    For Each vSheetName In vSheetNameArr
-        ' Activate each sheet
-        bRet = swDraw.ActivateSheet(vSheetName)
-        Set swView = swDraw.GetFirstView
-        Set swView = swView.GetNextView ' Skip the sheet's overall view
+    ' Get the extension object of the active drawing document
+    Set swModelDocExt = swModel.Extension
 
-        ' Loop through all views in the sheet
-        Do While Not swView Is Nothing
-            ' Get the referenced model for the view
-            Set swDrawModel = swView.ReferencedDocument
-            sFileName = swDrawModel.GetPathName
-            
-            ' Open and rebuild the referenced model
-            Set swDrawModel = swApp.ActivateDoc3(sFileName, True, swRebuildActiveDoc, nErrors)
-            
-            ' Rebuild  the referenced model
-            swDrawModel.EditRebuild3
-            
-            ' Close the referenced model after rebuild
-            swApp.CloseDoc swDrawModel.GetTitle
-            
-            ' Move to the next view
-            Set swView = swView.GetNextView
-        Loop
-    Next vSheetName
-    
-    ' Notify the user that the rebuild is complete
-    MsgBox &quot;Rebuild is done.&quot;
+    ' Initialize the PDF export data object
+    Set swExportData = swApp.GetExportFileData(swExportPDFData)
+
+    ' Get the file path of the active drawing
+    filename = swModel.GetPathName
+
+    ' Check if the drawing has been saved
+    If filename = &quot;&quot; Then
+        MsgBox &quot;The drawing must be saved before exporting to PDF. Please save the drawing and try again.&quot;, vbCritical, &quot;Save Required&quot;
+        Exit Sub
+    End If
+
+    ' Modify the file path to save as PDF (replace extension with .PDF)
+    filename = Strings.Left(filename, Len(filename) - 6) &amp; &quot;PDF&quot;
+
+    ' Set the export option to include all sheets in the drawing
+    boolstatus = swExportData.SetSheets(swExportData_ExportAllSheets, 1)
+
+    ' Save the drawing as a PDF using the specified filename and export data
+    boolstatus = swModelDocExt.SaveAs(filename, 0, 0, swExportData, lErrors, lWarnings)
+
+    ' Check if the export was successful and display appropriate message
+    If boolstatus Then
+        MsgBox &quot;Drawing successfully saved as PDF:&quot; &amp; vbNewLine &amp; filename, vbInformation, &quot;Export Successful&quot;
+    Else
+        MsgBox &quot;Save as PDF failed. Error code: &quot; &amp; lErrors, vbExclamation, &quot;Export Failed&quot;
+    End If
 
 End Sub
 </code></pre>
@@ -194,7 +185,7 @@ End Sub
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Referenced_File.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/SaveDrawingToPDF.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

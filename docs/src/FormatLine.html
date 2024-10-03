@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Rebuild Referenced Models in All Drawing Sheets | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <title>Apply Custom Line Width and Color to Selected Edge in SolidWorks Drawing | &#129513; SOLIDWORKS VBA Macros Library </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Rebuild Referenced Models in All Drawing Sheets | &#129513; SOLIDWORKS VBA Macros Library ">
+      <meta name="title" content="Apply Custom Line Width and Color to Selected Edge in SolidWorks Drawing | &#129513; SOLIDWORKS VBA Macros Library ">
       
       
       <link rel="icon" href="../favicon.ico">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Referenced_File.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/FormatLine.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -85,29 +85,29 @@
         </div>
 
         <article data-uid="">
-<h1 id="rebuild-referenced-models-in-all-drawing-sheets">Rebuild Referenced Models in All Drawing Sheets</h1>
+<h1 id="apply-custom-line-width-and-color-to-selected-edge-in-solidworks-drawing">Apply Custom Line Width and Color to Selected Edge in SolidWorks Drawing</h1>
 
 <h2 id="description">Description</h2>
-<p>This macro rebuilds all referenced models for each sheet in an active SOLIDWORKS drawing document.It validates the active document, iterates through all sheets, and for each sheet, rebuilds the models referenced by the views. After rebuilding, it closes the models to free up memory.</p>
+<p>This macro applies custom line properties (color and width) to selected edges in a SolidWorks drawing. It helps users visually differentiate specific edges or lines in a drawing by changing their appearance based on the specified properties.</p>
 <h2 id="system-requirements">System Requirements</h2>
 <ul>
-<li><strong>SOLIDWORKS Version</strong>: SOLIDWORKS 2014 or newer</li>
-<li><strong>Operating System</strong>: Windows 10 or later</li>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
 </ul>
 <h2 id="pre-conditions">Pre-Conditions</h2>
 <div class="NOTE">
 <h5>Note</h5>
 <ul>
-<li>SOLIDWORKS must be installed and running on the machine.</li>
-<li>An active drawing with multiple sheets and views is open.</li>
+<li>The active document must be a drawing file.</li>
+<li>The user must select at least one edge in the drawing before running the macro.</li>
 </ul>
 </div>
-<h2 id="post-conditions">Post-Conditions</h2>
+<h2 id="results">Results</h2>
 <div class="NOTE">
 <h5>Note</h5>
 <ul>
-<li>The referenced files will be opened, rebuilt, and closed.</li>
-<li>The original drawing views will update.</li>
+<li>The selected edge(s) will have their line width and color updated based on the specified properties.</li>
+<li>A confirmation message will be shown if the operation is successful, or an error message if there are any issues.</li>
 </ul>
 </div>
 <h2 id="vba-macro-code">VBA Macro Code</h2>
@@ -118,73 +118,53 @@
 
 Option Explicit
 
-' Declare variables
-Dim swApp As SldWorks.SldWorks
-Dim swModel As SldWorks.ModelDoc2
-Dim swDrawModel As SldWorks.ModelDoc2
-Dim swDraw As SldWorks.DrawingDoc
-Dim swView As SldWorks.View
-Dim swSheet As SldWorks.Sheet
-Dim vSheetNameArr As Variant
-Dim vSheetName As Variant
-Dim bRet As Boolean
-Dim sFileName As String
-Dim nErrors As Long
-
 Sub main()
 
-    ' Initialize SOLIDWORKS application object
+    ' Declare SolidWorks application object and initialize it
+    Dim swApp As SldWorks.SldWorks
     Set swApp = Application.SldWorks
+    
+    ' Get the currently active document
+    Dim swModel As SldWorks.ModelDoc2
     Set swModel = swApp.ActiveDoc
 
-    ' Check if a drawing document is active
-    If swModel Is Nothing Then
-        swApp.SendMsgToUser2 &quot;A drawing document must be open and the active document.&quot;, swMbWarning, swMbOk
-        Exit Sub
-    End If
-    
-    ' Verify the document is a drawing
-    If swModel.GetType &lt;&gt; SwConst.swDocDRAWING Then
-        swApp.SendMsgToUser2 &quot;A drawing document must be open and the active document.&quot;, swMbWarning, swMbOk
-        Exit Sub
-    End If
-    
-    ' Cast the active document as a drawing
-    Set swDraw = swModel
-    
-    ' Get the current sheet and sheet names
-    Set swSheet = swDraw.GetCurrentSheet
-    vSheetNameArr = swDraw.GetSheetNames
+    ' Check if there is an active document
+    If Not swModel Is Nothing Then
+        ' Check if the active document is a drawing
+        If swModel.GetType = swDocDRAWING Then
+            ' Declare drawing document object and selection manager object
+            Dim swDraw As SldWorks.DrawingDoc
+            Set swDraw = swModel
+            Dim swSelMgr As SldWorks.SelectionMgr
+            Set swSelMgr = swModel.SelectionManager
 
-    ' Loop through each sheet
-    For Each vSheetName In vSheetNameArr
-        ' Activate each sheet
-        bRet = swDraw.ActivateSheet(vSheetName)
-        Set swView = swDraw.GetFirstView
-        Set swView = swView.GetNextView ' Skip the sheet's overall view
+            ' Check if any edge is selected in the drawing
+            If swSelMgr.GetSelectedObjectCount2(-1) &gt; 0 Then
+                
+                ' Specify custom line properties
+                Dim edgeWidth As Double
+                Dim edgeColor As Integer
+                edgeWidth = 0.0007          ' Line width in meters (e.g., 0.0007m = 0.7mm)
+                edgeColor = 255             ' Color in RGB (e.g., 255 = Red)
 
-        ' Loop through all views in the sheet
-        Do While Not swView Is Nothing
-            ' Get the referenced model for the view
-            Set swDrawModel = swView.ReferencedDocument
-            sFileName = swDrawModel.GetPathName
-            
-            ' Open and rebuild the referenced model
-            Set swDrawModel = swApp.ActivateDoc3(sFileName, True, swRebuildActiveDoc, nErrors)
-            
-            ' Rebuild  the referenced model
-            swDrawModel.EditRebuild3
-            
-            ' Close the referenced model after rebuild
-            swApp.CloseDoc swDrawModel.GetTitle
-            
-            ' Move to the next view
-            Set swView = swView.GetNextView
-        Loop
-    Next vSheetName
-    
-    ' Notify the user that the rebuild is complete
-    MsgBox &quot;Rebuild is done.&quot;
+                ' Apply custom line width and color to the selected edge(s)
+                swDraw.SetLineWidthCustom (edgeWidth)
+                swDraw.SetLineColor edgeColor
+
+                ' Notify the user of successful application
+                MsgBox &quot;Line width and color applied successfully to the selected edge(s).&quot;, vbInformation, &quot;Success&quot;
+            Else
+                ' Error message if no edge is selected
+                MsgBox &quot;Please select at least one edge in the drawing to apply the properties.&quot;, vbExclamation, &quot;No Edge Selected&quot;
+            End If
+        Else
+            ' Error message if the active document is not a drawing
+            MsgBox &quot;The active document is not a drawing. Please open a drawing and select an edge.&quot;, vbExclamation, &quot;Invalid Document Type&quot;
+        End If
+    Else
+        ' Error message if no document is open
+        MsgBox &quot;No active document found. Please open a drawing and select an edge.&quot;, vbExclamation, &quot;No Active Document&quot;
+    End If
 
 End Sub
 </code></pre>
@@ -194,7 +174,7 @@ End Sub
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Rebuild_Referenced_File.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/FormatLine.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

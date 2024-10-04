@@ -7,6 +7,7 @@ This VBA macro automates the process of exporting all sheet metal parts from a S
 ## VBA Macro Code
 
 ```vbnet
+Option Explicit
 ' ********************************************************************
 ' DISCLAIMER: 
 ' This code is provided as-is with no warranty or liability by 
@@ -26,110 +27,145 @@ Enum SheetMetalOptions_e
     ExportBoundingBox = 2048
 End Enum
 
-' Declare SolidWorks and component variables
+' solidworks app variable
 Dim swApp As SldWorks.SldWorks
+Dim swModelDoc As ModelDoc2
 Dim swAssemblyDoc As AssemblyDoc
-Dim swcomponent As Component2
-Dim vcomponents As Variant
-Dim processedFiles As New Collection
-Dim component
+Dim swComponents As Variant
+Dim swComponent As Component2
+Dim swComponentIterator
+Dim processedFiles() As String
 
-Sub main()
+Sub Main()
 
-    ' Get the active SolidWorks application
-    Set swApp = Application.SldWorks
 
-    ' Get the active document (assembly)
-    Set swAssemblyDoc = swApp.ActiveDoc
+ReDim processedFiles(0)
 
-    ' Ensure that the active document is an assembly
-    If swAssemblyDoc Is Nothing Then
-        MsgBox "Please open an assembly document.", vbExclamation
-        Exit Sub
-    End If
+processedFiles(0) = ""
 
-    ' Get all components of the assembly
-    vcomponents = swAssemblyDoc.GetComponents(False)
+ Set swApp = Application.SldWorks
+ 
+ Set swModelDoc = swApp.ActiveDoc
+ 
+ Set swAssemblyDoc = swModelDoc
+ 
+ 
+ swComponents = swAssemblyDoc.GetComponents(False)
 
-    ' Loop through each component in the assembly
-    For Each component In vcomponents
-
-        ' Set the component
-        Set swcomponent = component
-
-        ' Get the ModelDoc2 (part or assembly) for the component
-        Dim swmodel As ModelDoc2
-        Set swmodel = swcomponent.GetModelDoc2
-
-        ' Check if the model is valid
-        If Not swmodel Is Nothing Then
-
-            ' Check if the model has already been processed
-            If ExistsInCollection(processedFiles, swmodel.GetTitle()) = False Then
-
-                ' Export the sheet metal part to DXF
-                PrintDXF swmodel
-
-                ' Add the processed file to the collection to avoid duplicates
-                processedFiles.Add swmodel.GetTitle(), swmodel.GetTitle()
-
-            End If
-
-        End If
-
-    Next
+ For Each swComponentIterator In swComponents
+  
+  Set swComponent = swComponentIterator
+  
+  Dim swComponentModelDoc As ModelDoc2
+  
+  Set swComponentModelDoc = swComponent.GetModelDoc2
+  
+  If Not swComponentModelDoc Is Nothing Then
+  
+   If ExistsInProcessedFiles(processedFiles, swComponentModelDoc.GetPathName()) = False Then
+   
+   addItemToProcessedFiles processedFiles, swComponentModelDoc.GetPathName()
+   
+   PrintDXF swComponentModelDoc
+   
+   
+   End If
+   
+  End If
+ 
+  
+ 
+ Next swComponentIterator
 
 End Sub
 
-' Function to export a sheet metal part to DXF
-Function PrintDXF(ByRef swmodel As ModelDoc2) As String
 
-    ' Check if the document is a part file
-    If swmodel.GetType() = SwConst.swDocumentTypes_e.swDocPART Then
+Function ExistsInProcessedFiles(ByRef arr() As String, fileName As Variant) As Boolean
 
-        Dim swPart As PartDoc
-        Set swPart = swmodel
 
-        ' Get the model path
-        Dim modelPath As String
-        modelPath = swPart.GetPathName
 
-        ' Define the output DXF path
-        Dim OUT_PATH As String
-        OUT_PATH = Left(modelPath, Len(modelPath) - 6) ' Remove ".SLDPRT" extension
-        OUT_PATH = OUT_PATH + "dxf"
+Dim i As Long
 
-        ' Make the model visible before exporting
-        swmodel.Visible = True
+For i = LBound(arr) To UBound(arr)
 
-        ' Export the sheet metal part to DXF using specified options
-        If False = swPart.ExportToDWG2(OUT_PATH, modelPath, swExportToDWG_e.swExportToDWG_ExportSheetMetal, _
-                                       True, Empty, False, False, _
-                                       SheetMetalOptions_e.ExportFlatPatternGeometry + _
-                                       SheetMetalOptions_e.ExportBendLines, Empty) Then
-            ' Raise error if export fails
-            err.Raise vbError, "", "Failed to export flat pattern"
-        End If
+ If arr(i) = fileName Then
+ 
+  ExistsInProcessedFiles = True
+  
+  Exit Function
+  
+  End If
 
-        ' Hide the model after exporting
-        swmodel.Visible = False
+Next i
 
-    End If
-
-    ' Print the model path to the debug console
-    Debug.Print swmodel.GetPathName()
+ExistsInProcessedFiles = False
 
 End Function
 
-' Function to check if an item exists in a collection
-Public Function ExistsInCollection(col As Collection, key As Variant) As Boolean
-    On Error GoTo err
-    ExistsInCollection = True
-    IsObject (col.Item(key)) ' Check if the item exists in the collection
-    Exit Function
-err:
-    ExistsInCollection = False ' Return false if the item does not exist
-End Function
+
+Sub PrintDXF(ByRef swmodel As ModelDoc2)
+
+If swmodel.GetType() = swDocumentTypes_e.swDocPART Then
+
+ Dim swPart As PartDoc
+ 
+ Set swPart = swmodel
+
+ Dim modelPath As String
+ 
+ modelPath = swmodel.GetPathName
+ 
+ Dim outPath As String
+ 
+ outPath = Left(modelPath, Len(modelPath) - 6)
+ 
+ outPath = outPath + "dxf"
+ 
+ swmodel.Visible = True
+ 
+ Dim saveDXF As Boolean
+ 
+ saveDXF = swPart.ExportToDWG2(outPath, modelPath, swConst.swExportToDWG_e.swExportToDWG_ExportSheetMetal, True, vbEmpty, False, False, SheetMetalOptions_e.ExportFlatPatternGeometry + SheetMetalOptions_e.ExportFlatPatternGeometry + SheetMetalOptions_e.ExportFlatPatternGeometry + SheetMetalOptions_e.ExportBendLines, vbEmpty)
+
+ If saveDXF Then
+ 
+  Debug.Print swmodel.GetTitle() & " saved"
+ 
+ 
+ Else
+  Debug.Print swmodel.GetTitle() & " failed to save"
+ 
+ End If
+ 
+ swmodel.Visible = False
+ 
+End If
+
+End Sub
+
+
+Public Sub addItemToProcessedFiles(ByRef arr() As String, ByVal processedFile As String)
+
+Dim arrLength As Long
+
+arrLength = UBound(arr)
+
+If arrLength < 0 Then
+
+ReDim arr(0)
+
+arr(0) = processedFile
+
+Else
+
+ReDim Preserve arr(arrLength + 1)
+ 
+arr(arrLength + 1) = processedFile
+
+End If
+
+End Sub
+
 ```
 
 ## System Requirements

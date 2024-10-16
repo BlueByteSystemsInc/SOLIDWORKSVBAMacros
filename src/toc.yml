@@ -4,7 +4,7 @@
   href: introduction.md
 
 
-
+    
 - name: Part Documents 
 - name: Part Documents
   expanded: true 
@@ -19,6 +19,11 @@
     href: FullyDefineAllPartSketches.md
   - name: Centre Of Gravity Macro
     href: CGPoint.md
+  - name: Measure Sketch and Add Length Property
+    href: MeasureSketchAndAddLengthProperty.md
+  - name: Export Sketch To Dxf
+    href: ExportSketchToDxf.md
+    
 
 - name: Assembly Documents 
 - name: Assembly Documents
@@ -34,6 +39,19 @@
     href: traverse_assembly_component_tree_recursively_solidworks_vba_macro.md  
   - name: Create Bounding Box for Assembly and Components
     href: create_boundingbox_feature_for_all_components.md
+  - name: Isolate Component In Assembly
+    href: Isolate.md
+  - name: Export Flat To Dxf From Assembly
+    href: ExportFlatToDxfFromAssembly.md
+  - name: Export To Parasolid
+    href: ExportToParasolid.md
+  - name: Export To Parasolid Updated
+    href: ExportToParasolid2.md
+  - name: Change Part Unit As Per Assembly
+    href: ChangePartUnitAsPerAssembly.md
+  - name: Save Assembly As Edrawing File
+    href: Save AssemblyAsEasm.md
+
 - name: Drawing Documents 
 - name: Drawing Documents
   expanded: true 
@@ -58,6 +76,10 @@
     href: FormatLine.md
   - name: Save Drawing To Pdf Automatically
     href: SaveDrawingToPDF.md
+  - name: Save Drawing As Pdf 2
+    href: SaveDrawingAsPdf.md    
+    
+    
 - name: Bill Of Materials
 - name: Bill Of Materials
   expanded: true 

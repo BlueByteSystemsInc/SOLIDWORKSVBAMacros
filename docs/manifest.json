@@ -87,6 +87,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/ChangePartUnitAsPerAssembly.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ChangePartUnitAsPerAssembly.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/Check For Missing Hole Callouts.md",
       "output": {
         ".html": {
@@ -117,10 +127,30 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/ExportSketchToDxf.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ExportSketchToDxf.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/ExportToParasolid.md",
       "output": {
         ".html": {
           "relative_path": "src/ExportToParasolid.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/ExportToParasolid2.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ExportToParasolid2.html"
         }
       },
       "version": ""
@@ -211,6 +241,26 @@
       "output": {
         ".html": {
           "relative_path": "src/Reload_All_Sheet_Formats.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Save AssemblyAsEasm.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Save AssemblyAsEasm.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/SaveDrawingAsPdf.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/SaveDrawingAsPdf.html"
         }
       },
       "version": ""

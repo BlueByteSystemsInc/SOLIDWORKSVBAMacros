@@ -87,4 +87,11 @@
   - name: Export BOM To Excel with Thumbnails
     href: exportbomtoexcelwiththumbnails.md
 
+- name: SOLIDWORKS PDM 
+- name: SOLIDWORKS PDM
+  expanded: true 
+  items: 
+      - name: I made changes but forgot to check out 
+        href: madechangesbutforgottocheckout.md
+
  

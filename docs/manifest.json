@@ -56,6 +56,16 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "images/pdmvbareference.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/pdmvbareference.png"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
@@ -361,6 +371,16 @@
       "output": {
         ".html": {
           "relative_path": "src/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/madechangesbutforgottocheckout.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/madechangesbutforgottocheckout.html"
         }
       },
       "version": ""

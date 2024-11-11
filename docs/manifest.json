@@ -57,10 +57,40 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/masseditfilesdatacardfromexcel.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/masseditfilesdatacardfromexcel.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/masseditfilesdatacardfromexcel.xlsm",
+      "output": {
+        "resource": {
+          "relative_path": "images/masseditfilesdatacardfromexcel.xlsm"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/pdmvbareference.png",
       "output": {
         "resource": {
           "relative_path": "images/pdmvbareference.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/~$masseditfilesdatacardfromexcel.xlsm",
+      "output": {
+        "resource": {
+          "relative_path": "images/~$masseditfilesdatacardfromexcel.xlsm"
         }
       },
       "version": ""
@@ -81,6 +111,16 @@
       "output": {
         ".html": {
           "relative_path": "src/Align_All_Dimensions_Automatically.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/AutoSurfacePlotter.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/AutoSurfacePlotter.html"
         }
       },
       "version": ""
@@ -121,6 +161,36 @@
       "output": {
         ".html": {
           "relative_path": "src/ConvertInnerLoop.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/CountHoles.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/CountHoles.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Create Tube.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Create Tube.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/CreateCylinder.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/CreateCylinder.html"
         }
       },
       "version": ""
@@ -187,6 +257,46 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/GUARDADXF.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/GUARDADXF.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/HideShowNote.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/HideShowNote.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/IGES.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/IGES.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/ISO & Shaded With Edges.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ISO & Shaded With Edges.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/InsertBlock.md",
       "output": {
         ".html": {
@@ -207,6 +317,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/LinkNoteToConfig.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/LinkNoteToConfig.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/MatchTextProperties.md",
       "output": {
         ".html": {
@@ -217,10 +337,60 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/McMaster Screw Fix.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/McMaster Screw Fix.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/MeasureSketchAndAddLengthProperty.md",
       "output": {
         ".html": {
           "relative_path": "src/MeasureSketchAndAddLengthProperty.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/OpenSelectedPart.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/OpenSelectedPart.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/PARASOLID.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/PARASOLID.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/PrepForNewFeatures.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/PrepForNewFeatures.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Rebuild Referenced File.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Rebuild Referenced File.html"
         }
       },
       "version": ""
@@ -257,6 +427,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/Rotate All Bodies in Part.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Rotate All Bodies in Part.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/Save AssemblyAsEasm.md",
       "output": {
         ".html": {
@@ -287,6 +467,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/SaveSTEP.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/SaveSTEP.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/Save_Each_Sheet_As_PDF.md",
       "output": {
         ".html": {
@@ -297,10 +487,50 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/Save_as_eDRAWING.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Save_as_eDRAWING.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/SetLayersAndDrawLine.md",
       "output": {
         ".html": {
           "relative_path": "src/SetLayersAndDrawLine.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/ShowHideBodies.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ShowHideBodies.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Template.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Template.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/TessBox-EN-MM-INCH.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/TessBox-EN-MM-INCH.html"
         }
       },
       "version": ""
@@ -367,6 +597,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/fract_dec_toggle1.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/fract_dec_toggle1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/introduction.md",
       "output": {
         ".html": {
@@ -381,6 +621,16 @@
       "output": {
         ".html": {
           "relative_path": "src/madechangesbutforgottocheckout.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/masseditfilesdatacardfromexcel.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/masseditfilesdatacardfromexcel.html"
         }
       },
       "version": ""

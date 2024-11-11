@@ -23,7 +23,37 @@
     href: MeasureSketchAndAddLengthProperty.md
   - name: Export Sketch To Dxf
     href: ExportSketchToDxf.md
-    
+  - name: Export Sketch To Dxf 2
+    href: GUARDADXF.md
+  - name: Mcmaster Screw/Bolt Fix
+    href: McMaster Screw Fix.md
+  - name: Count Holes
+    href: CountHoles.md
+  - name: Prep Model For New Features And Mates
+    href: PrepForNewFeatures.md
+  - name: Save as STEP
+    href: SaveSTEP.md
+  - name: Save as PARASOLID
+    href: PARASOLID.md
+  - name: Save as IGES
+    href: IGES.md
+  - name: Show all solid bodies
+    href: ShowHideBodies.md   
+  - name: Auto Surface Plotter
+    href: AutoSurfacePlotter.md 
+  - name: Precision Bounding box
+    href: TessBox-EN-MM-INCH.md    
+  - name: Save as PARASOLID
+    href: PARASOLID.md    
+  - name: Create cylinders on a plate
+    href: CreateCylinder.md 
+  - name: ISO Shaded With Edges
+    href: ISO & Shaded With Edges.md    
+  - name: Rotate All Bodies in Part
+    href: Rotate All Bodies in Part.md
+  - name: Open Selected Part Macro
+    href: OpenSelectedPart.md   
+
 
 - name: Assembly Documents 
 - name: Assembly Documents
@@ -87,11 +117,15 @@
   - name: Export BOM To Excel with Thumbnails
     href: exportbomtoexcelwiththumbnails.md
 
+
 - name: SOLIDWORKS PDM 
-- name: SOLIDWORKS PDM
+- name: SOLIDWORKS PDM Professional
   expanded: true 
   items: 
       - name: I made changes but forgot to check out 
         href: madechangesbutforgottocheckout.md
+      - name: Mass Edit Files DataCard Variables From Excel
+        href: masseditfilesdatacardfromexcel.md
+
 
  

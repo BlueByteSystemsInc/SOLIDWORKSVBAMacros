@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Mass Edit Files DataCard Variables From Excel | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Mass Edit Files DataCard Variables From Excel | &#129513; SOLIDWORKS VBA Macros Library ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/masseditfilesdatacardfromexcel.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/fav.png" alt="&#129513; SOLIDWORKS VBA Macros Library">
+            &#129513; SOLIDWORKS VBA Macros Library
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<div class="NOTE">
+<h5>Note</h5>
+<p>▶️🚨 Watch the video where we wrote this macro and subscribe to our YouTube stream where we make live programming on the SOLIDWORKS API!<br>
+<a href="https://www.youtube.com/watch?v=woBl13TKhpQ">Watch Now!</a><br>
+Hit the <strong>Subscribe</strong> button and stay updated with our live streams!</p>
+</div>
+<h1 id="mass-edit-files-datacard-variables-from-excel">Mass Edit Files DataCard Variables From Excel</h1>
+<p>Make sure to add the PDMWorks Enterprise reference before you run this macro from References &gt; Tools.</p>
+<p><img src="../images/pdmvbareference.png" alt="image"></p>
+<h2 id="macro-description">Macro Description</h2>
+<p>This VBA macro is useful to collect the values of data card variables for all files found in a folder. The macro will ask you for a folder in PDM and read fill the variables from PDM to Excel.</p>
+<p><img src="../images/masseditfilesdatacardfromexcel.png" alt="image"></p>
+<h2 id="excel-macro-file">Excel Macro File</h2>
+<p>Download it from <a href="../images/masseditfilesdatacardfromexcel.xlsm">here</a></p>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">'The code provided is for educational purposes only and should be used at your own risk. 
+'Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code. 
+'For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
+Sub ReadFolderFilesVariables()
+
+Dim vault As EdmVault5
+
+Set vault = New EdmVault5
+
+
+
+Dim handle As Long
+
+handle = Application.Hwnd
+
+vault.LoginAuto &quot;bluebyte&quot;, handle
+
+Dim folderPath As String
+
+Dim vaultrootFolderPath As String
+
+vaultrootFolderPath = vault.RootFolderPath
+
+folderPath = InputBox(&quot;Path:&quot;, &quot;Folder Content Variables Updater&quot;, vaultrootFolderPath)
+
+Dim colIndex As Integer
+colIndex = 2
+
+Dim folder As IEdmFolder5
+
+Set folder = vault.GetFolderFromPath(folderPath)
+
+Dim position As IEdmPos5
+Dim file As IEdmFile5
+Set position = folder.GetFirstFilePosition
+
+While position.IsNull = False
+
+ Set file = folder.GetNextFile(position)
+
+ ' fill the excel range with file metadata
+ Dim variableEnumerator As IEdmEnumeratorVariable6
+ Set variableEnumerator = file.GetEnumeratorVariable
+ Range(&quot;A&quot; &amp; colIndex).Value = file.ID
+ Range(&quot;B&quot; &amp; colIndex).Value = file.Name
+ Dim description
+ variableEnumerator.GetVarFromDb &quot;Description&quot;, &quot;@&quot;, description
+ Range(&quot;C&quot; &amp; colIndex).Value = description
+ 
+ Dim PartNumber
+ variableEnumerator.GetVarFromDb &quot;PartNumber&quot;, &quot;@&quot;, PartNumber
+ Range(&quot;D&quot; &amp; colIndex).Value = PartNumber
+ colIndex = colIndex + 1
+Wend
+
+
+
+End Sub
+
+
+Sub UpdateFolderFilesVariables()
+
+Dim vault As EdmVault5
+
+Set vault = New EdmVault5
+
+
+
+Dim handle As Long
+
+handle = Application.Hwnd
+
+vault.LoginAuto &quot;bluebyte&quot;, handle
+
+Dim folderPath As String
+
+Dim vaultrootFolderPath As String
+
+vaultrootFolderPath = vault.RootFolderPath
+
+folderPath = InputBox(&quot;Path:&quot;, &quot;Folder Content Variables Updater&quot;, vaultrootFolderPath)
+
+Dim colIndex As Integer
+colIndex = 2
+
+Dim folder As IEdmFolder5
+
+Set folder = vault.GetFolderFromPath(folderPath)
+
+Dim position As IEdmPos5
+Dim file As IEdmFile5
+Set position = folder.GetFirstFilePosition
+
+While position.IsNull = False
+
+ Set file = folder.GetNextFile(position)
+
+ ' fill the excel range with file metadata
+ Dim variableEnumerator As IEdmEnumeratorVariable6
+ Set variableEnumerator = file.GetEnumeratorVariable
+ Range(&quot;A&quot; &amp; colIndex).Value = file.ID
+ Range(&quot;B&quot; &amp; colIndex).Value = file.Name
+ Dim description
+ variableEnumerator.GetVarFromDb &quot;Description&quot;, &quot;@&quot;, description
+ Range(&quot;C&quot; &amp; colIndex).Value = description
+ 
+ Dim PartNumber
+ variableEnumerator.GetVarFromDb &quot;PartNumber&quot;, &quot;@&quot;, PartNumber
+ Range(&quot;D&quot; &amp; colIndex).Value = PartNumber
+ colIndex = colIndex + 1
+Wend
+
+
+End Sub
+
+
+</code></pre>
+<h2 id="system-requirements">System Requirements</h2>
+<p>To run this VBA macro, ensure that your system meets the following requirements:</p>
+<ul>
+<li><strong>SOLIDWORKS Version</strong>: SOLIDWORKS and PDM 2017 or later</li>
+<li><strong>VBA Environment</strong>: Pre-installed with SOLIDWORKS (Access via Tools &gt; Macro &gt; New or Edit)</li>
+<li><strong>Operating System</strong>: Windows 7, 8, 10, or later</li>
+<li><strong>Additional Libraries</strong>: PDMWorks Enterprise</li>
+</ul>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/masseditfilesdatacardfromexcel.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

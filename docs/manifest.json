@@ -86,6 +86,16 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "images/~$masseditfilesdatacardfromexcel.xlsm",
+      "output": {
+        "resource": {
+          "relative_path": "images/~$masseditfilesdatacardfromexcel.xlsm"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {

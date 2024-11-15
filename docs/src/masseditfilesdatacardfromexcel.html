@@ -101,8 +101,8 @@ Hit the <strong>Subscribe</strong> button and stay updated with our live streams
 <h2 id="excel-macro-file">Excel Macro File</h2>
 <p>Download it from <a href="../images/masseditfilesdatacardfromexcel.xlsm">here</a></p>
 <h2 id="vba-macro-code">VBA Macro Code</h2>
-<pre><code class="lang-vbnet">'The code provided is for educational purposes only and should be used at your own risk. 
-'Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code. 
+<pre><code class="lang-vbnet">'The code provided is for educational purposes only and should be used at your own risk.
+'Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code.
 'For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
 Sub ReadFolderFilesVariables()
 
@@ -142,7 +142,7 @@ While position.IsNull = False
  Set file = folder.GetNextFile(position)
 
  ' fill the excel range with file metadata
- Dim variableEnumerator As IEdmEnumeratorVariable6
+ Dim variableEnumerator As IEdmEnumeratorVariable8
  Set variableEnumerator = file.GetEnumeratorVariable
  Range(&quot;A&quot; &amp; colIndex).Value = file.ID
  Range(&quot;B&quot; &amp; colIndex).Value = file.Name
@@ -150,10 +150,12 @@ While position.IsNull = False
  variableEnumerator.GetVarFromDb &quot;Description&quot;, &quot;@&quot;, description
  Range(&quot;C&quot; &amp; colIndex).Value = description
  
- Dim PartNumber
- variableEnumerator.GetVarFromDb &quot;PartNumber&quot;, &quot;@&quot;, PartNumber
- Range(&quot;D&quot; &amp; colIndex).Value = PartNumber
+ Dim partNumber
+ variableEnumerator.GetVarFromDb &quot;PartNumber&quot;, &quot;@&quot;, partNumber
+ Range(&quot;D&quot; &amp; colIndex).Value = partNumber
  colIndex = colIndex + 1
+ 
+ variableEnumerator.CloseFile True
 Wend
 
 
@@ -175,46 +177,69 @@ handle = Application.Hwnd
 
 vault.LoginAuto &quot;bluebyte&quot;, handle
 
-Dim folderPath As String
+Dim lastRow As Integer
+Dim folderID As Long
+folderID = -1
 
-Dim vaultrootFolderPath As String
+lastRow = Cells(Rows.Count, 1).End(xlUp).Row
 
-vaultrootFolderPath = vault.RootFolderPath
 
-folderPath = InputBox(&quot;Path:&quot;, &quot;Folder Content Variables Updater&quot;, vaultrootFolderPath)
+For i = 2 To lastRow
 
-Dim colIndex As Integer
-colIndex = 2
-
-Dim folder As IEdmFolder5
-
-Set folder = vault.GetFolderFromPath(folderPath)
-
-Dim position As IEdmPos5
-Dim file As IEdmFile5
-Set position = folder.GetFirstFilePosition
-
-While position.IsNull = False
-
- Set file = folder.GetNextFile(position)
-
- ' fill the excel range with file metadata
- Dim variableEnumerator As IEdmEnumeratorVariable6
- Set variableEnumerator = file.GetEnumeratorVariable
- Range(&quot;A&quot; &amp; colIndex).Value = file.ID
- Range(&quot;B&quot; &amp; colIndex).Value = file.Name
- Dim description
- variableEnumerator.GetVarFromDb &quot;Description&quot;, &quot;@&quot;, description
- Range(&quot;C&quot; &amp; colIndex).Value = description
+ Dim ID As Long
+ Dim file As IEdmFile5
+ ID = Range(&quot;A&quot; &amp; i).Value
+ Set file = vault.GetObject(EdmObject_File, ID)
  
- Dim PartNumber
- variableEnumerator.GetVarFromDb &quot;PartNumber&quot;, &quot;@&quot;, PartNumber
- Range(&quot;D&quot; &amp; colIndex).Value = PartNumber
- colIndex = colIndex + 1
-Wend
+ If folderID = -1 Then
+  folderID = GetFolderIDFromFromRowTwo(file)
+ End If
+ 
+'check out file
+On Error GoTo errorHandler:
+If file.IsLocked = False Then
+ file.LockFile folderID, handle
+End If
+ 'set my variables
+ Dim variableEnumerator As IEdmEnumeratorVariable8
+ Set variableEnumerator = file.GetEnumeratorVariable
+ 
+ Dim description
+ description = Range(&quot;C&quot; &amp; i).Value
+ 
+ Dim partNumber
+ partNumber = Range(&quot;D&quot; &amp; i).Value
+ 
+ variableEnumerator.SetVar &quot;Description&quot;, &quot;@&quot;, description
+ variableEnumerator.SetVar &quot;PartNumber&quot;, &quot;@&quot;, partNumber
+ 
+ variableEnumerator.CloseFile True
+ 
+ file.UnlockFile handle, &quot;Updated datacard&quot;
 
+errorHandler:
+ Debug.Print Err.description
+Next i
+Debug.Print &quot;Completed&quot;
 
+  
 End Sub
+
+Public Function GetFolderIDFromFromRowTwo(ByRef file As IEdmFile5) As Long
+
+ Dim position As IEdmPos5
+ Dim folder As IEdmFolder5
+ Dim folderID As Long
+ Set position = file.GetFirstFolderPosition
+ Set folder = file.GetNextFolder(position)
+ folderID = folder.ID
+ GetFolderIDFromFromRowTwo = folderID
+ 
+
+End Function
+
+
+
 
 
 </code></pre>

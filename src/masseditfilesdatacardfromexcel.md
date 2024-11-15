@@ -28,8 +28,8 @@ Download it from [here](../images/masseditfilesdatacardfromexcel.xlsm)
 
 
 ```vbnet
-'The code provided is for educational purposes only and should be used at your own risk. 
-'Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code. 
+'The code provided is for educational purposes only and should be used at your own risk.
+'Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code.
 'For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
 Sub ReadFolderFilesVariables()
 
@@ -69,7 +69,7 @@ While position.IsNull = False
  Set file = folder.GetNextFile(position)
 
  ' fill the excel range with file metadata
- Dim variableEnumerator As IEdmEnumeratorVariable6
+ Dim variableEnumerator As IEdmEnumeratorVariable8
  Set variableEnumerator = file.GetEnumeratorVariable
  Range("A" & colIndex).Value = file.ID
  Range("B" & colIndex).Value = file.Name
@@ -77,10 +77,12 @@ While position.IsNull = False
  variableEnumerator.GetVarFromDb "Description", "@", description
  Range("C" & colIndex).Value = description
  
- Dim PartNumber
- variableEnumerator.GetVarFromDb "PartNumber", "@", PartNumber
- Range("D" & colIndex).Value = PartNumber
+ Dim partNumber
+ variableEnumerator.GetVarFromDb "PartNumber", "@", partNumber
+ Range("D" & colIndex).Value = partNumber
  colIndex = colIndex + 1
+ 
+ variableEnumerator.CloseFile True
 Wend
 
 
@@ -102,46 +104,69 @@ handle = Application.Hwnd
 
 vault.LoginAuto "bluebyte", handle
 
-Dim folderPath As String
+Dim lastRow As Integer
+Dim folderID As Long
+folderID = -1
 
-Dim vaultrootFolderPath As String
+lastRow = Cells(Rows.Count, 1).End(xlUp).Row
 
-vaultrootFolderPath = vault.RootFolderPath
 
-folderPath = InputBox("Path:", "Folder Content Variables Updater", vaultrootFolderPath)
+For i = 2 To lastRow
 
-Dim colIndex As Integer
-colIndex = 2
-
-Dim folder As IEdmFolder5
-
-Set folder = vault.GetFolderFromPath(folderPath)
-
-Dim position As IEdmPos5
-Dim file As IEdmFile5
-Set position = folder.GetFirstFilePosition
-
-While position.IsNull = False
-
- Set file = folder.GetNextFile(position)
-
- ' fill the excel range with file metadata
- Dim variableEnumerator As IEdmEnumeratorVariable6
- Set variableEnumerator = file.GetEnumeratorVariable
- Range("A" & colIndex).Value = file.ID
- Range("B" & colIndex).Value = file.Name
- Dim description
- variableEnumerator.GetVarFromDb "Description", "@", description
- Range("C" & colIndex).Value = description
+ Dim ID As Long
+ Dim file As IEdmFile5
+ ID = Range("A" & i).Value
+ Set file = vault.GetObject(EdmObject_File, ID)
  
- Dim PartNumber
- variableEnumerator.GetVarFromDb "PartNumber", "@", PartNumber
- Range("D" & colIndex).Value = PartNumber
- colIndex = colIndex + 1
-Wend
+ If folderID = -1 Then
+  folderID = GetFolderIDFromFromRowTwo(file)
+ End If
+ 
+'check out file
+On Error GoTo errorHandler:
+If file.IsLocked = False Then
+ file.LockFile folderID, handle
+End If
+ 'set my variables
+ Dim variableEnumerator As IEdmEnumeratorVariable8
+ Set variableEnumerator = file.GetEnumeratorVariable
+ 
+ Dim description
+ description = Range("C" & i).Value
+ 
+ Dim partNumber
+ partNumber = Range("D" & i).Value
+ 
+ variableEnumerator.SetVar "Description", "@", description
+ variableEnumerator.SetVar "PartNumber", "@", partNumber
+ 
+ variableEnumerator.CloseFile True
+ 
+ file.UnlockFile handle, "Updated datacard"
 
+errorHandler:
+ Debug.Print Err.description
+Next i
+Debug.Print "Completed"
 
+  
 End Sub
+
+Public Function GetFolderIDFromFromRowTwo(ByRef file As IEdmFile5) As Long
+
+ Dim position As IEdmPos5
+ Dim folder As IEdmFolder5
+ Dim folderID As Long
+ Set position = file.GetFirstFolderPosition
+ Set folder = file.GetNextFolder(position)
+ folderID = folder.ID
+ GetFolderIDFromFromRowTwo = folderID
+ 
+
+End Function
+
+
+
 
 
 ```

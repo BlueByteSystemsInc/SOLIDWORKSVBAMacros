@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Hide All Sketches Macro for SolidWorks | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Hide All Sketches Macro for SolidWorks | &#129513; SOLIDWORKS VBA Macros Library ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/HideAllSketchesInAssy.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/fav.png" alt="&#129513; SOLIDWORKS VBA Macros Library">
+            &#129513; SOLIDWORKS VBA Macros Library
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="hide-all-sketches-macro-for-solidworks">Hide All Sketches Macro for SolidWorks</h1>
+
+<h2 id="description">Description</h2>
+<p>This macro hides all visible sketches in the active assembly. This is useful for cleaning up the view in complex assemblies where multiple sketches may clutter the workspace.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>An assembly document must be open in SolidWorks.</li>
+<li>At least one part within the assembly should have a sketch that is set to show.</li>
+</ul>
+</div>
+<h2 id="results">Results</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>All visible sketches in the assembly will be hidden.</li>
+</ul>
+</div>
+<h2 id="steps-to-setup-the-macro">Steps to Setup the Macro</h2>
+<h3 id="1-open-the-assembly">1. <strong>Open the Assembly</strong>:</h3>
+<ul>
+<li>Ensure that the assembly document you wish to clean up is open in SolidWorks.</li>
+</ul>
+<h3 id="2-load-and-execute-the-macro">2. <strong>Load and Execute the Macro</strong>:</h3>
+<ul>
+<li>Load the macro into SolidWorks using the VBA editor (<code>Alt + F11</code>).</li>
+<li>Execute the macro from within SolidWorks by navigating to <strong>Tools</strong> &gt; <strong>Macro</strong> &gt; <strong>Run</strong>.</li>
+</ul>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">' Disclaimer:
+' The code provided should be used at your own risk.  
+' Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code.  
+' For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
+
+' *********************************************************
+' Hide All Sketches.swp
+' Description: Macro to hide all sketches in the active assembly.
+' *********************************************************
+
+Option Explicit
+
+' Subroutine to hide a sketch feature
+Sub BlankSketchFeature(swApp As SldWorks.SldWorks, swModel As SldWorks.ModelDoc2, swFeat As SldWorks.Feature)
+    Dim bRet As Boolean
+    ' Check if the feature is a sketch
+    If &quot;ProfileFeature&quot; = swFeat.GetTypeName Then
+        ' Select the sketch and hide it
+        bRet = swFeat.Select2(False, 0): Debug.Assert bRet
+        swModel.BlankSketch
+    End If
+End Sub
+
+' Subroutine to traverse features and their subfeatures
+Sub TraverseFeatureFeatures(swApp As SldWorks.SldWorks, swModel As SldWorks.ModelDoc2, swFeat As SldWorks.Feature, nLevel As Long)
+    Dim swSubFeat As SldWorks.Feature
+    Dim swSubSubFeat As SldWorks.Feature
+    Dim swSubSubSubFeat As SldWorks.Feature
+    Dim sPadStr As String
+    Dim i As Long
+    Dim bRet As Boolean
+
+    ' Create padding for debug output based on the level of recursion
+    For i = 0 To nLevel
+        sPadStr = sPadStr + &quot;  &quot;
+    Next i
+
+    ' Traverse through all features
+    While Not swFeat Is Nothing
+        Debug.Print sPadStr + swFeat.Name + &quot; [&quot; + swFeat.GetTypeName + &quot;]&quot;
+        BlankSketchFeature swApp, swModel, swFeat
+
+        ' Traverse subfeatures
+        Set swSubFeat = swFeat.GetFirstSubFeature
+        While Not swSubFeat Is Nothing
+            Debug.Print sPadStr + &quot;  &quot; + swSubFeat.Name + &quot; [&quot; + swSubFeat.GetTypeName + &quot;]&quot;
+            BlankSketchFeature swApp, swModel, swSubFeat
+
+            ' Traverse sub-subfeatures
+            Set swSubSubFeat = swSubFeat.GetFirstSubFeature
+            While Not swSubSubFeat Is Nothing
+                Debug.Print sPadStr + &quot;    &quot; + swSubSubFeat.Name + &quot; [&quot; + swSubSubFeat.GetTypeName + &quot;]&quot;
+                BlankSketchFeature swApp, swModel, swSubSubFeat
+
+                ' Traverse sub-sub-subfeatures
+                Set swSubSubSubFeat = swSubSubFeat.GetFirstSubFeature
+                While Not swSubSubSubFeat Is Nothing
+                    Debug.Print sPadStr + &quot;      &quot; + swSubSubSubFeat.Name + &quot; [&quot; + swSubSubSubFeat.GetTypeName + &quot;]&quot;
+                    BlankSketchFeature swApp, swModel, swSubSubSubFeat
+                    Set swSubSubSubFeat = swSubSubSubFeat.GetNextSubFeature
+                Wend
+
+                Set swSubSubFeat = swSubSubFeat.GetNextSubFeature
+            Wend
+
+            Set swSubFeat = swSubFeat.GetNextSubFeature
+        Wend
+
+        Set swFeat = swFeat.GetNextFeature
+    Wend
+End Sub
+
+' Subroutine to traverse features of a component
+Sub TraverseComponentFeatures(swApp As SldWorks.SldWorks, swModel As SldWorks.ModelDoc2, swComp As SldWorks.Component2, nLevel As Long)
+    Dim swFeat As SldWorks.Feature
+    Set swFeat = swComp.FirstFeature
+    TraverseFeatureFeatures swApp, swModel, swFeat, nLevel
+End Sub
+
+' Subroutine to traverse components and their features
+Sub TraverseComponent(swApp As SldWorks.SldWorks, swModel As SldWorks.ModelDoc2, swComp As SldWorks.Component2, nLevel As Long)
+    Dim vChildComp As Variant
+    Dim swChildComp As SldWorks.Component2
+    Dim sPadStr As String
+    Dim i As Long
+
+    ' Create padding for debug output based on the level of recursion
+    For i = 0 To nLevel - 1
+        sPadStr = sPadStr + &quot;  &quot;
+    Next i
+
+    ' Get child components and traverse them
+    vChildComp = swComp.GetChildren
+    For i = 0 To UBound(vChildComp)
+        Set swChildComp = vChildComp(i)
+        Debug.Print sPadStr &amp; &quot;+&quot; &amp; swChildComp.Name2 &amp; &quot; &lt;&quot; &amp; swChildComp.ReferencedConfiguration &amp; &quot;&gt;&quot;
+        TraverseComponentFeatures swApp, swModel, swChildComp, nLevel
+        TraverseComponent swApp, swModel, swChildComp, nLevel + 1
+    Next i
+End Sub
+
+' Subroutine to traverse features in the main model
+Sub TraverseModelFeatures(swApp As SldWorks.SldWorks, swModel As SldWorks.ModelDoc2, nLevel As Long)
+    Dim swFeat As SldWorks.Feature
+    Set swFeat = swModel.FirstFeature
+    TraverseFeatureFeatures swApp, swModel, swFeat, nLevel
+End Sub
+
+' Main subroutine to execute the macro
+Sub main()
+    Dim swApp As SldWorks.SldWorks
+    Dim swModel As SldWorks.ModelDoc2
+    Dim swConf As SldWorks.Configuration
+    Dim swRootComp As SldWorks.Component2
+    Dim nStart As Single
+
+    ' Initialize SolidWorks application and active document
+    Set swApp = Application.SldWorks
+    Set swModel = swApp.ActiveDoc
+    If swModel Is Nothing Then
+        MsgBox &quot;No active document found. Please open an assembly.&quot;, vbExclamation, &quot;Error&quot;
+        Exit Sub
+    End If
+
+    Set swConf = swModel.GetActiveConfiguration
+    Set swRootComp = swConf.GetRootComponent
+
+    ' Start timing the process
+    nStart = Timer
+    Debug.Print &quot;File = &quot; &amp; swModel.GetPathName
+
+    ' Traverse and hide all sketches in the model
+    TraverseModelFeatures swApp, swModel, 1
+    TraverseComponent swApp, swModel, swRootComp, 1
+
+    ' Output elapsed time
+    Debug.Print &quot;Time = &quot; &amp; Timer - nStart &amp; &quot; s&quot;
+End Sub
+</code></pre>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/HideAllSketchesInAssy.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

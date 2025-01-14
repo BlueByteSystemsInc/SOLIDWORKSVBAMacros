@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>SolidWorks Macro to Remove Toolbox Status from Part | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="SolidWorks Macro to Remove Toolbox Status from Part | &#129513; SOLIDWORKS VBA Macros Library ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/ChangeToolboxPartType.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/fav.png" alt="&#129513; SOLIDWORKS VBA Macros Library">
+            &#129513; SOLIDWORKS VBA Macros Library
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="solidworks-macro-to-remove-toolbox-status-from-part">SolidWorks Macro to Remove Toolbox Status from Part</h1>
+
+<h2 id="description">Description</h2>
+<p>This macro allows you to remove the Toolbox status from a part document in SolidWorks. Toolbox parts in SolidWorks have specific properties that differentiate them from regular parts. This script modifies the <code>ToolboxPartType</code> property to remove the Toolbox designation from the active part document.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>Ensure a part document is open in SolidWorks.</li>
+<li>The part document must have been originally created as a Toolbox part.</li>
+</ul>
+</div>
+<h2 id="results">Results</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>The macro will remove the Toolbox status from the currently active part document.</li>
+<li>After execution, the part will no longer be recognized as a Toolbox part by SolidWorks.</li>
+</ul>
+</div>
+<h2 id="steps-to-setup-the-macro">Steps to Setup the Macro</h2>
+<h3 id="1-prepare-solidworks">1. <strong>Prepare SolidWorks</strong>:</h3>
+<ul>
+<li>Open a part document that was originally created as a Toolbox part in SolidWorks.</li>
+</ul>
+<h3 id="2-run-the-macro">2. <strong>Run the Macro</strong>:</h3>
+<ul>
+<li>Execute the <code>main</code> subroutine.</li>
+<li>Confirm the success message indicating the removal of Toolbox status.</li>
+</ul>
+<h3 id="3-verify-changes">3. <strong>Verify Changes</strong>:</h3>
+<ul>
+<li>Check the part properties in SolidWorks to confirm that it no longer has Toolbox attributes.</li>
+</ul>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">' Disclaimer:
+' The code provided should be used at your own risk.  
+' Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code.  
+' For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
+
+Option Explicit
+
+' Declare SolidWorks application and document variables
+Dim swApp As SldWorks.SldWorks
+Dim part As SldWorks.ModelDoc2
+Dim modelDocExt As SldWorks.ModelDocExtension
+
+Sub main()
+    ' Initialize the SolidWorks application object
+    Set swApp = Application.SldWorks
+
+    ' Get the active document in SolidWorks
+    Set part = swApp.ActiveDoc
+
+    ' Check if an active document is open
+    If part Is Nothing Then
+        MsgBox &quot;No active document found. Please open a part document and try again.&quot;, vbExclamation, &quot;Error&quot;
+        Exit Sub
+    End If
+
+    ' Check if the active document is a part
+    If part.GetType &lt;&gt; swDocPART Then
+        MsgBox &quot;This macro only works on part documents. Please open a part document and try again.&quot;, vbExclamation, &quot;Error&quot;
+        Exit Sub
+    End If
+
+    ' Access the model document extension to modify properties of the part
+    Set modelDocExt = part.Extension
+
+    ' Remove the toolbox status by setting ToolboxPartType to 0
+    modelDocExt.ToolboxPartType = 0
+
+    ' Notify the user that the operation was successful
+    MsgBox &quot;The part is no longer recognized as a Toolbox part.&quot;, vbInformation, &quot;Operation Successful&quot;
+End Sub
+</code></pre>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/ChangeToolboxPartType.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

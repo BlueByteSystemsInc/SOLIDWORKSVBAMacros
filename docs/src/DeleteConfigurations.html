@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>DeleteAllConfigs: Configuration Management Macro for SolidWorks | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="DeleteAllConfigs: Configuration Management Macro for SolidWorks | &#129513; SOLIDWORKS VBA Macros Library ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/DeleteConfigurations.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/fav.png" alt="&#129513; SOLIDWORKS VBA Macros Library">
+            &#129513; SOLIDWORKS VBA Macros Library
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="deleteallconfigs-configuration-management-macro-for-solidworks">DeleteAllConfigs: Configuration Management Macro for SolidWorks</h1>
+
+<h2 id="description">Description</h2>
+<p>This macro allows for the deletion of configurations from a SolidWorks model while optionally retaining a selected configuration. It provides an interface for users to select configurations for deletion and ensures that at least one configuration remains active in the model.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<ul>
+<li>A SolidWorks part or assembly must be open with multiple configurations.</li>
+<li>The macro should be executed within the SolidWorks environment with access rights to modify document properties.</li>
+</ul>
+<h2 id="results">Results</h2>
+<ul>
+<li>Users can selectively delete configurations from a model.</li>
+<li>Provides feedback on the number of configurations deleted.</li>
+<li>Ensures that at least one configuration, typically the &quot;Default&quot; configuration, remains undisturbed.</li>
+</ul>
+<h2 id="steps-to-setup-the-macro">Steps to Setup the Macro</h2>
+<ol>
+<li><p><strong>Create the UserForm</strong>:</p>
+<ul>
+<li>Open the VBA editor in SolidWorks by pressing (<code>Alt + F11</code>).</li>
+<li>In the Project Explorer, locate the <code>DeleteAllConfigs</code> project.</li>
+<li>Right-click on <code>Forms</code> and select <strong>Insert</strong> &gt; <strong>UserForm</strong>.
+<ul>
+<li>Rename the newly created form to <code>FormDeleteConfigs</code>.</li>
+<li>Design the form with the following components:
+<ul>
+<li>Checkboxes: <code>CheckDeleteConfigs</code> and <code>CheckKeepConfig</code> to select deletion options.</li>
+<li>Buttons: <code>Delete</code> and <code>Cancel</code> to execute or abort the deletion process.</li>
+<li>Label: <code>LabelConfigsDeleted</code> to display the status of operations.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Implement the Module</strong>:</p>
+<ul>
+<li>Right-click on <code>Modules</code> within the <code>DeleteAllConfigs</code> project.</li>
+<li>Select <strong>Insert</strong> &gt; <strong>Module</strong>.</li>
+<li>Add the VBA code to this module (<code>DeleteConfigs</code>) to handle the logic for deleting configurations based on the user's selections.</li>
+</ul>
+</li>
+<li><p><strong>Configure Event Handlers</strong>:</p>
+<ul>
+<li>In the <code>FormDeleteConfigs</code>, implement event handlers for the <code>Delete</code> and <code>Cancel</code> buttons.</li>
+<li>Use <code>ProcessCheck</code> to enable or disable the <code>Delete</code> button based on checkbox states.</li>
+</ul>
+</li>
+<li><p><strong>Save and Run the Macro</strong>:</p>
+<ul>
+<li>Save the macro file (e.g., <code>DeleteAllConfigs.swp</code>).</li>
+<li>Run the macro by navigating to <strong>Tools</strong> &gt; <strong>Macro</strong> &gt; <strong>Run</strong> in SolidWorks, then select your saved macro.</li>
+</ul>
+</li>
+<li><p><strong>Using the Macro</strong>:</p>
+<ul>
+<li>The macro will open the <code>FormDeleteConfigs</code>.</li>
+<li>Select the appropriate checkboxes to configure the deletion process.</li>
+<li>Use the <code>Delete</code> button to remove configurations, or <code>Cancel</code> to close the form without making changes.</li>
+</ul>
+</li>
+</ol>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">'------------------------------------------------------------------------------
+' DeleteAllConfigs.swp 
+'------------------------------------------------------------------------------
+Global swApp As Object
+Global ModelDoc2 As Object
+Global Configuration As Object
+Global FileTyp As String
+Global numConfigs As Integer
+Global ConfigNames As Variant
+Global Retval As Integer
+Global DelCount As Integer
+' SolidWorks constants
+Global Const swDocPART = 1
+Global Const swDocASSEMBLY = 2
+Global Const swMbWarning = 1
+Global Const swMbInformation = 2
+Global Const swMbQuestion = 3
+Global Const swMbStop = 4
+Global Const swMbAbortRetryIgnore = 1
+Global Const swMbOk = 2
+Global Const swMbOkCancel = 3
+Global Const swMbRetryCancel = 4
+Global Const swMbYesNo = 5
+Global Const swMbYesNoCancel = 6
+Global Const swMbHitAbort = 1
+Global Const swMbHitIgnore = 2
+Global Const swMbHitNo = 3
+Global Const swMbHitOk = 4
+Global Const swMbHitRetry = 5
+Global Const swMbHitYes = 6
+Global Const swMbHitCancel = 7
+
+'------------------------------------------------------------------------------
+' Delete extra configurations from model and set current config to Default
+'------------------------------------------------------------------------------
+Sub Main()
+  Set swApp = CreateObject(&quot;SldWorks.Application&quot;)            ' Attach to SWX
+  Set ModelDoc2 = swApp.ActiveDoc                             ' Grab active doc
+  If ModelDoc2 Is Nothing Then                                ' Is doc loaded
+    MsgBox &quot;No model loaded.&quot;                                 ' Nothing - Warn
+  Else                                                        ' Doc loaded?
+    FileTyp = ModelDoc2.GetType                               ' Get doc type
+    If FileTyp = swDocASSEMBLY Or FileTyp = swDocPART Then    ' Doc model?
+      numConfigs = ModelDoc2.GetConfigurationCount()          ' Get # configs
+      If numConfigs &gt; 1 Then                                  ' Check # configs
+        FormDeleteConfigs.Show
+      Else                                                    ' Else # config
+        MsgBox &quot;Only one configuration exists in this model.&quot;
+      End If                                                  ' End # config
+    Else                                                      ' Else doc type
+      MsgBox &quot;Active file is not a SolidWorks model.&quot;
+    End If                                                    ' End doc type
+  End If                                                      ' End doc load
+
+End Sub
+</code></pre>
+<h2 id="vba-userform-code">VBA UserForm Code</h2>
+<pre><code class="lang-vbnet">'------------------------------------------------------------------------------
+' DeleteAllConfigs.swp
+'------------------------------------------------------------------------------
+Private Sub CheckDeleteConfigs_Click()
+  ProcessCheck
+End Sub
+
+Private Sub CheckKeepConfig_Click()
+  ProcessCheck
+End Sub
+
+Private Sub ProcessCheck()
+  If CheckDeleteConfigs = True And CheckKeepConfig = True Then
+    CommandDelete.Enabled = True
+  Else
+    CommandDelete.Enabled = False
+  End If
+End Sub
+
+Private Sub CommandCancel_Click()
+  End
+End Sub
+
+Private Sub CommandDelete_Click()
+  ConfigNames = ModelDoc2.GetConfigurationNames()
+  For i = 0 To (numConfigs - 1)                     ' For each config
+    If ConfigNames(i) &lt;&gt; CurrentConfigName Then     ' Not active conf
+      ModelDoc2.DeleteConfiguration2 ConfigNames(i) ' delete config
+      DelCount = DelCount + 1                       ' Inc del counter
+      LabelConfigsDeleted = &quot;Processing: &quot; + Str(DelCount) + &quot; configurations.&quot;
+      FormDeleteConfigs.Repaint
+    End If                                          ' active config
+  Next                                              ' Get next config
+  Configuration.Name = &quot;Default&quot;                    ' Set config to
+  Configuration.AlternateName = &quot;Default&quot;           ' &quot;Default&quot; &amp;
+  Configuration.UseAlternateNameInBOM = 0           ' AlternateName
+  DelCount = (DelCount + 1) - ModelDoc2.GetConfigurationCount()
+  LabelConfigsDeleted = &quot;Done: &quot; + Str(DelCount) + &quot; configurations deleted.&quot;
+  CheckDeleteConfigs.Enabled = False
+  CheckKeepConfig.Enabled = False
+  CommandDelete.Enabled = False
+  CommandCancel.Caption = &quot;Close&quot;
+End Sub
+
+Private Sub UserForm_Initialize()
+  ProcessCheck
+  CheckDeleteConfigs.Caption = &quot;Delete up to &quot; + Str(ModelDoc2.GetConfigurationCount()) _
+                        + &quot; configurations from this model.&quot;
+  Set Configuration = ModelDoc2.GetActiveConfiguration
+  CheckKeepConfig.Caption = &quot;Keep configuration: '&quot; + Configuration.Name + &quot;'&quot;
+  LabelConfigsDeleted = &quot;&quot;
+End Sub
+</code></pre>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/DeleteConfigurations.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

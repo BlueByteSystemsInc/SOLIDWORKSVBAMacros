@@ -86,21 +86,21 @@
       "version": ""
     },
     {
-      "type": "Resource",
-      "source_relative_path": "images/~$masseditfilesdatacardfromexcel.xlsm",
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
       "output": {
-        "resource": {
-          "relative_path": "images/~$masseditfilesdatacardfromexcel.xlsm"
+        ".html": {
+          "relative_path": "index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "index.md",
+      "source_relative_path": "src/3DPoints.md",
       "output": {
         ".html": {
-          "relative_path": "index.html"
+          "relative_path": "src/3DPoints.html"
         }
       },
       "version": ""
@@ -117,10 +117,50 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/AnnotationsPro.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/AnnotationsPro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/AppLaunch.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/AppLaunch.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/AssemblyTools.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/AssemblyTools.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/AutoSurfacePlotter.md",
       "output": {
         ".html": {
           "relative_path": "src/AutoSurfacePlotter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/BGColors.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/BGColors.html"
         }
       },
       "version": ""
@@ -137,10 +177,40 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/Change Part Material.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Change Part Material.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Change Tab SW_FeatTree.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Change Tab SW_FeatTree.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/ChangePartUnitAsPerAssembly.md",
       "output": {
         ".html": {
           "relative_path": "src/ChangePartUnitAsPerAssembly.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/ChangeToolboxPartType.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ChangeToolboxPartType.html"
         }
       },
       "version": ""
@@ -157,10 +227,80 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/CommonNotes_V1.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/CommonNotes_V1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/CompPattern.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/CompPattern.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/CompStateSwitcher.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/CompStateSwitcher.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/ConcentricMate.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ConcentricMate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/ConfigManager.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ConfigManager.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/ConfigMassProp.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ConfigMassProp.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/ConvertInnerLoop.md",
       "output": {
         ".html": {
           "relative_path": "src/ConvertInnerLoop.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/CopyColors.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/CopyColors.html"
         }
       },
       "version": ""
@@ -191,6 +331,106 @@
       "output": {
         ".html": {
           "relative_path": "src/CreateCylinder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/CycleRefFeatures.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/CycleRefFeatures.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/DataCharter.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/DataCharter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/DeleteConfigurations.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/DeleteConfigurations.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/DeleteRedundantFeatures.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/DeleteRedundantFeatures.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/DeleteSelectConfigs.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/DeleteSelectConfigs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/EditAllPatterns.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/EditAllPatterns.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/EditSketch.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/EditSketch.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/ExplodeCollapse.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ExplodeCollapse.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Explode_Collapse.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Explode_Collapse.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Export Flat Pattern View (Configurations).md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Export Flat Pattern View (Configurations).html"
         }
       },
       "version": ""
@@ -237,6 +477,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/File Copy (with blank property values).md",
+      "output": {
+        ".html": {
+          "relative_path": "src/File Copy (with blank property values).html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/FormatLine.md",
       "output": {
         ".html": {
@@ -261,6 +511,16 @@
       "output": {
         ".html": {
           "relative_path": "src/GUARDADXF.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/HideAllSketchesInAssy.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/HideAllSketchesInAssy.html"
         }
       },
       "version": ""
@@ -297,10 +557,40 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/ISOViews.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ISOViews.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/InsertBlock.md",
       "output": {
         ".html": {
           "relative_path": "src/InsertBlock.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/InsertPartIntoNewPart.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/InsertPartIntoNewPart.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Instances.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Instances.html"
         }
       },
       "version": ""
@@ -321,6 +611,16 @@
       "output": {
         ".html": {
           "relative_path": "src/LinkNoteToConfig.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/MatToPipeFromAssy.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/MatToPipeFromAssy.html"
         }
       },
       "version": ""
@@ -357,6 +657,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/OpenAndSaveAsPartNumber.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/OpenAndSaveAsPartNumber.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/OpenSelectedPart.md",
       "output": {
         ".html": {
@@ -367,10 +677,40 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/OpenTopLevelAssembly.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/OpenTopLevelAssembly.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/PARASOLID.md",
       "output": {
         ".html": {
           "relative_path": "src/PARASOLID.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/ParallelMate.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ParallelMate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/ParentSelect.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ParentSelect.html"
         }
       },
       "version": ""
@@ -391,6 +731,16 @@
       "output": {
         ".html": {
           "relative_path": "src/Rebuild Referenced File.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/RebuildNSaveAllParts.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/RebuildNSaveAllParts.html"
         }
       },
       "version": ""
@@ -427,6 +777,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/Return_A_Axis_to_HOME1.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Return_A_Axis_to_HOME1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/Rotate All Bodies in Part.md",
       "output": {
         ".html": {
@@ -441,6 +801,76 @@
       "output": {
         ".html": {
           "relative_path": "src/Save AssemblyAsEasm.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Save Assy As Part (Exterior Components).md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Save Assy As Part (Exterior Components).html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Save Assy As Part.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Save Assy As Part.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/SaveAndCloseDocument.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/SaveAndCloseDocument.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/SaveAsSTL.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/SaveAsSTL.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/SaveAssemblyAsPartAndStep.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/SaveAssemblyAsPartAndStep.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/SaveAssyAsPart(All Parts).md",
+      "output": {
+        ".html": {
+          "relative_path": "src/SaveAssyAsPart(All Parts).html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/SaveConfigurationsAsSeparateStepFiles.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/SaveConfigurationsAsSeparateStepFiles.html"
         }
       },
       "version": ""
@@ -497,6 +927,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/SendEmailViaSolidWorks.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/SendEmailViaSolidWorks.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/SetLayersAndDrawLine.md",
       "output": {
         ".html": {
@@ -507,10 +947,40 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/SetReadOnly.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/SetReadOnly.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/ShowHideBodies.md",
       "output": {
         ".html": {
           "relative_path": "src/ShowHideBodies.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/StripColors.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/StripColors.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/SweepLength.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/SweepLength.html"
         }
       },
       "version": ""
@@ -537,10 +1007,40 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/ToggleContext.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/ToggleContext.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Tolerances.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Tolerances.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/Traverse and Export SOLIDWORKS Components to DXF.md",
       "output": {
         ".html": {
           "relative_path": "src/Traverse and Export SOLIDWORKS Components to DXF.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/Utilities_Analyze_Geom.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Utilities_Analyze_Geom.html"
         }
       },
       "version": ""
@@ -607,6 +1107,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/getsuffaceareaforpainting.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/getsuffaceareaforpainting.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/introduction.md",
       "output": {
         ".html": {
@@ -631,6 +1141,16 @@
       "output": {
         ".html": {
           "relative_path": "src/masseditfilesdatacardfromexcel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "src/sketchbox.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/sketchbox.html"
         }
       },
       "version": ""

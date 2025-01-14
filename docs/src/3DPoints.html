@@ -1,0 +1,343 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Import 3D Points into a SolidWorks Part Model | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Import 3D Points into a SolidWorks Part Model | &#129513; SOLIDWORKS VBA Macros Library ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/3DPoints.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/fav.png" alt="&#129513; SOLIDWORKS VBA Macros Library">
+            &#129513; SOLIDWORKS VBA Macros Library
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="import-3d-points-into-a-solidworks-part-model">Import 3D Points into a SolidWorks Part Model</h1>
+
+<h2 id="description">Description</h2>
+<p>This macro imports 3D points from a text file into a 3D sketch in a SolidWorks part model. It ensures that the active document is a valid part model and creates a new part if none is open.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>A blank part model should be active before running this macro.</li>
+<li>The text file containing 3D points must be accessible and formatted correctly.</li>
+</ul>
+</div>
+<h2 id="results">Results</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>Imports 3D points from a text file into a new 3D sketch in the part model.</li>
+<li>If no part is open, a new part model will be created using the default template.</li>
+</ul>
+</div>
+<h2 id="steps-to-setup-the-macro">STEPS to Setup the Macro</h2>
+<ol>
+<li><strong>Create the UserForm</strong>:</li>
+</ol>
+<ul>
+<li>Open the VBA editor in SolidWorks by pressing (<code>Alt + F11</code>).</li>
+<li>In the Project Explorer, right-click on the project (e.g., <code>Macro1</code>) and select <strong>Insert</strong> &gt; <strong>UserForm</strong>.
+<ul>
+<li>Rename the form to <code>UserForm1</code>.</li>
+<li>Design the form with the following:
+<ul>
+<li>Add a Label at the top: <strong>Select file to open.</strong></li>
+<li>Add a ListBox named <strong>ListBox1</strong> for displaying file contents.</li>
+<li>Add two buttons:
+<ul>
+<li>Import: Set Name = <code>CmdImport</code> and Caption = <code>Import</code>.</li>
+<li>Close: Set Name = <code>CmdClose</code> and Caption = <code>Close</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><p><strong>Add VBA Code</strong>:</p>
+<ul>
+<li>Copy the <strong>Macro Code</strong> provided below into the module.</li>
+<li>Copy the <strong>UserForm Code</strong> into the <code>UserForm1</code> code-behind.</li>
+</ul>
+</li>
+<li><p><strong>Save and Run the Macro</strong>:</p>
+<ul>
+<li>Save the macro file (e.g., <code>3DPoints.swp</code>).</li>
+<li>Run the macro by going to <strong>Tools</strong> &gt; <strong>Macro</strong> &gt; <strong>Run</strong> in SolidWorks, then select your saved macro.</li>
+</ul>
+</li>
+<li><p><strong>Import 3D Points</strong>:</p>
+<ul>
+<li>The macro will open the 3D Point Import UserForm.</li>
+<li>Follow these steps:
+<ol>
+<li>Click <strong>Import</strong> and select the text file containing 3D points.</li>
+<li>Ensure the text file is formatted as comma-separated values, e.g.:
+<pre><code>0.0,0.0,0.0  
+1.0,1.0,1.0  
+2.0,2.0,2.0  
+</code></pre>
+</li>
+<li>The macro will insert the points into a new 3D Sketch in the part model.</li>
+<li>Click <strong>Close</strong> to exit the UserForm.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">' Disclaimer:
+' The code provided should be used at your own risk.  
+' Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code.  
+' For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
+
+Option Explicit
+
+Dim swApp As Object                ' SolidWorks application object
+Dim Part As Object                 ' Active document object (part model)
+Dim ModelDocExt As Object          ' ModelDocExtension object for extended functionalities
+Dim boolstatus As Boolean          ' Boolean status for operations
+Dim longstatus As Long             ' Long status for capturing operation results
+Dim longwarnings As Long           ' Long warnings for capturing warnings
+
+' Enumeration for SolidWorks document types
+Public Enum swDocumentTypes_e
+    swDocNONE = 0                  ' No document type
+    swDocPART = 1                  ' Part document type
+    swDocASSEMBLY = 2              ' Assembly document type
+    swDocDRAWING = 3               ' Drawing document type
+    swDocSDM = 4                   ' Solid data manager document type
+End Enum
+
+Sub main()
+    Dim FileTyp As Integer         ' Type of the active file
+    Dim MassStatus As Long         ' Status of the mass properties
+
+    ' Initialize SolidWorks application
+    Set swApp = Application.SldWorks
+    
+    ' Get the active document
+    Set Part = swApp.ActiveDoc
+    
+    ' Check if a document is open
+    If Not Part Is Nothing Then
+        FileTyp = Part.GetType     ' Get document type
+        
+        ' Check if the document is a part model
+        If FileTyp = swDocPART Then
+            Set Part = swApp.ActiveDoc
+            Set ModelDocExt = Part.Extension
+            
+            ' Get mass properties of the part
+            Dim MassValue As Variant
+            MassValue = ModelDocExt.GetMassProperties(1, MassStatus)
+            
+            ' Check if the part is blank (no mass)
+            If MassStatus = 2 Then
+                PointImport.Show   ' Show user form for point import
+            Else
+                MsgBox &quot;Part model has mass. Please start with a blank part model.&quot;, vbExclamation, &quot;Invalid Part Model&quot;
+            End If
+        Else
+            MsgBox &quot;Current document is not a part model. Please start with a blank part model.&quot;, vbExclamation, &quot;Invalid Document Type&quot;
+        End If
+    Else
+        ' Load a new part using the default template
+        Dim DefaultPart As String
+        DefaultPart = swApp.GetUserPreferenceStringValue(swDefaultTemplatePart)
+        Set Part = swApp.NewDocument(DefaultPart, 0, 0, 0)
+        
+        ' Check if the new part was created successfully
+        If Not Part Is Nothing Then
+            Set ModelDocExt = Part.Extension
+            UserForm1.Show        ' Show user form for user input
+        Else
+            MsgBox &quot;Could not automatically load part. Please start with a blank part model.&quot;, vbExclamation, &quot;Part Creation Failed&quot;
+            MsgBox &quot;File &quot; &amp; DefaultPart &amp; &quot; not found&quot;, vbCritical, &quot;Template Not Found&quot;
+        End If
+    End If
+End Sub
+</code></pre>
+<h2 id="vba-userform-code">VBA UserForm Code</h2>
+<pre><code class="lang-vbnet">Option Explicit
+
+Dim WorkDirectory As String
+Dim FileName As String
+
+'------------------------------------------------------------------------------  
+' Add files to list  
+'------------------------------------------------------------------------------  
+Private Sub AddToFileList(Extension)
+    ListBoxFiles.Clear
+    FileName = Dir(WorkDirectory + Extension)   ' Retrieve file list  
+    Do While FileName &lt;&gt; &quot;&quot;
+        ListBoxFiles.AddItem FileName
+        FileName = Dir
+    Loop
+End Sub
+
+' Close Button Event  
+Private Sub CommandClose_Click()
+    End
+End Sub
+
+' Import Button Event  
+Private Sub CommandImport_Click()
+    Dim Source As String
+    Dim ReadLine As String
+    Dim PntCnt As Long
+    Dim DimX As Double, DimY As Double, DimZ As Double
+    Dim Axis1 As Double, Axis2 As Double, Axis3 As Double
+    
+    ' Start a 3D Sketch  
+    Part.Insert3DSketch
+    PntCnt = 0
+    Source = WorkDirectory &amp; ListBoxFiles.List(ListBoxFiles.ListIndex, 0)
+    
+    Open Source For Input As #1   ' Open the source file  
+    Do While Not EOF(1)
+        Input #1, ReadLine
+        ' Check for lines containing &quot;HITS&quot;  
+        If Right$(UCase(ReadLine), 4) = &quot;HITS&quot; Then
+            Input #1, DimX, DimY, DimZ, Axis1, Axis2, Axis3
+            PntCnt = PntCnt + 1
+            LabelProcessing.Caption = &quot;Processing:&quot; &amp; Chr(13) &amp; &quot;Point # &quot; &amp; CStr(PntCnt)
+            Me.Repaint   ' Update form UI  
+            Part.CreatePoint2 DimX, DimY, DimZ
+        End If
+    Loop
+    
+EndRead:
+    Close #1   ' Close the file  
+    LabelProcessing.Caption = &quot;Processed:&quot; &amp; Chr(13) &amp; CStr(PntCnt) &amp; &quot; points.&quot;
+    Part.SketchManager.InsertSketch True
+    Part.ClearSelection2 True
+    Part.ViewZoomtofit
+End Sub
+
+' ListBox File Click Event  
+Private Sub ListBoxFiles_Click()
+    CommandImport.Enabled = True
+End Sub
+
+' UserForm Initialization  
+Private Sub UserForm_Initialize()
+    CommandImport.Enabled = False
+    WorkDirectory = swApp.GetCurrentWorkingDirectory
+    AddToFileList &quot;*.txt&quot;
+    If ListBoxFiles.ListCount &lt; 1 Then
+        MsgBox &quot;No data files found.&quot;, vbExclamation, &quot;File Not Found&quot;
+        End
+    End If
+End Sub
+</code></pre>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/3DPoints.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

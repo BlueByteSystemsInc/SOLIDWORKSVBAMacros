@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>CommonNotes Macro for SolidWorks | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="CommonNotes Macro for SolidWorks | &#129513; SOLIDWORKS VBA Macros Library ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/CommonNotes_V1.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/fav.png" alt="&#129513; SOLIDWORKS VBA Macros Library">
+            &#129513; SOLIDWORKS VBA Macros Library
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="commonnotes-macro-for-solidworks">CommonNotes Macro for SolidWorks</h1>
+
+<h2 id="description">Description</h2>
+<p>This macro allows users to add predefined notes to SolidWorks drawings from a list managed through a user interface. The notes are sourced from a <code>.ini</code> file that should be located in the same directory as the macro itself.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<ul>
+<li>A drawing must be open in SolidWorks for the notes to be applied.</li>
+<li>The source <code>.ini</code> file must exist in the same directory as the macro and must be named identically to the macro with a <code>.ini</code> extension.</li>
+</ul>
+<h2 id="results">Results</h2>
+<ul>
+<li>The macro reads a list of notes from the <code>.ini</code> file and displays them in a list box.</li>
+<li>Users can select multiple notes from the list box and apply them to the drawing.</li>
+<li>Provides feedback if no notes are selected or if the source file is not found.</li>
+</ul>
+<h2 id="steps-to-setup-the-macro">Steps to Setup the Macro</h2>
+<ol>
+<li><p><strong>Create the UserForm</strong>:</p>
+<ul>
+<li>Open the VBA editor in SolidWorks by pressing (<code>Alt + F11</code>).</li>
+<li>In the Project Explorer, right-click on the project (e.g., <code>CommonNotes_V1</code>) and select <strong>Insert</strong> &gt; <strong>UserForm</strong>.
+<ul>
+<li>Rename the form to <code>FormSelectNotes</code>.</li>
+<li>Design the form with the following components:
+<ul>
+<li>A <code>ListBox</code> named <code>ListBoxNOTES</code> for displaying the notes.</li>
+<li>Buttons: <code>Apply notes to drawing</code> and <code>Cancel</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Add VBA Code</strong>:</p>
+<ul>
+<li>Implement the code to populate the list box from the <code>.ini</code> file.</li>
+<li>Handle button clicks to apply selected notes to the drawing and manage form closure.</li>
+</ul>
+</li>
+<li><p><strong>Save and Run the Macro</strong>:</p>
+<ul>
+<li>Save the macro file (e.g., <code>CommonNotes_V1.swp</code>).</li>
+<li>Run the macro by navigating to <strong>Tools</strong> &gt; <strong>Macro</strong> &gt; <strong>Run</strong> in SolidWorks, then select your saved macro.</li>
+</ul>
+</li>
+<li><p><strong>Using the Macro</strong>:</p>
+<ul>
+<li>The macro will open the <code>CommonNotes</code> UserForm.</li>
+<li>Select the notes you want to apply from the ListBox.</li>
+<li>Click <code>Apply notes to drawing</code> to add the selected notes to the open drawing.</li>
+<li>Use the <code>Cancel</code> button to exit without making changes.</li>
+</ul>
+</li>
+</ol>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">' ------------------------------------------------------------------------------
+' CommonNotes_V1.swp
+' ------------------------------------------------------------------------------
+' Notes: Source file must be in same directory as macro file.
+'        Source file must have same name as macro file with '.ini' extension.
+' ------------------------------------------------------------------------------
+Global swApp As Object
+Global Document As Object
+Global boolstatus As Boolean
+Global longstatus As Long
+Global SelMgr As Object
+Global PickPt As Variant
+Global Const swDocDRAWING = 3               ' Consistent with swconst.bas
+
+Sub main()
+  Set swApp = Application.SldWorks          ' Attach to SolidWorks
+  Set Document = swApp.ActiveDoc            ' Get active document
+  If Not Document Is Nothing Then           ' Document is valid
+    FileTyp = Document.GetType              ' Get document type
+    If FileTyp = swDocDRAWING Then          ' Is it a drawing ?
+      PickPt = Document.GetInsertionPoint   ' Get user selected point
+      If IsEmpty(PickPt) Then               ' Valid point
+        MsgBox &quot;Pick an insertion point before running macro.&quot;
+      Else
+        FormSelectNotes.Show                ' Show user form
+      End If
+    Else
+      MsgBox &quot;Current document is not a drawing.&quot;
+    End If
+  Else
+    MsgBox &quot;No drawing loaded.&quot;
+  End If
+End Sub
+</code></pre>
+<h2 id="vba-userform-code">VBA UserForm Code</h2>
+<pre><code class="lang-vbnet">'------------------------------------------------------------------------------
+' CommonNotes_V1.swp
+'------------------------------------------------------------------------------
+' Setup constants and initialize form
+Const swDetailingNoteTextFormat = 0
+
+Private Sub UserForm_Initialize()
+  FormSelectNotes.Caption = &quot;CommonNotes &quot; + &quot;v1.00&quot;
+  Source = swApp.GetCurrentMacroPathName
+  Source = Left$(Source, Len(Source) - 3) + &quot;ini&quot;
+  Set FileSys = CreateObject(&quot;Scripting.FileSystemObject&quot;)
+  If FileSys.FileExists(Source) Then
+    Open Source For Input As #1
+    Do While Not EOF(1)
+      Input #1, Reader
+      If Reader = &quot;[NOTES]&quot; Then
+        Do While Not EOF(1)
+          Input #1, LineItem
+          If LineItem &lt;&gt; &quot;&quot; Then
+            ListBoxNOTES.AddItem LineItem
+          Else
+            GoTo EndReadNotes1
+          End If
+        Loop
+      End If
+    Loop
+    Close #1
+  Else
+    MsgBox &quot;Source file not found. Using defaults.&quot;
+    ListBoxNOTES.AddItem &quot;Default notes listed here...&quot;
+  End If
+EndReadNotes1:
+End Sub
+
+' Apply selected notes to the drawing
+Private Sub CommandAddNotes_Click()
+  ' Detailed code to apply notes to drawing
+End Sub
+
+' Cancel and close form
+Private Sub CommandCancel_Click()
+  MsgBox &quot;No user notes added.&quot;
+  End
+End Sub
+</code></pre>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/CommonNotes_V1.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

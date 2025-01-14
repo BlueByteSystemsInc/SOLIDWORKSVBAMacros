@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Edit Sketch Macro for SolidWorks | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Edit Sketch Macro for SolidWorks | &#129513; SOLIDWORKS VBA Macros Library ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/EditSketch.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/fav.png" alt="&#129513; SOLIDWORKS VBA Macros Library">
+            &#129513; SOLIDWORKS VBA Macros Library
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="edit-sketch-macro-for-solidworks">Edit Sketch Macro for SolidWorks</h1>
+
+<h2 id="description">Description</h2>
+<p>This macro automates sketch editing within SolidWorks based on the active document and the selected entities. It adjusts the view to normal for an active sketch or exits the sketch if the view is already normal. The macro supports resolving selected subcomponents and digging into the sketch hierarchy for more complex features.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>An active part or assembly document must be open in SolidWorks.</li>
+<li>A feature, face, edge, or sketch should be selected for proper operation.</li>
+</ul>
+</div>
+<h2 id="results">Results</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>Edits the driving sketch of the selected feature or geometry and makes the view normal.</li>
+<li>Exits the active sketch if already in a normal view.</li>
+<li>Automatically resolves selected subcomponents if suppressed.</li>
+</ul>
+</div>
+<h2 id="steps-to-setup-the-macro">Steps to Setup the Macro</h2>
+<h3 id="1-run-the-macro">1. <strong>Run the Macro</strong>:</h3>
+<ul>
+<li>Execute the macro while a SolidWorks document is active.</li>
+<li>Ensure that the document type is supported (part or assembly) and appropriate entities are selected.</li>
+</ul>
+<h3 id="2-behavior-based-on-selection">2. <strong>Behavior Based on Selection</strong>:</h3>
+<ul>
+<li>If a feature or geometry is selected, the macro opens the driving sketch and adjusts the view.</li>
+<li>If no entities are selected, and the sketch is active, the macro adjusts the view to normal.</li>
+<li>If the view is already normal, the macro exits the sketch.</li>
+</ul>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">' Disclaimer:
+' The code provided should be used at your own risk.  
+' Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code.  
+' For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
+
+Option Explicit
+
+' Define a structure for storing view data
+Type ViewData
+    ViewScale As Double                           ' Scale of the view
+    Orientation As SldWorks.MathTransform         ' Orientation transformation matrix
+    Translation As SldWorks.MathVector            ' Translation vector
+End Type
+
+' Enum for comparison results between two views
+Enum CompareViewResult_e
+    Same = 0                                      ' Views are identical
+    DiffOrientation = 2 ^ 0                       ' Different orientations
+    difftranslation = 2 ^ 1                       ' Different translations
+    diffscale = 2 ^ 2                             ' Different scales
+End Enum
+
+' Debugging constants and tolerance
+Const Bug As Boolean = False                      ' Debug output flag
+Const Tol As Integer = 2                          ' Tolerance for comparisons
+
+Sub main()
+    On Error Resume Next
+
+    Dim swApp As SldWorks.SldWorks
+    Dim swDoc As SldWorks.ModelDoc2
+    Dim SelMgr As SldWorks.SelectionMgr
+    Dim swFeat As SldWorks.Feature
+    Dim swSelType As Long
+    Dim StartView As ViewData
+    Dim CurView As ViewData
+    Dim compRes As CompareViewResult_e
+
+    ' Initialize SolidWorks objects
+    Set swApp = Application.SldWorks
+    Set swDoc = swApp.ActiveDoc
+    Set SelMgr = swDoc.SelectionManager
+    StartView = GetViewData(swDoc.ActiveView)
+
+    ' Check if a sketch is active
+    If Not swDoc.GetActiveSketch2 Is Nothing Then
+        ' No selection: Align view &quot;normal to&quot; the sketch
+        If SelMgr.GetSelectedObjectCount2(-1) &lt; 1 Then
+            swDoc.ShowNamedView2 &quot;*Normal To&quot;, -1
+            CurView = GetViewData(swDoc.ActiveView)
+            compRes = CompareViewData(StartView, CurView, Tol)
+            If compRes = Same Then
+                swDoc.SketchManager.InsertSketch True
+                Exit Sub
+            End If
+        Else
+            swDoc.SketchManager.InsertSketch True
+        End If
+    End If
+
+    ' Resolve selected feature or entity
+    swSelType = SelMgr.GetSelectedObjectType3(1, -1)
+    Select Case swSelType
+        Case swSelFACES, swSelEDGES
+            Set swFeat = SelMgr.GetSelectedObject6(1, -1).GetFeature
+            If swFeat Is Nothing Then Exit Sub
+        Case swSelBODYFEATURES, swSelSKETCHES
+            Set swFeat = SelMgr.GetSelectedObject6(1, -1)
+        Case Else
+            Exit Sub
+    End Select
+
+    ' Edit sketch or feature
+    If swFeat.GetTypeName = &quot;ProfileFeature&quot; Then
+        swDoc.EditSketchOrSingleSketchFeature
+    Else
+        swDoc.FeatEdit
+    End If
+
+    ' Align view to &quot;normal to&quot; if a sketch is active
+    If Not swDoc.GetActiveSketch2 Is Nothing Then
+        swDoc.ShowNamedView2 &quot;*Normal To&quot;, -1
+    End If
+
+    ' Clear selections
+    swDoc.ClearSelection2 True
+End Sub
+
+' Function to get view data (scale, orientation, translation)
+Private Function GetViewData(view As SldWorks.ModelView) As ViewData
+    Dim data As ViewData
+    Set data.Orientation = view.Orientation3       ' Get orientation matrix
+    Set data.Translation = view.Translation3       ' Get translation vector
+    data.ViewScale = view.Scale2                   ' Get view scale
+    GetViewData = data
+End Function
+
+' Function to compare two sets of view data
+Private Function CompareViewData(firstViewData As ViewData, secondViewData As ViewData, Tol As Integer) As CompareViewResult_e
+    Dim res As CompareViewResult_e
+    res = Same
+
+    ' Compare orientation
+    If Not CompareArrays(firstViewData.Orientation.ArrayData, secondViewData.Orientation.ArrayData, Tol) Then
+        res = res + DiffOrientation
+    End If
+
+    ' Compare translation
+    If Not CompareArrays(firstViewData.Translation.ArrayData, secondViewData.Translation.ArrayData, Tol) Then
+        res = res + difftranslation
+    End If
+
+    ' Compare scale
+    If Not TolerantEqual(firstViewData.ViewScale, secondViewData.ViewScale, Tol) Then
+        res = res + diffscale
+    End If
+
+    CompareViewData = res
+End Function
+
+' Function to compare arrays with tolerance
+Private Function CompareArrays(firstArr As Variant, secondArr As Variant, Tol As Integer) As Boolean
+    If UBound(firstArr) = UBound(secondArr) Then
+        Dim i As Integer
+        For i = 0 To UBound(firstArr)
+            If Not TolerantEqual(firstArr(i), secondArr(i), Tol) Then
+                CompareArrays = False
+                Exit Function
+            End If
+        Next
+        CompareArrays = True
+    Else
+        CompareArrays = False
+    End If
+End Function
+
+' Function to compare two numbers with tolerance
+Private Function TolerantEqual(a As Variant, b As Variant, Tol As Integer) As Boolean
+    TolerantEqual = Abs(a - b) &lt;= Abs(a / 10 ^ Tol) ' Compare within tolerance
+End Function
+</code></pre>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/EditSketch.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

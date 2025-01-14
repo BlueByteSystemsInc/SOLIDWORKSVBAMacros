@@ -1,0 +1,454 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>ConfigManager Macro for SolidWorks | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="ConfigManager Macro for SolidWorks | &#129513; SOLIDWORKS VBA Macros Library ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/ConfigManager.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/fav.png" alt="&#129513; SOLIDWORKS VBA Macros Library">
+            &#129513; SOLIDWORKS VBA Macros Library
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="configmanager-macro-for-solidworks">ConfigManager Macro for SolidWorks</h1>
+
+<h2 id="description">Description</h2>
+<p>The ConfigManager macro allows users to efficiently manage configurations in SolidWorks models. It enables selecting and switching between configurations in parts, assemblies, and drawings, with additional options to display descriptions and zoom to fit the selected configuration.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<ul>
+<li>A SolidWorks model (part, assembly, or drawing) must be open.</li>
+<li>The macro should be executed within the SolidWorks environment.</li>
+</ul>
+<h2 id="results">Results</h2>
+<ul>
+<li>Displays a list of configurations available in the active document or referenced components.</li>
+<li>Allows users to switch between configurations and updates properties such as descriptions.</li>
+<li>Offers a zoom-to-fit functionality for improved visualization.</li>
+</ul>
+<h2 id="steps-to-setup-the-macro">Steps to Setup the Macro</h2>
+<ol>
+<li><p><strong>Create the UserForm</strong>:</p>
+<ul>
+<li>Open the VBA editor in SolidWorks by pressing (<code>Alt + F11</code>).</li>
+<li>In the Project Explorer, right-click on the project (e.g., <code>ConfigManager</code>) and select <strong>Insert</strong> &gt; <strong>UserForm</strong>.
+<ul>
+<li>Rename the form to <code>FormConfigMgr</code>.</li>
+<li>Design the form with the following components:
+<ul>
+<li>A <code>ListBox</code> named <code>ListBoxConfigurations</code> to display the configuration names.</li>
+<li>A <code>Label</code> named <code>LabelDescription</code> to display the description of the selected configuration.</li>
+<li>A <code>CheckBox</code> named <code>CheckFitScreen</code> for enabling or disabling the zoom-to-fit functionality.</li>
+<li>Buttons: <code>About</code> (to display macro information) and <code>Close</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Add VBA Code</strong>:</p>
+<ul>
+<li>Copy the <strong>Macro Code</strong> provided below into the main module.</li>
+<li>Copy the <strong>UserForm Code</strong> into the <code>FormConfigMgr</code> code-behind.</li>
+</ul>
+</li>
+<li><p><strong>Save and Run the Macro</strong>:</p>
+<ul>
+<li>Save the macro file (e.g., <code>ConfigManager.swp</code>).</li>
+<li>Run the macro by navigating to <strong>Tools</strong> &gt; <strong>Macro</strong> &gt; <strong>Run</strong> in SolidWorks, then select your saved macro.</li>
+</ul>
+</li>
+<li><p><strong>Using the Macro</strong>:</p>
+<ul>
+<li>The macro displays a list of configurations for the active document or its referenced components.</li>
+<li>Select a configuration to switch to it and view its description.</li>
+<li>Use the <code>CheckFitScreen</code> option to zoom to the selected configuration.</li>
+</ul>
+</li>
+</ol>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">'-------------------------------------------------------------------------------
+' ConfigManager.swp                 
+'-------------------------------------------------------------------------------
+Global swApp As Object
+Global ModelDoc2 As Object
+Global swSelMgr As Object
+Global swSelObj As Object
+Global SelModDoc2 As Object
+Global Configuration As Object
+Global FileTyp As String
+Global numConfigs As Integer
+Global ConfigNames As Variant
+Global Retval As Integer
+Global DelCount As Integer
+Global Mode As Integer
+' SolidWorks constants
+Global Const swDocNONE = 0
+Global Const swDocPART = 1
+Global Const swDocASSEMBLY = 2
+Global Const swDocDRAWING = 3
+Global Const swDocSDM = 4
+Global Const swSelDRAWINGVIEWS = 12
+Global Const swSelCOMPONENTS = 20
+Global Const version = &quot;1.10&quot;
+
+'------------------------------------------------------------------------------
+Sub Main()
+  Set swApp = CreateObject(&quot;SldWorks.Application&quot;)            ' Attach to SWX
+  Set ModelDoc2 = swApp.ActiveDoc                             ' Grab active doc
+  If ModelDoc2 Is Nothing Then                                ' Is doc loaded
+    MsgBox &quot;No active document found in SolidWorks.&quot; &amp; Chr(13) &amp; Chr(13) _
+          &amp; &quot;Please load/activate a SolidWorks &quot; &amp; Chr(13) _
+          &amp; &quot;document and try again.&quot;, vbExclamation
+  Else                                                        ' Doc loaded?
+    FileTyp = ModelDoc2.GetType                               ' Get doc type
+    If FileTyp = swDocASSEMBLY Then                           ' Assy model?
+      Set swSelMgr = ModelDoc2.SelectionManager
+      Set swSelObj = swSelMgr.GetSelectedObject4(1)           ' Get selected
+      If (Not swSelObj Is Nothing) And _
+         (swSelMgr.GetSelectedObjectType2(1) = swSelCOMPONENTS) Then
+        Mode = 1                                              ' Manage Comp
+      Else                                                    ' pre-selection
+        Mode = 0                                              ' Manage Assy
+      End If
+      FormConfigMgr.Show
+    ElseIf FileTyp = swDocPART Then                           ' Part model?
+      Mode = 0                                                ' Manage Part
+      FormConfigMgr.Show
+    ElseIf FileTyp = swDocDRAWING Then                        ' Drawing?
+      Set swSelMgr = ModelDoc2.SelectionManager
+      Set swSelObj = swSelMgr.GetSelectedObject4(1)           ' Get selected
+      If (Not swSelObj Is Nothing) And _
+         (swSelMgr.GetSelectedObjectType2(1) = swSelDRAWINGVIEWS) Then
+        Mode = 2                                              ' Preselect views
+      Else                                                    ' Valid selection
+        Mode = 3                                              ' All views
+      End If
+      FormConfigMgr.Show
+    Else                                                      ' Else doc type
+      MsgBox &quot;Sorry, could not determine document type.&quot;, vbExclamation
+    End If                                                    ' End doc type
+  End If                                                      ' End doc load
+End Sub
+</code></pre>
+<h2 id="vba-userform-code">VBA UserForm Code</h2>
+<pre><code class="lang-vbnet">'-------------------------------------------------------------------------------
+' ConfigManager.swp                 
+'-------------------------------------------------------------------------------
+Dim ModDoc2 As Object
+Dim Update As Boolean
+Dim LoadErr As Long
+Dim LoadWarn As Long
+Const swOpenDocOptions_AutoMissingConfig = &amp;H20
+
+'------------------------------------------------------------------------------
+' This function will locate the occurance of &quot;stringToFind&quot; inside &quot;theString&quot;.
+'   Occur  = 0       Get first occurrance
+'            1       Get last occurrance
+' From that position, it will return text based on the 'Retrieve' variable.
+'   StrRet = 0       Get text before
+'            1       Get text after
+'            2       If no occurrance found, return blank
+'------------------------------------------------------------------------------
+Function NewParseString(theString As String, stringToFind As String, _
+                            Occur As Boolean, StrRet As Integer)
+  Location = 0
+  TempLoc = 0
+  PosCount = 1
+  While PosCount &lt; Len(theString)
+    TempLoc = InStr(PosCount, theString, stringToFind)
+    If TempLoc &lt;&gt; 0 Then
+      If Occur = 0 Then
+        If Location = 0 Then
+          Location = TempLoc
+        End If
+      Else
+        Location = TempLoc
+      End If
+      PosCount = TempLoc + 1
+    Else
+      PosCount = Len(theString)
+    End If
+  Wend
+  If Location &lt;&gt; 0 Then
+    If StrRet = 0 Then
+      theString = Mid(theString, 1, Location - 1)
+    Else
+      theString = Mid(theString, Location + Len(stringToFind))
+    End If
+  ElseIf StrRet = 2 Then
+    theString = &quot;&quot;
+  End If
+  NewParseString = theString
+End Function
+
+Private Sub CommandaBOUT_Click()
+  FormAbout.Show
+End Sub
+
+Private Sub ListBoxConfigurations_Click()
+  If Update = True Then
+    Select Case Mode
+         Case 0         ' Top level assembly or part
+                ' Show configuration
+                ModelDoc2.ShowConfiguration2 ListBoxConfigurations.Value
+                CheckFitScreen_Click
+                ' Retrieve DESCRIPTION property
+                LabelDescription = _
+                  ModelDoc2.GetCustomInfoValue(ListBoxConfigurations.Value, _
+                  &quot;DESCRIPTION&quot;)
+         Case 1         ' Sub-component within assembly
+                ' Show configuration
+                swSelObj.ReferencedConfiguration = ListBoxConfigurations.Value
+                ' Retrieve DESCRIPTION property
+                LabelDescription = _
+                  SelModDoc2.GetCustomInfoValue(ListBoxConfigurations.Value, _
+                  &quot;DESCRIPTION&quot;)
+                ModelDoc2.EditRebuild
+         Case 2         ' Drawing view
+                Count = swSelMgr.GetSelectedObjectCount
+                For x = 1 To Count
+                  LabelDescription = &quot;View &quot; &amp; x &amp; &quot;/&quot; &amp; Count &amp; &quot; - &quot; _
+                      &amp; SelModDoc2.GetCustomInfoValue(ListBoxConfigurations.Value, _
+                      &quot;DESCRIPTION&quot;)
+                  FormConfigMgr.Repaint
+                  ' Show configuration
+                  Set swSelObj = swSelMgr.GetSelectedObject4(x)           ' Get selected
+                  swSelObj.ReferencedConfiguration = ListBoxConfigurations.Value
+                Next x
+                ' Retrieve DESCRIPTION property
+                ModelDoc2.EditRebuild
+         Case 3         ' All drawing views
+                SheetNames = ModelDoc2.GetSheetNames            ' Get names of sheets
+                Count = ModelDoc2.GetSheetCount - 1
+                For x = 0 To Count                              ' For each sheet
+                  LabelDescription = &quot;Sheet &quot; &amp; x + 1 &amp; &quot;/&quot; &amp; Count + 1 &amp; &quot; - &quot; _
+                      &amp; ModDoc2.GetCustomInfoValue(ListBoxConfigurations.Value, _
+                      &quot;DESCRIPTION&quot;)
+                  FormConfigMgr.Repaint
+                  ModelDoc2.ActivateSheet (SheetNames(x))       ' Activate sheet
+                  Set view = ModelDoc2.GetFirstView             ' Get first view
+                  While Not view Is Nothing                     ' View is valid
+                    view.ReferencedConfiguration = ListBoxConfigurations.Value
+                    Set view = view.GetNextView                 ' Get next view
+                  Wend                                          ' Repeat for all views
+                  ModelDoc2.EditRebuild
+                Next x                                          ' Next sheet
+                If x &gt; 0 Then                                   ' More than 1 sheet
+                  ModelDoc2.ActivateSheet (SheetNames(0))      ' Back to 1st sheet
+                  ModelDoc2.EditRebuild
+                End If
+    End Select
+  End If
+End Sub
+
+Private Sub CommandClose_Click()
+  End
+End Sub
+
+Private Sub CheckFitScreen_Click()
+  If (CheckFitScreen.Value = True) And (CheckFitScreen.enabled = True) _
+        Then ModelDoc2.ViewZoomtofit
+End Sub
+
+Private Sub UserForm_Initialize()
+  Update = False
+  ' Clear form
+  LabelDescription.Caption = &quot;&quot;
+  ListBoxConfigurations.Clear
+  Select Case Mode
+         Case 0         ' Top level assembly or part
+                ' Get configuration list and populate list in form
+                ConfigNames = ModelDoc2.GetConfigurationNames()
+                numConfigs = ModelDoc2.GetConfigurationCount()
+                Set Configuration = ModelDoc2.GetActiveConfiguration
+         Case 1         ' Sub-component within assembly
+                Set SelModDoc2 = swSelObj.GetModelDoc
+                ConfigName = swSelObj.ReferencedConfiguration ' Get configuration
+                ConfigNames = SelModDoc2.GetConfigurationNames()
+                numConfigs = SelModDoc2.GetConfigurationCount()
+                Set Configuration = SelModDoc2.GetConfigurationByName(Name)
+         Case 2         ' Preselected views
+                ModelName = swSelObj.GetReferencedModelName
+                NameCheck = NewParseString(UCase(ModelName), &quot;.SLD&quot;, 1, 1)
+                If UCase(Left(NameCheck, 3)) = &quot;PRT&quot; Then
+                  DocType = swDocPART
+                Else
+                  DocType = swDocASSEMBLY
+                End If
+                ShortCheck = NewParseString(NewParseString(UCase(ModelName), _
+                             &quot;\&quot;, 1, 1), &quot;.SLD&quot;, 0, 0)
+                ConfigName = swSelObj.ReferencedConfiguration ' Get configuration
+                Set SelModDoc2 = swApp.OpenDoc6(ShortCheck, DocType, _
+                             swOpenDocOptions_AutoMissingConfig, _
+                             ConfigName, LoadErr, LoadWarn)
+                ConfigNames = SelModDoc2.GetConfigurationNames()
+                numConfigs = SelModDoc2.GetConfigurationCount()
+                Set Configuration = SelModDoc2.GetConfigurationByName(ConfigName)
+                CheckFitScreen.enabled = False
+         Case 3         ' All drawing views
+                ModelName = ModelDoc2.GetDependencies(False, False)
+                NumDepend = ModelDoc2.GetNumDependencies(False, False)
+                If NumDepend &gt; 1 Then
+                  NameCheck = NewParseString(UCase(ModelName(1)), _
+                                &quot;.SLD&quot;, 1, 1)
+                  If UCase(Left(NameCheck, 3)) = &quot;PRT&quot; Then
+                    DocType = swDocPART
+                  Else
+                    DocType = swDocASSEMBLY
+                  End If
+                  ShortCheck = NewParseString(NewParseString( _
+                               UCase(ModelName(1)), &quot;\&quot;, 1, 1), &quot;.SLD&quot;, 0, 0)
+                  SheetNames = ModelDoc2.GetSheetNames       ' List sheet names
+                  ModelDoc2.ActivateSheet (SheetNames(0))    ' Activate sheet
+                  Set view = ModelDoc2.GetFirstView          ' Get first view
+                  Set view = view.GetNextView
+                  If view.IsModelLoaded = True Then
+                    ModelName = view.GetReferencedModelName
+                    ShortCheck = NewParseString(NewParseString( _
+                                 UCase(ModelName), &quot;\&quot;, 1, 1), &quot;.SLD&quot;, 0, 0)
+                    ConfigName = view.ReferencedConfiguration ' Get configuration
+                    Set ModDoc2 = swApp.OpenDoc6(ShortCheck, DocType, _
+                               swOpenDocOptions_AutoMissingConfig, ConfigName, _
+                               LoadErr, LoadWarn)
+                    ConfigNames = ModDoc2.GetConfigurationNames()
+                    numConfigs = ModDoc2.GetConfigurationCount()
+                    Set ModConfig = ModDoc2.GetConfigurationByName(ConfigName)
+                    ModelData = True
+                  Else
+                    ModelData = False
+                  End If
+                End If
+                CheckFitScreen.enabled = False
+  End Select
+  For x = 0 To (numConfigs - 1)                      ' For each config
+    ListBoxConfigurations.AddItem ConfigNames(x)
+  Next                                               ' Get next config
+  ' Sort entries in ListBoxConfigurations via simple bubble sort technique.
+  For x = 0 To ListBoxConfigurations.ListCount - 2   ' Number of passes
+    For y = 0 To ListBoxConfigurations.ListCount - 2 ' Pass thru each row
+      If ListBoxConfigurations.List(y, 0) _
+         &gt; ListBoxConfigurations.List(y + 1, 0) Then ' If greater, re-order
+        Temp = ListBoxConfigurations.List(y, 0)      ' Re-order entries
+        ListBoxConfigurations.List(y, 0) = ListBoxConfigurations.List(y + 1, 0)
+        ListBoxConfigurations.List(y + 1, 0) = Temp
+      End If                                         ' Re-order check
+    Next y                                           ' Pass thru each row
+  Next x                                             ' Number of passes
+  ' Identify current configuration
+  For x = 0 To (ListBoxConfigurations.ListCount - 1) ' For each config
+    If ListBoxConfigurations.List(x, 0) = ConfigName Then
+      ListBoxConfigurations.Selected(x) = True       ' Found active conf
+    End If                                           ' active config
+  Next                                               ' Get next config
+  Update = True
+End Sub
+</code></pre>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/ConfigManager.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

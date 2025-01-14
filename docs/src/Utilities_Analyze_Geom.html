@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Geometry Analysis Macro for SolidWorks | &#129513; SOLIDWORKS VBA Macros Library </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Geometry Analysis Macro for SolidWorks | &#129513; SOLIDWORKS VBA Macros Library ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Utilities_Analyze_Geom.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/fav.png" alt="&#129513; SOLIDWORKS VBA Macros Library">
+            &#129513; SOLIDWORKS VBA Macros Library
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="geometry-analysis-macro-for-solidworks">Geometry Analysis Macro for SolidWorks</h1>
+
+<h2 id="description">Description</h2>
+<p>This macro leverages SolidWorks Utilities to perform an extensive geometry analysis on the active document. It identifies common geometric issues such as short edges, knife edges, discontinuous edges, small faces, sliver faces, discontinuous faces, and knife vertices, which can impact the manufacturability and integrity of the design.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>A SolidWorks part or assembly must be open.</li>
+<li>SolidWorks Utilities add-in must be enabled to access the geometry analysis tools.</li>
+</ul>
+</div>
+<h2 id="results">Results</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>Identifies and lists various geometric defects.</li>
+<li>Optional: Saves a detailed report to a specified directory.</li>
+<li>Updates the Design Checker with the results if necessary.</li>
+</ul>
+</div>
+<h2 id="steps-to-setup-the-macro">Steps to Setup the Macro</h2>
+<ol>
+<li><p><strong>Prepare SolidWorks</strong>:</p>
+<ul>
+<li>Ensure SolidWorks is running and that a document is open.</li>
+<li>Enable the SolidWorks Utilities add-in via <strong>Tools</strong> &gt; <strong>Add-Ins</strong>.</li>
+</ul>
+</li>
+<li><p><strong>Configure and Run the Macro</strong>:</p>
+<ul>
+<li>Open the SolidWorks VBA editor by pressing (<code>Alt + F11</code>).</li>
+<li>Insert a new module and copy the provided macro code into this module.</li>
+<li>Run the macro from within SolidWorks by navigating to <strong>Tools</strong> &gt; <strong>Macro</strong> &gt; <strong>Run</strong>, then select your saved macro file.</li>
+</ul>
+</li>
+<li><p><strong>Review Results</strong>:</p>
+<ul>
+<li>The macro will execute and identify potential issues based on predefined thresholds.</li>
+<li>Review the output directly in SolidWorks or in the optional saved report.</li>
+</ul>
+</li>
+</ol>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">' Disclaimer:
+' The code provided should be used at your own risk.  
+' Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code.  
+' For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
+
+Option Explicit
+
+' Define module-level SolidWorks application variables
+Dim swApp As SldWorks.SldWorks                                ' SolidWorks application object
+Dim swUtil As SWUtilities.gtcocswUtilities                    ' SolidWorks Utilities interface
+Dim swUtilGeometryAnalysis As SWUtilities.gtcocswGeometryAnalysis ' Geometry analysis tool interface
+Dim longStatus As gtError_e                                   ' Status variable for error tracking
+Dim bCheckStatus As Boolean                                   ' Status of the geometry check
+Dim lTotalCount, nFailedItemCount As Long                     ' Counters for total and failed items
+Dim FailedItemsArr() As String                                ' Array to store failed item details
+Dim i As Long                                                 ' Loop counter
+
+' Main subroutine to perform geometry analysis
+Sub main()
+    ' Connect to SolidWorks
+    Set swApp = Application.SldWorks
+
+    ' Get the SolidWorks Utilities interface
+    Set swUtil = swApp.GetAddInObject(&quot;Utilities.UtilitiesApp&quot;)
+    Set swUtilGeometryAnalysis = swUtil.GetToolInterface(gtSwToolGeomCheck, longStatus)
+
+    ' Initialize the geometry analysis tool
+    longStatus = swUtilGeometryAnalysis.Init()
+
+    ' Perform geometric checks
+
+    ' Check for short edges
+    Dim lShortEdgeCount As Long
+    lShortEdgeCount = swUtilGeometryAnalysis.GetShortEdgesCount(0.0005, longStatus) ' Threshold: 0.0005
+    Call BadGeomList(lShortEdgeCount, &quot;Short Edge&quot;, &quot;EDGE&quot;) ' Log short edges
+
+    ' Check for knife edges
+    Dim lKnifeEdgeCount As Long
+    lKnifeEdgeCount = swUtilGeometryAnalysis.GetKnifeEdgesCount(5#, longStatus) ' Threshold: 5 degrees
+    Call BadGeomList(lKnifeEdgeCount, &quot;Knife Edge&quot;, &quot;EDGE&quot;) ' Log knife edges
+
+    ' Optionally save the report to a file
+    ' Uncomment and specify the desired path to enable report saving
+    ' longStatus = swUtilGeometryAnalysis.SaveReport2(&quot;C:\Path\To\Save\Report&quot;, False, True)
+
+    ' Cleanup after the analysis
+    longStatus = swUtilGeometryAnalysis.Close()
+
+    ' Update the Design Checker with the results
+    Dim dcApp As Object
+    Set dcApp = swApp.GetAddInObject(&quot;SWDesignChecker.SWDesignCheck&quot;)
+    Call dcApp.SetCustomCheckResult(bCheckStatus, FailedItemsArr)
+End Sub
+
+' Helper subroutine to handle bad geometry listing
+Public Sub BadGeomList(iNum As Long, geomType As String, eSelectType As String)
+    ' Iterate over each failed geometry and log details
+    For i = 1 To iNum
+        nFailedItemCount = nFailedItemCount + 1
+        ' Expand the FailedItemsArr array to accommodate the new failed item
+        ReDim Preserve FailedItemsArr(1 To 2, 1 To nFailedItemCount)
+        ' Log the failed geometry type and selection type
+        FailedItemsArr(1, nFailedItemCount) = geomType &amp; Str(i)
+        FailedItemsArr(2, nFailedItemCount) = eSelectType
+    Next i
+End Sub
+</code></pre>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Utilities_Analyze_Geom.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

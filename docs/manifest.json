@@ -37,6 +37,16 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/boundingbox.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/boundingbox.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/fav.png",
       "output": {
         "resource": {

@@ -1,8 +1,8 @@
 {
   "sitemap": {
-    "baseUrl": "https://SOLIDWORKSVBAMacros.bluebyte.biz/",
+    "baseUrl": "https://SOLIDWORKSVBAMacros.bluebyte.biz/sitemap/",
     "changefreq": "daily",
-    "priority": 0.5
+    "priority": 1.0
   },
   "source_base_path": "C:/Users/jlili/source/repos/BlueByteSystemsInc/SOLIDWORKSVBAMacros",
   "xrefmap": "xrefmap.yml",

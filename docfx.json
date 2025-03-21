@@ -18,8 +18,8 @@
       }
     ],
     "sitemap": {
-      "baseUrl": "https://SOLIDWORKSVBAMacros.bluebyte.biz",
-      "priority": 0.5,
+      "baseUrl": "https://SOLIDWORKSVBAMacros.bluebyte.biz/sitemap",
+      "priority": 1,
       "changefreq": "daily"
     },
     "output": "docs",

@@ -1,5 +1,5 @@
 # Save Drawing as PDF in SolidWorks
-
+<video src="../images/Save_Drawing_To_PDF.mkv" autoplay muted controls style="width: 100%; border-radius: 12px;"></video>
 ## Description
 This macro instantly saves the active part or assembly drawing as a PDF file. The PDF document is saved in the same folder as the drawing with the same name. This macro works best when assigned to a keyboard shortcut, making it easy to quickly export drawings to PDF format without manually navigating through the menus.
 
@@ -88,6 +88,6 @@ Sub main()
 
 End Sub
 ```
-
+You can download the macro from [here](../images/Save_Drawing_To_PDF.swp)
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

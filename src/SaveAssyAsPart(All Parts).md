@@ -1,5 +1,5 @@
 # Save Assembly as Part (All Components) Macro
-
+<video src="../images/Save_Assy_As_Part_(All_Parts).mkv" autoplay muted controls style="width: 100%; border-radius: 12px;"></video>
 ## Description
 This macro automates the process of saving a SolidWorks assembly as a single part file that includes all components. It is particularly useful for simplifying assemblies for external use or reducing file size.
 
@@ -79,6 +79,6 @@ Sub main()
 
 End Sub
 ```
-
+You can download the macro from [here](../images/Save_Assy_As_Part_(All_Parts).swp)
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

@@ -1,5 +1,7 @@
 # Mate Toggling Macro for SolidWorks
 
+<img src="../images/Return_A_Axis_to_HOME1.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro toggles the suppression state of a specified mate named "Angle 0 Deg" in a SolidWorks document. It first unsuppresses the mate if it is suppressed, then suppresses it again. This can be useful for automating the testing of assembly constraints.
 
@@ -78,6 +80,9 @@ Sub main()
     Part.ClearSelection2 True
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/Return_A_Axis_to_HOME1.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

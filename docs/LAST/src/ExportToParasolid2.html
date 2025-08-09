@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Save All Parts of an Assembly as Parasolid Files | SOLIDWORKS Macros Lib </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Save All Parts of an Assembly as Parasolid Files | SOLIDWORKS Macros Lib ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/V2/LAST/src/ExportToParasolid2.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/fav.png" alt="SOLIDWORKS VBA Macros Lib">
+            SOLIDWORKS VBA Macros Lib
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="save-all-parts-of-an-assembly-as-parasolid-files">Save All Parts of an Assembly as Parasolid Files</h1>
+
+<img src="../images/ExportAsPARASOLID.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+<h2 id="description">Description</h2>
+<p>This macro opens all parts of the currently active assembly and saves each part as a Parasolid file. It simplifies the process of exporting parts from an assembly by automatically saving them in the desired format. The macro should be used when the active document is an assembly, and it will save the parts in the specified location.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>The active document must be an assembly.</li>
+<li>All parts must be resolved (not in a suppressed or hidden state) to ensure successful export.</li>
+<li>The destination folder path must be valid and writable.</li>
+</ul>
+</div>
+<h2 id="results">Results</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>All parts within the active assembly will be saved as Parasolid files in the specified folder.</li>
+<li>The files will be named according to the original part names and saved in the Parasolid (.X_T) format.</li>
+<li>A message box will be displayed if the document is not an assembly or if there is any issue during saving.</li>
+</ul>
+</div>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">' Disclaimer:
+' The code provided should be used at your own risk.  
+' Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code.  
+' For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
+
+Option Explicit
+
+' --------------------------------------------------------------------------
+' Main subroutine to initialize the process and save parts as Parasolid files
+' --------------------------------------------------------------------------
+Sub main()
+
+    ' Declare necessary SolidWorks objects
+    Dim swApp As Object                              ' SolidWorks application object
+    Dim Part As Object                               ' Active document object (assembly)
+    Dim boolstatus As Boolean                        ' Boolean status to capture operation results
+    Dim longstatus As Long, longwarnings As Long     ' Long variables for capturing status and warnings
+
+    ' Initialize SolidWorks application
+    Set swApp = Application.SldWorks
+
+    ' Get the currently active document (assembly)
+    Set Part = swApp.ActiveDoc
+
+    ' Check if there is an active document open
+    If Part Is Nothing Then
+        MsgBox &quot;No active document found. Please open an assembly and try again.&quot;, vbCritical, &quot;No Active Document&quot;
+        Exit Sub
+    End If
+
+    ' Check if the active document is an assembly
+    If Part.GetType &lt;&gt; swDocASSEMBLY Then
+        MsgBox &quot;This macro only works on assemblies. Please open an assembly and try again.&quot;, vbCritical, &quot;Invalid Document Type&quot;
+        Exit Sub
+    End If
+
+    ' Save the assembly as a Parasolid file (change the path as needed)
+    ' Note: Replace the path with a dynamic path or prompt for user input if required
+    longstatus = Part.SaveAs3(&quot;C:\Users\pnovorolsky\Music\Para TEst\1014016.X_T&quot;, 0, 0)
+
+    ' Check if the save operation was successful
+    If longstatus = 0 Then
+        MsgBox &quot;Parasolid file saved successfully.&quot;, vbInformation, &quot;Save Successful&quot;
+    Else
+        MsgBox &quot;Failed to save the Parasolid file. Please check the file path or permissions.&quot;, vbExclamation, &quot;Save Failed&quot;
+    End If
+
+End Sub
+</code></pre>
+<h2 id="macro">Macro</h2>
+<p>You can download the macro from <a href="../files/ExportToParasolid2.swp">here</a></p>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/V2/LAST/src/ExportToParasolid2.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Match Unit System of All Sub-Parts and Sub-Assemblies with Main Assembly | SOLIDWORKS Macros Lib </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Match Unit System of All Sub-Parts and Sub-Assemblies with Main Assembly | SOLIDWORKS Macros Lib ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/V2/LAST/src/ChangePartUnitAsPerAssembly.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/fav.png" alt="SOLIDWORKS VBA Macros Lib">
+            SOLIDWORKS VBA Macros Lib
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="match-unit-system-of-all-sub-parts-and-sub-assemblies-with-main-assembly">Match Unit System of All Sub-Parts and Sub-Assemblies with Main Assembly</h1>
+
+<p><video src="../images/change_part_uint_as_per_assemnly.mkv" autoplay="" muted="" controls="" style="width: 100%; border-radius: 12px;"></video></p>
+<h2 id="description">Description</h2>
+<p>This macro changes the unit system of all sub-parts and sub-assemblies in the active assembly to match the unit system of the main assembly. The macro ensures that all components in the assembly have a consistent unit system, which is crucial for accurate measurement and interoperability.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>The active document must be an assembly.</li>
+<li>The macro should be run with all necessary permissions to modify and save the components.</li>
+</ul>
+</div>
+<h2 id="results">Results</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>All sub-parts and sub-assemblies in the assembly will have their unit systems changed to match the main assembly's unit system.</li>
+<li>The changes will be saved, and a message box will display the updated unit system.</li>
+</ul>
+</div>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">' Disclaimer:
+' The code provided should be used at your own risk.  
+' Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code.  
+' For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
+
+Option Explicit
+
+' Declare global variables
+Dim swApp As SldWorks.SldWorks                    ' SolidWorks application object
+Dim swmodel As SldWorks.ModelDoc2                 ' Active model document (assembly)
+Dim swasm As SldWorks.AssemblyDoc                 ' Assembly document object
+Dim swconf As SldWorks.Configuration              ' Configuration object
+Dim swrootcomp As SldWorks.Component2             ' Root component of the assembly
+Dim usys As Long                                  ' Main assembly unit system
+Dim usys1 As Long                                 ' Main assembly linear units
+Dim dunit As Long                                 ' Dual linear unit system value
+Dim bret As Boolean                               ' Boolean return status variable
+Dim err As Long, war As Long                      ' Error and warning variables
+
+' --------------------------------------------------------------------------
+' Main subroutine to initialize the process and update unit systems
+' --------------------------------------------------------------------------
+Sub main()
+
+    ' Initialize SolidWorks application and get the active document
+    Set swApp = Application.SldWorks
+    Set swmodel = swApp.ActiveDoc
+
+    ' Check if there is an active document open
+    If swmodel Is Nothing Then
+        MsgBox &quot;No active document found. Please open an assembly and try again.&quot;, vbCritical, &quot;No Active Document&quot;
+        Exit Sub
+    End If
+
+    ' Check if the active document is an assembly
+    If swmodel.GetType &lt;&gt; swDocASSEMBLY Then
+        MsgBox &quot;This macro only works on assemblies. Please open an assembly and try again.&quot;, vbCritical, &quot;Invalid Document Type&quot;
+        Exit Sub
+    End If
+
+    ' Get the active configuration and root component of the assembly
+    Set swconf = swmodel.GetActiveConfiguration
+    Set swrootcomp = swconf.GetRootComponent3(True)
+
+    ' Get the main assembly's unit system and dual units
+    usys = swmodel.GetUserPreferenceIntegerValue(swUnitSystem)         ' Unit system (CGS, MKS, IPS, etc.)
+    dunit = swmodel.GetUserPreferenceIntegerValue(swUnitsDualLinear)   ' Dual linear unit system
+    If usys = 4 Then
+        usys1 = swmodel.GetUserPreferenceIntegerValue(swUnitsLinear)   ' Custom linear units
+    End If
+
+    ' Traverse through all sub-components and update their unit systems
+    Traverse swrootcomp, 1
+
+    ' Notify the user about the updated unit system
+    Select Case usys
+        Case 1
+            swApp.SendMsgToUser2 &quot;Unit system changed to CGS&quot;, swMbInformation, swMbOk
+        Case 2
+            swApp.SendMsgToUser2 &quot;Unit system changed to MKS&quot;, swMbInformation, swMbOk
+        Case 3
+            swApp.SendMsgToUser2 &quot;Unit system changed to IPS&quot;, swMbInformation, swMbOk
+        Case 4
+            swApp.SendMsgToUser2 &quot;Unit system changed to Custom Unit&quot;, swMbInformation, swMbOk
+        Case 5
+            swApp.SendMsgToUser2 &quot;Unit system changed to MMGS&quot;, swMbInformation, swMbOk
+    End Select
+
+End Sub
+
+' --------------------------------------------------------------------------
+' Recursive function to traverse through the assembly and update unit systems
+' --------------------------------------------------------------------------
+Sub Traverse(swcomp As SldWorks.Component2, nlevel As Long)
+
+    ' Declare necessary variables
+    Dim vChildComp As Variant                       ' Array of child components in the assembly
+    Dim swChildComp As SldWorks.Component2          ' Individual child component object
+    Dim swCompConfig As SldWorks.Configuration      ' Component configuration object
+    Dim swpmodel As SldWorks.ModelDoc2              ' Model document object of the component
+    Dim path As String                              ' Path of the component file
+    Dim sPadStr As String                           ' String for formatting debug output
+    Dim i As Long                                   ' Loop counter for iterating through child components
+
+    ' Format padding for debug output based on level
+    For i = 0 To nlevel - 1
+        sPadStr = sPadStr + &quot;  &quot;
+    Next i
+
+    ' Get child components of the current component
+    vChildComp = swcomp.GetChildren
+
+    ' Loop through each child component
+    For i = 0 To UBound(vChildComp)
+        Set swChildComp = vChildComp(i)    ' Set the child component
+
+        ' Recursively traverse through sub-components
+        Traverse swChildComp, nlevel + 1
+
+        ' Check if the child component is valid
+        If Not swChildComp Is Nothing Then
+            path = swChildComp.GetPathName ' Get the path of the component
+
+            ' Open the part or assembly based on file extension
+            If (LCase(Right(path, 3)) = &quot;prt&quot;) Then
+                Set swpmodel = swApp.OpenDoc6(path, swDocPART, 0, swChildComp.ReferencedConfiguration, err, war)
+            ElseIf (LCase(Right(path, 3)) = &quot;asm&quot;) Then
+                Set swpmodel = swApp.OpenDoc6(path, swDocASSEMBLY, 0, swChildComp.ReferencedConfiguration, err, war)
+            End If
+
+            ' If the component is successfully opened, update its unit system
+            If Not swpmodel Is Nothing Then
+                bret = swpmodel.SetUserPreferenceIntegerValue(swUnitSystem, usys)
+                bret = swpmodel.SetUserPreferenceIntegerValue(swUnitsDualLinear, dunit)
+                If usys = 4 Then
+                    bret = swpmodel.SetUserPreferenceIntegerValue(swUnitsLinear, usys1)
+                End If
+
+                ' Save the component after updating the unit system
+                swpmodel.Save3 0, err, war
+                Set swpmodel = Nothing  ' Release the object
+            End If
+        End If
+    Next i
+
+End Sub
+</code></pre>
+<p>You can download the macro from <a href="../files/Change_Part_Unit_As_Per_Assembly.swp">here</a></p>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/V2/LAST/src/ChangePartUnitAsPerAssembly.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

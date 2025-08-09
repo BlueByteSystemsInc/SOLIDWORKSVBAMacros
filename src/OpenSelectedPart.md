@@ -1,5 +1,7 @@
 # Open Selected Part Separately from Assembly in SolidWorks
 
+<img src="../images/OpenSelectedPart.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro enables users to select a part in an assembly and open it in a separate window with a single command. The macro can be conveniently assigned to a keyboard shortcut (e.g., the 'O' key) for quick access, making it faster to edit parts without manually navigating through the assembly.
 
@@ -39,6 +41,9 @@ Sub main()
     Part.OpenCompFile
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/OpenSelectedPart.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

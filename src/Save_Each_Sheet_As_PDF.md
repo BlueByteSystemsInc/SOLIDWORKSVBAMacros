@@ -1,5 +1,7 @@
 # Export Sheets to PDF Automatically
 
+<img src="../images/Save_Each_Sheet_As_PDF.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This VBA macro automates the process of exporting all sheets in a SOLIDWORKS drawing to individual PDF files. The macro loops through all the sheets in the active drawing and exports each one as a PDFs into the folder that the drawing file is in.
 
@@ -140,6 +142,9 @@ Private Sub HandleErrors(errorCode As Long)
     End Select
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/Save_Each_Sheet_As_PDF.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

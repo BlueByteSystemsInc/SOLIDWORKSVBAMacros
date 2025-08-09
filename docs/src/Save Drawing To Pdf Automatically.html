@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Save Drawing as PDF in SolidWorks | SOLIDWORKS Macros Lib </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Save Drawing as PDF in SolidWorks | SOLIDWORKS Macros Lib ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Save Drawing To Pdf Automatically.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/fav.png" alt="SOLIDWORKS VBA Macros Lib">
+            SOLIDWORKS VBA Macros Lib
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="save-drawing-as-pdf-in-solidworks">Save Drawing as PDF in SolidWorks</h1>
+
+<p><video src="../images/Save_Drawing_To_Pdf_Automatically.mkv" autoplay="" muted="" controls="" style="width: 100%; border-radius: 12px;"></video></p>
+<h2 id="description">Description</h2>
+<p>This macro instantly saves the active part or assembly drawing as a PDF file. The PDF document is saved in the same folder as the drawing with the same name. This macro works best when assigned to a keyboard shortcut, making it easy to quickly export drawings to PDF format without manually navigating through the menus.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>The active document must be a saved drawing file.</li>
+<li>The drawing should have at least one sheet.</li>
+<li>Ensure the drawing is open and active before running the macro.</li>
+</ul>
+</div>
+<h2 id="results">Results</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>All sheets of the active drawing are exported as a single PDF file.</li>
+<li>The PDF is saved in the same location as the drawing file with the same name.</li>
+</ul>
+</div>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">' Disclaimer:
+' The code provided should be used at your own risk.  
+' Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code.  
+' For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
+
+Option Explicit
+Sub main()
+
+    ' Declare and initialize necessary SolidWorks objects
+    Dim swApp As SldWorks.SldWorks             ' SolidWorks application object
+    Dim swModel As SldWorks.ModelDoc2          ' Active document object
+    Dim swModelDocExt As SldWorks.ModelDocExtension  ' Model document extension object
+    Dim swExportData As SldWorks.ExportPdfData ' PDF export data object
+    Dim boolstatus As Boolean                  ' Status of export operation
+    Dim filename As String                     ' Filename of the PDF to be saved
+    Dim lErrors As Long                        ' Variable to capture errors during save
+    Dim lWarnings As Long                      ' Variable to capture warnings during save
+
+    ' Initialize SolidWorks application and get the active document
+    Set swApp = Application.SldWorks
+    Set swModel = swApp.ActiveDoc
+
+    ' Check if a document is currently open in SolidWorks
+    If swModel Is Nothing Then
+        MsgBox &quot;No active document found. Please open a drawing and try again.&quot;, vbCritical, &quot;No Active Document&quot;
+        Exit Sub
+    End If
+
+    ' Check if the active document is a drawing
+    If swModel.GetType &lt;&gt; swDocDRAWING Then
+        MsgBox &quot;This macro only works with drawing files. Please open a drawing and try again.&quot;, vbCritical, &quot;Invalid Document Type&quot;
+        Exit Sub
+    End If
+
+    ' Get the extension object of the active drawing document
+    Set swModelDocExt = swModel.Extension
+
+    ' Initialize the PDF export data object
+    Set swExportData = swApp.GetExportFileData(swExportPDFData)
+
+    ' Get the file path of the active drawing
+    filename = swModel.GetPathName
+
+    ' Check if the drawing has been saved
+    If filename = &quot;&quot; Then
+        MsgBox &quot;The drawing must be saved before exporting to PDF. Please save the drawing and try again.&quot;, vbCritical, &quot;Save Required&quot;
+        Exit Sub
+    End If
+
+    ' Modify the file path to save as PDF (replace extension with .PDF)
+    filename = Strings.Left(filename, Len(filename) - 6) &amp; &quot;PDF&quot;
+
+    ' Set the export option to include all sheets in the drawing
+    boolstatus = swExportData.SetSheets(swExportData_ExportAllSheets, 1)
+
+    ' Save the drawing as a PDF using the specified filename and export data
+    boolstatus = swModelDocExt.SaveAs(filename, 0, 0, swExportData, lErrors, lWarnings)
+
+    ' Check if the export was successful and display appropriate message
+    If boolstatus Then
+        MsgBox &quot;Drawing successfully saved as PDF:&quot; &amp; vbNewLine &amp; filename, vbInformation, &quot;Export Successful&quot;
+    Else
+        MsgBox &quot;Save as PDF failed. Error code: &quot; &amp; lErrors, vbExclamation, &quot;Export Failed&quot;
+    End If
+
+End Sub
+</code></pre>
+<p>You can download the macro from <a href="../images/Save_Drawing_To_Pdf_Automatically.swp">here</a></p>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/src/Save Drawing To Pdf Automatically.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

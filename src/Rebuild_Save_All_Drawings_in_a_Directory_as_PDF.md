@@ -1,5 +1,7 @@
 # Rebuild & Save All Drawings in a Directory as PDF
 
+<img src="../images/Rebuild_Save_All_Drawings_in_a_Directory_as_PDF.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro rebuilds all SolidWorks drawing files (.SLDDRW) in a specified directory and saves them as PDF files in the same location. It automates the process of batch exporting drawings to PDFs, making it ideal for users who need to handle large quantities of files efficiently.
 
@@ -108,6 +110,9 @@ Sub RebuildAndSaveAllDrawingsAsPDF(swFolder As String, swExt As String, swSilent
 
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/Rebuild_Save_All_Drawings_in_a_Directory_as_PDF.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

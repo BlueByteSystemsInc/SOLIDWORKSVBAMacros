@@ -1,5 +1,7 @@
 # Rebuild Referenced Models in All Drawing Sheets
 
+<img src="../images/Rebuild_Referenced_File.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro rebuilds all referenced models for each sheet in an active SOLIDWORKS drawing document.It validates the active document, iterates through all sheets, and for each sheet, rebuilds the models referenced by the views. After rebuilding, it closes the models to free up memory.
 
@@ -98,6 +100,9 @@ Sub main()
 
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/Rebuild_Referenced_File.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

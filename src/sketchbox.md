@@ -1,5 +1,7 @@
 # SketchBox Macro for SolidWorks
 
+<img src="../images/SketchBox.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro creates a rectangle centered about the origin on a preselected plane in SolidWorks. It automates the process of sketching a rectangle and ensures that dimensions are appropriately assigned.
 
@@ -106,6 +108,9 @@ Sub main()
 
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/SketchBox.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

@@ -1,5 +1,7 @@
 # Cylinder Creation Macro in SolidWorks
 
+<img src="../images/CreateCylinder.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro allows users to create an array of cylinders in SolidWorks based on user-defined parameters such as the number of cylinders, radius, height, and extrusion depth. The macro displays a graphical user interface (GUI) where users can enter these values, and then generates the cylinders in a new part document. This tool is useful for quickly generating a set of uniform cylinders in a structured layout.
 
@@ -140,6 +142,8 @@ Private Sub Pcmd_Click()
     Part.ViewZoomtofit2
 End Sub
 ```
+## Macro
+You can download the macro from [here](../images/CreateCylinder.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

@@ -1,5 +1,7 @@
 # Traverse Assembly and Save Parts as Parasolid (X_T)
 
+<img src="../images/ExportAsPARASOLID.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro traverses the active assembly and saves all child components (parts) as Parasolid files (X_T format) in the specified folder. It recursively traverses through the assembly hierarchy, ensuring that all parts are saved with their respective names. This macro simplifies the process of saving parts in an assembly by automatically exporting them to the desired location.
 
@@ -129,6 +131,9 @@ Public Function GetTitle(Path As String) As String
 
 End Function
 ```
+
+## Macro
+You can download the macro from [here](../images/ExportAsPARASOLID.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

@@ -1,5 +1,7 @@
 # Programmatically Insert a Block into SolidWorks Drawing
 
+<img src="../images/InsertBlock.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 A one-line function call to programmatically insert a block into the active SolidWorks drawing. This macro returns the `SketchBlockInstance` for the inserted block, enabling users to efficiently place and manage sketch blocks within a drawing. It is particularly useful for automating the placement of standardized blocks, reducing repetitive tasks.
 
@@ -122,5 +124,9 @@ Function GetBlockDefination(ByVal blkName As String, ByVal rModel As ModelDoc2) 
 
 End Function
 ```
+
+## Macro
+You can download the macro from [here](../images/InsertBlock.swp)
+
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

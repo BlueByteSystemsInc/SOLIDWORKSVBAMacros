@@ -1,4 +1,6 @@
 # Isolate Selected Components in an Assembly
+<img src="../images/Isolate_Selected_Components_in_an_Assembly.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 
 ## Description
 Pre-select one or more components in an assembly and execute the macro. The selected components will become isolated in the assembly. This macro can be placed on the Graphics Area menu (which pops up when you right-click a component) for convenient access, making it ideal for users who frequently isolate components.
@@ -65,6 +67,7 @@ Sub main()
 
 End Sub
 ```
+You can download the macro from [here](../images/Isolate_Component_In_Assembly.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

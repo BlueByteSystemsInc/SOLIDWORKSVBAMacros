@@ -1,5 +1,7 @@
 # Measure Sketch and Add Length Property
 
+<img src="../images/MeasureSketchAndAddLengthProperty.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro measures the length of all the segments in the selected sketch of the active model file and adds the total length as a custom property with a value in inches or millimeters (up to 2 decimal places). The macro checks the model units and accordingly converts the total length into inches or mm based on the current unit system of the document.
 
@@ -117,6 +119,9 @@ Sub main()
 
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/MeasureSketchAndAddLengthProperty.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

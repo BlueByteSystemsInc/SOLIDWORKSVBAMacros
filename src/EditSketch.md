@@ -1,5 +1,7 @@
 # Edit Sketch Macro for SolidWorks
 
+<img src="../images/EditSketch.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro automates sketch editing within SolidWorks based on the active document and the selected entities. It adjusts the view to normal for an active sketch or exits the sketch if the view is already normal. The macro supports resolving selected subcomponents and digging into the sketch hierarchy for more complex features.
 
@@ -173,6 +175,8 @@ Private Function TolerantEqual(a As Variant, b As Variant, Tol As Integer) As Bo
     TolerantEqual = Abs(a - b) <= Abs(a / 10 ^ Tol) ' Compare within tolerance
 End Function
 ```
+## Macro
+You can download the macro from [here](../images/EditSketch.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

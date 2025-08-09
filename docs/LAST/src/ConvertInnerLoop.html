@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Convert Entities - Select Inner Loops Only | SOLIDWORKS Macros Lib </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Convert Entities - Select Inner Loops Only | SOLIDWORKS Macros Lib ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/V2/LAST/src/ConvertInnerLoop.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/fav.png" alt="SOLIDWORKS VBA Macros Lib">
+            SOLIDWORKS VBA Macros Lib
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="convert-entities---select-inner-loops-only">Convert Entities - Select Inner Loops Only</h1>
+
+<img src="../images/ConvertInnerLoop.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+<h2 id="description">Description</h2>
+<p>This macro provides a keyboard shortcut for the <code>Convert Entities</code> feature in SolidWorks, specifically targeting only the inner loops of a sketch. It automates the selection of inner loops, making it more convenient for users to quickly convert edges of inner contours in a sketch.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>The active document must be a part or assembly containing a sketch.</li>
+<li>The user must be in an active sketch before running the macro.</li>
+</ul>
+</div>
+<h2 id="results">Results</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>Only inner loops of the sketch will be selected for conversion.</li>
+<li>A confirmation message or error message will be displayed based on the operation's success.</li>
+</ul>
+</div>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">' Disclaimer:
+' The code provided should be used at your own risk.  
+' Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code.  
+' For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
+
+Option Explicit
+
+Sub main()
+
+    ' Declare and initialize necessary SolidWorks objects
+    Dim swApp As SldWorks.SldWorks             ' SolidWorks application object
+    Dim swModel As SldWorks.ModelDoc2          ' Active document object
+    Dim swSketchManager As SldWorks.SketchManager  ' Sketch manager object to manage sketch-related functions
+    Dim boolstatus As Boolean                  ' Status variable to check the success of the operation
+
+    ' Initialize SolidWorks application and get the active document
+    Set swApp = Application.SldWorks
+    Set swModel = swApp.ActiveDoc
+
+    ' Check if there is an active document in SolidWorks
+    If swModel Is Nothing Then
+        MsgBox &quot;No active document found. Please open a part or assembly and activate a sketch.&quot;, vbCritical, &quot;No Active Document&quot;
+        Exit Sub
+    End If
+
+    ' Check if the active document is either a part or an assembly
+    If swModel.GetType &lt;&gt; swDocPART And swModel.GetType &lt;&gt; swDocASSEMBLY Then
+        MsgBox &quot;This macro only works with part or assembly documents. Please open a part or assembly and try again.&quot;, vbCritical, &quot;Invalid Document Type&quot;
+        Exit Sub
+    End If
+
+    ' Get the Sketch Manager object from the active document
+    Set swSketchManager = swModel.SketchManager
+
+    ' Use the SketchUseEdge3 method to select only inner loops
+    ' Syntax: SketchUseEdge3(ConvertAllEntities As Boolean, SelectInnerLoops As Boolean) As Boolean
+    ' ConvertAllEntities: Set to False to avoid converting all entities in the sketch.
+    ' SelectInnerLoops: Set to True to select only inner loops for conversion.
+    boolstatus = swSketchManager.SketchUseEdge3(False, True)
+
+    ' Check if the operation was successful and notify the user
+    If boolstatus Then
+        MsgBox &quot;Inner loops have been successfully selected for conversion.&quot;, vbInformation, &quot;Operation Successful&quot;
+    Else
+        MsgBox &quot;Failed to select inner loops for conversion. Please ensure you are in an active sketch.&quot;, vbExclamation, &quot;Operation Failed&quot;
+    End If
+
+End Sub
+</code></pre>
+<h2 id="macro">Macro</h2>
+<p>You can download the macro from <a href="../files/ConvertInnerLoop.swp">here</a></p>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/V2/LAST/src/ConvertInnerLoop.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,5 +1,7 @@
 # Exploded View Toggle Macro for SolidWorks
 
+<img src="../images/ExplodeCollapse.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro automates the process of toggling the exploded view state of an active assembly in SolidWorks. It checks if an exploded view exists and then either explodes or collapses it based on its current state.
 
@@ -100,6 +102,8 @@ Sub main()
     Set swAssembly = Nothing
 End Sub
 ```
+## Macro
+You can download the macro from [here](../images/ExplodeCollapse.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

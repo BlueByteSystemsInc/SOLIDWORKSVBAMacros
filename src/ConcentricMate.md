@@ -1,5 +1,5 @@
 # Auto-Mate Addition Macro for SolidWorks
-
+<img src="../images/concentric_mate.mkv" autoplay muted controls style="width: 100%; border-radius: 12px;"></video>
 ## Description
 This SolidWorks macro automatically adds a mate relationship to the active document, specifically targeting a precise alignment with defined parameters. It's ideal for automating assembly setup processes where specific mating conditions are frequently required.
 
@@ -77,6 +77,6 @@ Sub main()
     MsgBox "Mate added successfully."
 End Sub
 ```
-
+You can download the macro from [here](../images/concentric_mate.swp)
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

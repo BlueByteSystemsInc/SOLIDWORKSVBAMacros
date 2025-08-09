@@ -1,5 +1,7 @@
 # Apply Custom Line Width and Color to Selected Edge in SolidWorks Drawing
 
+<img src="../images/FormatLine.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro applies custom line properties (color and width) to selected edges in a SolidWorks drawing. It helps users visually differentiate specific edges or lines in a drawing by changing their appearance based on the specified properties.
 
@@ -77,6 +79,9 @@ Sub main()
 
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/FormatLine.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

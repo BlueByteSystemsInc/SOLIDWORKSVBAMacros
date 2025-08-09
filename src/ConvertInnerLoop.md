@@ -1,5 +1,7 @@
 # Convert Entities - Select Inner Loops Only
 
+<img src="../images/ConvertInnerLoop.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro provides a keyboard shortcut for the `Convert Entities` feature in SolidWorks, specifically targeting only the inner loops of a sketch. It automates the selection of inner loops, making it more convenient for users to quickly convert edges of inner contours in a sketch.
 
@@ -69,6 +71,9 @@ Sub main()
 
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/ConvertInnerLoop.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

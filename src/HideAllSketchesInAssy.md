@@ -1,5 +1,7 @@
 # Hide All Sketches Macro for SolidWorks
 
+<img src="../images/HideAllSketchesInAssy.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro hides all visible sketches in the active assembly. This is useful for cleaning up the view in complex assemblies where multiple sketches may clutter the workspace.
 
@@ -168,5 +170,7 @@ Sub main()
 End Sub
 ```
 
+## Macro
+You can download the macro from [here](../images/HideAllSketchesInAssy.swp)
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

@@ -1,5 +1,7 @@
 # Set Layer & Draw Line in SolidWorks Drawing
 
+<img src="../images/SetLayersAndDrawLine.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro sets the specified layer as the current layer in the active SolidWorks drawing document and adds a sketched line on that layer. It automates the process of layer management and drawing creation, ensuring that all subsequent sketched entities are added to the specified layer. This is particularly useful for organizing different sketch entities in separate layers.
 
@@ -89,6 +91,9 @@ Sub main()
 
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/SetLayersAndDrawLine.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

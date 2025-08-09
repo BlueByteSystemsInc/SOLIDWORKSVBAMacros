@@ -1,6 +1,6 @@
 # Precise Bounding Box and Sketch Creation
+<video src="../images/TessBox-EN-MM-INCH.mkv" autoplay muted controls style="width: 100%; border-radius: 12px;"></video>
 
-![image](../images/boundingbox.png)
 
 ## Description
 This macro computes precise bounding box values based on the part's geometry. Additionally, it can draw a 3D sketch representing the bounding box dimensions, allowing users to visualize the bounding box directly in the part.
@@ -166,6 +166,6 @@ End Sub
 
 
 ```
-
+You can download the macro from [here](../images/TessBox-EN-MM-INCH.swp)
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

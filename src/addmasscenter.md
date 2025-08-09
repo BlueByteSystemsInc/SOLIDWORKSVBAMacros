@@ -1,6 +1,7 @@
 # Add Center of Mass to a Part in SOLIDWORKS
 
-![image](../images/addmasscenter.png)
+
+<img src="../images/AddMassCenter.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
 
 ## Macro Description
 
@@ -51,6 +52,10 @@ To run this VBA macro, ensure that your system meets the following requirements:
 > [!NOTE]
 > Post-conditions
 >- A center of mass point will be inserted into the part.
+
+
+## Macro
+You can download the macro from [here](../images/AddMassCenter.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

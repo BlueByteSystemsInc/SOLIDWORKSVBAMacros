@@ -1,5 +1,7 @@
 # Feature Driven Component Pattern Macro for SolidWorks
 
+<img src="../images/CompPattern.png" alt="Description of image" width="400" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro creates a feature-driven pattern for all selected components in an assembly. The last selection in the list is used as the driving pattern, such as a hole feature.
 
@@ -105,6 +107,9 @@ Sub main()
 
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/CompPattern.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

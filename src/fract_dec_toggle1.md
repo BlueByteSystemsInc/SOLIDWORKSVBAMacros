@@ -1,5 +1,7 @@
 # Toggle Dimension Style Between Fraction and Decimal
 
+<img src="../images/fract_dec_toggle1.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro automates the process of switching between decimal and fractional units in a SolidWorks document. It first checks whether the current unit system is set to decimal. If it is, the macro changes the unit system to fractional, sets the fractional denominator to 1/32, and enables rounding to the nearest fraction. If the current units are fractional, the macro changes the system back to decimal. The macro ensures that users can quickly toggle between these two unit types without manually adjusting the settings. Additionally, it includes error handling to terminate gracefully if any issues arise.
 
@@ -70,6 +72,9 @@ ErrorHandler:
     End
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/fract_dec_toggle1.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Create ISO Views Macro for SolidWorks | SOLIDWORKS Macros Lib </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Create ISO Views Macro for SolidWorks | SOLIDWORKS Macros Lib ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/V2/LAST/src/ISOViews.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/fav.png" alt="SOLIDWORKS VBA Macros Lib">
+            SOLIDWORKS VBA Macros Lib
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="create-iso-views-macro-for-solidworks">Create ISO Views Macro for SolidWorks</h1>
+
+<img src="../images/ISOViews.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+<h2 id="description">Description</h2>
+<p>This macro generates eight custom named ISO views in an active SolidWorks document, providing various orientations based on the front, right, back, and left perspectives from both top and bottom angles.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>An active SolidWorks document must be open.</li>
+<li>The document should preferably be a 3D model where ISO views will provide meaningful perspectives.</li>
+</ul>
+</div>
+<h2 id="results">Results</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>Eight custom ISO views are created: Top-front-right (TRF-ISO), Top-right-rear (TRR-ISO), Top-left-rear (TLR-ISO), Top-left-front (TLF-ISO), Bottom-right-front (BRF-ISO), Bottom-right-rear (BRR-ISO), Bottom-left-rear (BLR-ISO), and Bottom-left-front (BLF-ISO).</li>
+<li>Previous ISO views with these names are deleted before new views are created to ensure there are no duplicates.</li>
+</ul>
+</div>
+<h2 id="steps-to-setup-the-macro">Steps to Setup the Macro</h2>
+<ol>
+<li><p><strong>Open the Document</strong>:</p>
+<ul>
+<li>Ensure that a 3D model document is open in SolidWorks where ISO views can be meaningfully generated.</li>
+</ul>
+</li>
+<li><p><strong>Load and Run the Macro</strong>:</p>
+<ul>
+<li>Open the SolidWorks VBA editor by pressing (<code>Alt + F11</code>).</li>
+<li>Insert a new module and paste the provided macro code.</li>
+<li>Run the macro directly from the VBA editor or within SolidWorks under <strong>Tools</strong> &gt; <strong>Macro</strong> &gt; <strong>Run</strong>.</li>
+</ul>
+</li>
+<li><p><strong>Using the Macro</strong>:</p>
+<ul>
+<li>The macro will automatically delete any existing named views that match the intended output to prevent duplicates.</li>
+<li>New ISO views will be created and saved under custom names for quick access.</li>
+</ul>
+</li>
+</ol>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">' Disclaimer:
+' The code provided should be used at your own risk.  
+' Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code.  
+' For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
+
+' *********************************************************
+' Description:
+' This macro creates a series of isometric views and saves them as named views in the active SolidWorks document.
+' *********************************************************
+
+Sub main()
+    ' Declare SolidWorks application and document variables
+    Dim swApp As Object                            ' SolidWorks application object
+    Dim Part As Object                             ' Active document object
+    Dim boolstatus As Boolean                      ' Boolean to capture status (not used in this macro)
+    Dim longstatus As Long                         ' Long status for operations (not used in this macro)
+    Dim Annotation As Object                       ' Annotation object placeholder (not used here)
+    Dim Gtol As Object                             ' Geometric tolerance object placeholder (not used here)
+    Dim DatumTag As Object                         ' Datum tag object placeholder (not used here)
+    Dim FeatureData As Object                      ' Feature data placeholder (not used here)
+    Dim Feature As Object                          ' Feature object placeholder (not used here)
+    Dim Component As Object                        ' Component object placeholder (not used here)
+
+    ' Initialize SolidWorks application and active document
+    Set swApp = Application.SldWorks
+    Set Part = swApp.ActiveDoc
+
+    ' Check if a document is open
+    If Part Is Nothing Then
+        MsgBox &quot;No active document found. Please open a model.&quot;, vbExclamation, &quot;Error&quot;
+        Exit Sub
+    End If
+
+    ' Define mathematical constants and view transformations
+    pi = 4 * Atn(1)                               ' Value of π (pi)
+    Z = Tan(30 * pi / 180)                        ' Tangent of 30 degrees
+    X = Atn(Z / Sqr(-Z * Z + 1))                  ' Rotation angle in radians for X-axis
+    Y = -45 * pi / 180                            ' Rotation angle in radians for Y-axis
+
+    ' Delete previously saved ISO views to ensure clean state
+    Part.DeleteNamedView (&quot;TRF-ISO&quot;)
+    Part.DeleteNamedView (&quot;TRR-ISO&quot;)
+    Part.DeleteNamedView (&quot;TLF-ISO&quot;)
+    Part.DeleteNamedView (&quot;TLR-ISO&quot;)
+    Part.DeleteNamedView (&quot;BRF-ISO&quot;)
+    Part.DeleteNamedView (&quot;BRR-ISO&quot;)
+    Part.DeleteNamedView (&quot;BLF-ISO&quot;)
+    Part.DeleteNamedView (&quot;BLR-ISO&quot;)
+
+    ' Create and save named views for different ISO perspectives
+    ' Top Right Front ISO View
+    Part.ShowNamedView2 &quot;*Front&quot;, -1
+    Part.ActiveView().RotateAboutCenter X, Y
+    Part.ViewZoomtofit
+    Part.NameView (&quot;TRF-ISO&quot;)
+
+    ' Top Right Rear ISO View
+    Part.ShowNamedView2 &quot;*Right&quot;, -1
+    Part.ActiveView().RotateAboutCenter X, Y
+    Part.ViewZoomtofit
+    Part.NameView (&quot;TRR-ISO&quot;)
+
+    ' Top Left Rear ISO View
+    Part.ShowNamedView2 &quot;*Back&quot;, -1
+    Part.ActiveView().RotateAboutCenter X, Y
+    Part.ViewZoomtofit
+    Part.NameView (&quot;TLR-ISO&quot;)
+
+    ' Top Left Front ISO View
+    Part.ShowNamedView2 &quot;*Left&quot;, -1
+    Part.ActiveView().RotateAboutCenter X, Y
+    Part.ViewZoomtofit
+    Part.NameView (&quot;TLF-ISO&quot;)
+
+    ' Bottom Right Front ISO View
+    Part.ShowNamedView2 &quot;*Front&quot;, -1
+    Part.ActiveView().RotateAboutCenter -X, Y
+    Part.ViewZoomtofit
+    Part.NameView (&quot;BRF-ISO&quot;)
+
+    ' Bottom Right Rear ISO View
+    Part.ShowNamedView2 &quot;*Right&quot;, -1
+    Part.ActiveView().RotateAboutCenter -X, Y
+    Part.ViewZoomtofit
+    Part.NameView (&quot;BRR-ISO&quot;)
+
+    ' Bottom Left Rear ISO View
+    Part.ShowNamedView2 &quot;*Back&quot;, -1
+    Part.ActiveView().RotateAboutCenter -X, Y
+    Part.ViewZoomtofit
+    Part.NameView (&quot;BLR-ISO&quot;)
+
+    ' Bottom Left Front ISO View
+    Part.ShowNamedView2 &quot;*Left&quot;, -1
+    Part.ActiveView().RotateAboutCenter -X, Y
+    Part.ViewZoomtofit
+    Part.NameView (&quot;BLF-ISO&quot;)
+
+    ' Clean up objects
+    Set Part = Nothing
+    Set swApp = Nothing
+End Sub
+</code></pre>
+<h2 id="macro">Macro</h2>
+<p>You can download the macro from <a href="../files/ISOViews.swp">here</a></p>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/V2/LAST/src/ISOViews.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

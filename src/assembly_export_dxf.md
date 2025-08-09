@@ -1,5 +1,7 @@
 # Export Sheet Metal to DXF in SOLIDWORKS
 
+<img src="../images/assembly_export_dxf.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Macro Description
 
 This VBA macro automates the process of exporting all sheet metal parts from a SOLIDWORKS assembly to DXF files. The macro loops through each component in the assembly, checks if it's a sheet metal part, and exports the flat pattern of the part to a DXF file. The macro ensures that duplicate parts are not processed more than once, preventing redundant exports.
@@ -184,6 +186,9 @@ To run this VBA macro, ensure that your system meets the following requirements:
 >[!NOTE] 
 > Post-conditions
 > The flat pattern of each sheet metal part will be exported as a DXF file.
+
+## Macro
+You can download the macro from [here](../images/assembly_export_dxf.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

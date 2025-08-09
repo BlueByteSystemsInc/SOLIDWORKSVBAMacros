@@ -1,4 +1,5 @@
 # Batch Export Configurations to STEP Macro for SolidWorks
+<video src="../images/Save_Configurations_As_Separate_Step_Files.mkv" autoplay muted controls style="width: 100%; border-radius: 12px;"></video>
 
 ## Description
 This SolidWorks macro facilitates the batch export of each configuration within an active document to the STEP file format, specifically using the AP214 standard. It is especially useful for efficiently managing multiple configurations in projects where external compatibility is necessary.
@@ -102,6 +103,6 @@ Sub main()
     ChDir path
 End Sub
 ```
-
+You can download the macro from [here](../images/Save_Configurations_As_Separate_Step_Files.swp.swp)
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

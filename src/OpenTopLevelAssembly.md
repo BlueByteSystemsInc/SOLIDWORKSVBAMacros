@@ -1,5 +1,7 @@
 # Open and Activate Assembly Macro for SolidWorks
 
+<img src="../images/OpenTopLevelAssembly.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro is designed to navigate through the assembly structure in SolidWorks to find the top-level assembly for a selected component and open it if it's not already active. If the selected component is a part, the macro will open its file directly.
 
@@ -107,6 +109,9 @@ Sub main()
     
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/OpenTopLevelAssembly.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

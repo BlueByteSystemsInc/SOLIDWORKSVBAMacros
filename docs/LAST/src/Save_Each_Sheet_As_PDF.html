@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Export Sheets to PDF Automatically | SOLIDWORKS Macros Lib </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Export Sheets to PDF Automatically | SOLIDWORKS Macros Lib ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/V2/LAST/src/Save_Each_Sheet_As_PDF.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/fav.png" alt="SOLIDWORKS VBA Macros Lib">
+            SOLIDWORKS VBA Macros Lib
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="export-sheets-to-pdf-automatically">Export Sheets to PDF Automatically</h1>
+
+<img src="../images/Save_Each_Sheet_As_PDF.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+<h2 id="description">Description</h2>
+<p>This VBA macro automates the process of exporting all sheets in a SOLIDWORKS drawing to individual PDF files. The macro loops through all the sheets in the active drawing and exports each one as a PDFs into the folder that the drawing file is in.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SOLIDWORKS Version</strong>: SOLIDWORKS 2018 or later</li>
+<li><strong>VBA Environment</strong>: Pre-installed with SOLIDWORKS (Access via Tools &gt; Macro &gt; New or Edit)</li>
+<li><strong>Operating System</strong>: Windows 7, 8, 10, or later</li>
+</ul>
+<h2 id="vba-code">VBA Code:</h2>
+<pre><code class="lang-vbnet">Option Explicit
+
+' DISCLAIMER: 
+' This macro is provided &quot;as is&quot; without any warranty. Blue Byte Systems Inc. is not liable for any issues that arise 
+' from its use. Always test the macro in a safe environment before applying it to production data.
+
+Dim swApp As SldWorks.SldWorks
+
+Sub ExportSheetsToPDF()
+
+    ' Set the SOLIDWORKS application object
+    Set swApp = Application.SldWorks
+    
+    ' Check if SOLIDWORKS is running
+    If swApp Is Nothing Then
+        MsgBox &quot;Error Connecting to SOLIDWORKS. Please Try Again.&quot;, vbCritical
+        Exit Sub
+    End If
+    
+    ' Set the active document object
+    Dim swDoc As ModelDoc2
+    Set swDoc = swApp.ActiveDoc
+    
+    ' Check if the active document is valid
+    If swDoc Is Nothing Then
+        MsgBox &quot;Unable to Connect to a Valid SOLIDWORKS Drawing.&quot;, vbCritical
+        Exit Sub
+    End If
+    
+    ' Ensure the active document is a drawing
+    If swDoc.GetType &lt;&gt; SwConst.swDocumentTypes_e.swDocDRAWING Then
+        MsgBox &quot;The active document is not a SOLIDWORKS drawing.&quot;, vbCritical
+        Exit Sub
+    End If
+    
+    ' Set the drawing document object
+    Dim swDwgDoc As DrawingDoc
+    Set swDwgDoc = swDoc
+    
+    ' Set the PDF export data object
+    Dim swExportPdfData As SldWorks.ExportPdfData
+    Set swExportPdfData = swApp.GetExportFileData(SwConst.swExportDataFileType_e.swExportPdfData)
+    
+    ' Get the output directory from the drawing's path
+    Dim outputPath As String
+    outputPath = GetFolderFromPath(swDoc.GetPathName)
+    
+    ' Get the list of sheet names in the drawing
+    Dim sheetNames As Variant
+    sheetNames = swDwgDoc.GetSheetNames
+    
+    ' Set the current sheet object
+    Dim swSheet As Sheet
+    Set swSheet = swDwgDoc.GetCurrentSheet
+    
+    ' Generate the base output file name
+    Dim outputFileName As String
+    outputFileName = GetFileNameFromTitle(swDoc.GetTitle, swSheet.GetName)
+    
+    ' Initialize variables for error handling
+    Dim lErrors As Long
+    Dim lWarnings As Long
+    Dim i As Integer
+    Dim exportSuccess As Boolean
+    
+    ' Display the export status in the SOLIDWORKS status bar
+    Dim statusBarPane As StatusBarPane
+    Dim swFrame As SldWorks.Frame
+    
+    Set swFrame = swApp.Frame
+    Set statusBarPane = swFrame.GetStatusBarPane
+    statusBarPane.Visible = True
+    
+    ' Loop through each sheet and export to PDF
+    For i = 0 To UBound(sheetNames)
+        
+        ' Update the status bar with the current sheet being exported
+        statusBarPane.Text = &quot;Exporting sheet: &quot; &amp; sheetNames(i)
+        
+        ' Set the current sheet for PDF export
+        exportSuccess = swExportPdfData.SetSheets(SwConst.swExportDataSheetsToExport_e.swExportData_ExportSpecifiedSheets, sheetNames(i))
+        
+        ' Check for errors in setting the sheet
+        If Not exportSuccess Then
+            MsgBox &quot;Error exporting sheet: &quot; &amp; Str(i), vbCritical
+            Exit Sub
+        End If
+        
+        ' Export the current sheet as PDF
+        exportSuccess = swDoc.Extension.SaveAs(sheetNames(i) &amp; &quot;.pdf&quot;, SwConst.swSaveAsVersion_e.swSaveAsCurrentVersion, _
+                                               SwConst.swSaveAsOptions_e.swSaveAsOptions_Silent, swExportPdfData, lErrors, lWarnings)
+        
+        ' Check for errors during the export
+        If Not exportSuccess Then
+            MsgBox &quot;Error exporting sheet: &quot; &amp; Str(i), vbCritical
+            HandleErrors lErrors
+            Exit Sub
+        End If
+    Next i
+End Sub
+
+' Function to get the folder path from the full file path
+Private Function GetFolderFromPath(fullPath As String) As String
+    GetFolderFromPath = Left(fullPath, InStrRev(fullPath, &quot;\&quot;))
+End Function
+
+' Function to get the file name without the sheet name
+Private Function GetFileNameFromTitle(fullTitle As String, sheetName As String) As String
+    GetFileNameFromTitle = Left(fullTitle, InStrRev(fullTitle, sheetName) - 1)
+End Function
+
+' Sub to handle errors based on error codes
+Private Sub HandleErrors(errorCode As Long)
+    Select Case errorCode
+        Case SwConst.swFileSaveError_e.swGenericSaveError
+            MsgBox &quot;File Saving Error&quot;, vbExclamation
+        Case SwConst.swFileSaveError_e.swReadOnlySaveError
+            MsgBox &quot;File Saving Error: Read-Only Rights&quot;, vbExclamation
+        Case SwConst.swFileSaveError_e.swFileNameEmpty
+            MsgBox &quot;File Saving Error: Empty Filename&quot;, vbExclamation
+        Case SwConst.swFileSaveError_e.swFileNameContainsAtSign
+            MsgBox &quot;File Saving Error: Invalid FileName Character&quot;, vbExclamation
+        Case SwConst.swFileSaveError_e.swFileSaveFormatNotAvailable
+            MsgBox &quot;File Saving Error: Invalid File Format&quot;, vbExclamation
+        Case SwConst.swFileSaveError_e.swFileSaveAsNameExceedsMaxPathLength
+            MsgBox &quot;File Saving Error: Filename Exceeds Maximum Path Length&quot;, vbExclamation
+    End Select
+End Sub
+</code></pre>
+<h2 id="macro">Macro</h2>
+<p>You can download the macro from <a href="../files/Save_Each_Sheet_As_PDF.swp">here</a></p>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/V2/LAST/src/Save_Each_Sheet_As_PDF.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

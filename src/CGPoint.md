@@ -1,5 +1,5 @@
 # Create Center of Gravity Point in SolidWorks
-
+<img src="../images/Create_Center_of_Gravity_Point_in_SolidWorks.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
 ## Description
 This macro creates a 3D sketch point at the Center of Gravity (CoG) of the active part or assembly document in SolidWorks. It can be used to quickly identify the center of mass location within a part or assembly for analysis and design purposes.
 
@@ -111,7 +111,7 @@ errhandlr:
 
 End Sub
 ```
-
+You can download the macro from [here](../Create_Center_of_Gravity_Point_in_SolidWorks.swp)
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).
 

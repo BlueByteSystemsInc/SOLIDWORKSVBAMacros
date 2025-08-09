@@ -1,5 +1,7 @@
 # Delete Features with No Children Macro for SolidWorks
 
+<img src="../images/DeleteRedundantFeatures.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro identifies and allows users to delete features with no children (redundant features) in a SolidWorks model. The macro supports features like planes, coordinate systems, axes, sketches, and more.
 
@@ -160,6 +162,9 @@ Private Sub CommandButton2_Click()
     End
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/DeleteRedundantFeatures.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

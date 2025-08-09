@@ -1,5 +1,7 @@
 # Mate Addition and Rebuild Macro for SolidWorks
 
+<img src="../images/ParallelMate.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro automates the addition of a specific type of mate (e.g., coincident mate) to a selected component in an assembly document. After adding the mate, it forces a rebuild of the assembly to ensure that all changes take effect.
 
@@ -88,6 +90,9 @@ Sub main()
     MsgBox "Coincident mate added successfully.", vbInformation, "Success"
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/ParallelMate.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

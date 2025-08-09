@@ -1,5 +1,5 @@
 # Export Active Document as IGES File
-
+<video src="../images/Save_as_IGES.mkv" autoplay muted controls style="width: 100%; border-radius: 12px;"></video>
 ## Description
 This macro exports the active SolidWorks document (part or assembly) as an IGES file (.igs) to the same directory where the original file is saved. The exported IGES file will have the same name as the active document but with the `.igs` extension. This macro is useful for quickly saving parts and assemblies in IGES format for compatibility with other CAD software.
 
@@ -62,6 +62,7 @@ Sub main()
     MsgBox "Saved " & Path, vbInformation
 End Sub
 ```
+You can download the macro from [here](../images/Save_as_IGES.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

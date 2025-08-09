@@ -27,20 +27,1070 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/addmasscenter.png",
+      "source_relative_path": "images/AddMassCenter.png",
       "output": {
         "resource": {
-          "relative_path": "images/addmasscenter.png"
+          "relative_path": "images/AddMassCenter.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/boundingbox.png",
+      "source_relative_path": "images/AddMassCenter.swp",
       "output": {
         "resource": {
-          "relative_path": "images/boundingbox.png"
+          "relative_path": "images/AddMassCenter.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Align_All_Dimensions_Automatically.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Align_All_Dimensions_Automatically.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Align_All_Dimensions_Automatically.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Align_All_Dimensions_Automatically.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Change_Part_Unit_As_Per_Assembly.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Change_Part_Unit_As_Per_Assembly.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/CompPattern.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/CompPattern.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/CompPattern.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/CompPattern.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ConvertInnerLoop.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/ConvertInnerLoop.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ConvertInnerLoop.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/ConvertInnerLoop.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/CreateCylinder.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/CreateCylinder.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/CreateCylinder.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/CreateCylinder.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Create_Bounding_Box_for_Assembly_and_Components.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Create_Bounding_Box_for_Assembly_and_Components.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Create_Bounding_Box_for_Assembly_and_Components.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Create_Bounding_Box_for_Assembly_and_Components.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Create_Center_of_Gravity_Point_in_SolidWorks.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Create_Center_of_Gravity_Point_in_SolidWorks.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Create_Center_of_Gravity_Point_in_SolidWorks.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Create_Center_of_Gravity_Point_in_SolidWorks.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/DeleteConfigurations.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/DeleteConfigurations.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/DeleteConfigurations.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/DeleteConfigurations.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/DeleteRedundantFeatures.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/DeleteRedundantFeatures.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/DeleteRedundantFeatures.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/DeleteRedundantFeatures.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/EditSketch.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/EditSketch.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/EditSketch.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/EditSketch.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ExplodeCollapse.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/ExplodeCollapse.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ExplodeCollapse.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/ExplodeCollapse.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ExportAsPARASOLID.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/ExportAsPARASOLID.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ExportAsPARASOLID.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/ExportAsPARASOLID.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ExportSketchToDxf2.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/ExportSketchToDxf2.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ExportSketchToDxf2.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/ExportSketchToDxf2.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ExportToParasolid2.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/ExportToParasolid2.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Export_All_Sheet_Metal_Components_to_DXF.mkv",
+      "output": {
+        "resource": {
+          "relative_path": "images/Export_All_Sheet_Metal_Components_to_DXF.mkv"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Export_All_Sheet_Metal_Components_to_DXF.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Export_All_Sheet_Metal_Components_to_DXF.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/FileCopy.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/FileCopy.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/FileCopy.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/FileCopy.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/FormatLine.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/FormatLine.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/FormatLine.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/FormatLine.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Format_Line_Automatically.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Format_Line_Automatically.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Format_Line_Automatically.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Format_Line_Automatically.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/HideAllSketchesInAssy.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/HideAllSketchesInAssy.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/HideAllSketchesInAssy.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/HideAllSketchesInAssy.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ISOViews.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/ISOViews.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ISOViews.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/ISOViews.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/InsertBlock.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/InsertBlock.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/InsertBlock.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/InsertBlock.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/InsertPartIntoNewPart.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/InsertPartIntoNewPart.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/InsertPartIntoNewPart.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/InsertPartIntoNewPart.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Isolate_Component_In_Assembly.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Isolate_Component_In_Assembly.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Isolate_Selected_Components_in_an_Assembly.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Isolate_Selected_Components_in_an_Assembly.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/MeasureSketchAndAddLengthProperty.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/MeasureSketchAndAddLengthProperty.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/MeasureSketchAndAddLengthProperty.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/MeasureSketchAndAddLengthProperty.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/OpenSelectedPart.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/OpenSelectedPart.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/OpenSelectedPart.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/OpenSelectedPart.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/OpenTopLevelAssembly.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/OpenTopLevelAssembly.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/OpenTopLevelAssembly.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/OpenTopLevelAssembly.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ParallelMate.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/ParallelMate.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ParallelMate.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/ParallelMate.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ParentSelect.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/ParentSelect.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ParentSelect.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/ParentSelect.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Precision_Bounding_box.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Precision_Bounding_box.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Precision_Bounding_box.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Precision_Bounding_box.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Rebuild_Referenced_File.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Rebuild_Referenced_File.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Rebuild_Referenced_File.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Rebuild_Referenced_File.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Rebuild_Save_All_Drawings_in_a_Directory_as_PDF.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Rebuild_Save_All_Drawings_in_a_Directory_as_PDF.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Rebuild_Save_All_Drawings_in_a_Directory_as_PDF.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Rebuild_Save_All_Drawings_in_a_Directory_as_PDF.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Reload_All_Sheet_Formats.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Reload_All_Sheet_Formats.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Reload_All_Sheet_Formats.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Reload_All_Sheet_Formats.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Return_A_Axis_to_HOME1.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Return_A_Axis_to_HOME1.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Return_A_Axis_to_HOME1.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Return_A_Axis_to_HOME1.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/SaveAssemblyasPartExteriorComponents.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/SaveAssemblyasPartExteriorComponents.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/SaveAssemblyasPartExteriorComponents.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/SaveAssemblyasPartExteriorComponents.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/SaveDrawingAsPdf2.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/SaveDrawingAsPdf2.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Assy_As_Part_(All_Parts).mkv",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Assy_As_Part_(All_Parts).mkv"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Assy_As_Part_(All_Parts).swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Assy_As_Part_(All_Parts).swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Assy_As_Part_(Exterior_Components).mkv",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Assy_As_Part_(Exterior_Components).mkv"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Assy_As_Part_(Exterior_Components).png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Assy_As_Part_(Exterior_Components).png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Assy_As_Part_(Exterior_Components).swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Assy_As_Part_(Exterior_Components).swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Configurations_As_Separate_Step_Files.mkv",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Configurations_As_Separate_Step_Files.mkv"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Configurations_As_Separate_Step_Files.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Configurations_As_Separate_Step_Files.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Drawing_As_Pdf.mkv",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Drawing_As_Pdf.mkv"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Drawing_As_Pdf.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Drawing_As_Pdf.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Drawing_As_Pdf_2.mkv",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Drawing_As_Pdf_2.mkv"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Drawing_As_Pdf_2.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Drawing_As_Pdf_2.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Drawing_As_Pdf_2.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Drawing_As_Pdf_2.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Drawing_To_PDF.mkv",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Drawing_To_PDF.mkv"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Drawing_To_PDF.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Drawing_To_PDF.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Drawing_To_Pdf_Automatically.mkv",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Drawing_To_Pdf_Automatically.mkv"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Drawing_To_Pdf_Automatically.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Drawing_To_Pdf_Automatically.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Each_Sheet_As_PDF.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Each_Sheet_As_PDF.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_Each_Sheet_As_PDF.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_Each_Sheet_As_PDF.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_as_IGES.mkv",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_as_IGES.mkv"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_as_IGES.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_as_IGES.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_as_STEP.mkv",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_as_STEP.mkv"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_as_STEP.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_as_STEP.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_as_eDRAWING.mkv",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_as_eDRAWING.mkv"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Save_as_eDRAWING.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Save_as_eDRAWING.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/SetLayersAndDrawLine.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/SetLayersAndDrawLine.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/SetLayersAndDrawLine.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/SetLayersAndDrawLine.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ShowHideBodies.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/ShowHideBodies.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/SketchBox.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/SketchBox.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/SketchBox.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/SketchBox.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Template.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Template.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Template.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/Template.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/TessBox-EN-MM-INCH.mkv",
+      "output": {
+        "resource": {
+          "relative_path": "images/TessBox-EN-MM-INCH.mkv"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/TessBox-EN-MM-INCH.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/TessBox-EN-MM-INCH.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/assembly_export_dxf.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/assembly_export_dxf.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/assembly_export_dxf.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/assembly_export_dxf.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/change_part_uint_as_per_assemnly.mkv",
+      "output": {
+        "resource": {
+          "relative_path": "images/change_part_uint_as_per_assemnly.mkv"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/concentric_mate.mkv",
+      "output": {
+        "resource": {
+          "relative_path": "images/concentric_mate.mkv"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/concentric_mate.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/concentric_mate.swp"
         }
       },
       "version": ""
@@ -57,40 +1107,30 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/fract_dec_toggle1.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/fract_dec_toggle1.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/fract_dec_toggle1.swp",
+      "output": {
+        "resource": {
+          "relative_path": "images/fract_dec_toggle1.swp"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/logo.png",
       "output": {
         "resource": {
           "relative_path": "images/logo.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "images/masseditfilesdatacardfromexcel.png",
-      "output": {
-        "resource": {
-          "relative_path": "images/masseditfilesdatacardfromexcel.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "images/masseditfilesdatacardfromexcel.xlsm",
-      "output": {
-        "resource": {
-          "relative_path": "images/masseditfilesdatacardfromexcel.xlsm"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "images/pdmvbareference.png",
-      "output": {
-        "resource": {
-          "relative_path": "images/pdmvbareference.png"
         }
       },
       "version": ""
@@ -107,70 +1147,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/3DPoints.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/3DPoints.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "src/Align_All_Dimensions_Automatically.md",
       "output": {
         ".html": {
           "relative_path": "src/Align_All_Dimensions_Automatically.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/AnnotationsPro.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/AnnotationsPro.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/AppLaunch.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/AppLaunch.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/AssemblyTools.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/AssemblyTools.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/AutoSurfacePlotter.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/AutoSurfacePlotter.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/BGColors.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/BGColors.html"
         }
       },
       "version": ""
@@ -187,60 +1167,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/Change Part Material.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/Change Part Material.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/Change Tab SW_FeatTree.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/Change Tab SW_FeatTree.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "src/ChangePartUnitAsPerAssembly.md",
       "output": {
         ".html": {
           "relative_path": "src/ChangePartUnitAsPerAssembly.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/ChangeToolboxPartType.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/ChangeToolboxPartType.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/Check For Missing Hole Callouts.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/Check For Missing Hole Callouts.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/CommonNotes_V1.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/CommonNotes_V1.html"
         }
       },
       "version": ""
@@ -257,40 +1187,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/CompStateSwitcher.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/CompStateSwitcher.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "src/ConcentricMate.md",
       "output": {
         ".html": {
           "relative_path": "src/ConcentricMate.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/ConfigManager.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/ConfigManager.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/ConfigMassProp.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/ConfigMassProp.html"
         }
       },
       "version": ""
@@ -307,36 +1207,6 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/CopyColors.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/CopyColors.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/CountHoles.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/CountHoles.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/Create Tube.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/Create Tube.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "src/CreateCylinder.md",
       "output": {
         ".html": {
@@ -347,20 +1217,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/CycleRefFeatures.md",
+      "source_relative_path": "src/Create_Bounding_Box_for_Assembly_and_Components.md",
       "output": {
         ".html": {
-          "relative_path": "src/CycleRefFeatures.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/DataCharter.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/DataCharter.html"
+          "relative_path": "src/Create_Bounding_Box_for_Assembly_and_Components.html"
         }
       },
       "version": ""
@@ -387,40 +1247,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/DeleteSelectConfigs.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/DeleteSelectConfigs.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/EditAllPatterns.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/EditAllPatterns.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "src/EditSketch.md",
       "output": {
         ".html": {
           "relative_path": "src/EditSketch.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/ExplodeCollapse.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/ExplodeCollapse.html"
         }
       },
       "version": ""
@@ -437,30 +1267,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/Export Flat Pattern View (Configurations).md",
+      "source_relative_path": "src/ExportSketchToDxf2.md",
       "output": {
         ".html": {
-          "relative_path": "src/Export Flat Pattern View (Configurations).html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/ExportFlatToDxfFromAssembly.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/ExportFlatToDxfFromAssembly.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/ExportSketchToDxf.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/ExportSketchToDxf.html"
+          "relative_path": "src/ExportSketchToDxf2.html"
         }
       },
       "version": ""
@@ -507,20 +1317,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/FullyDefineAllPartSketches.md",
+      "source_relative_path": "src/FormatLineAutomatically.md",
       "output": {
         ".html": {
-          "relative_path": "src/FullyDefineAllPartSketches.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/GUARDADXF.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/GUARDADXF.html"
+          "relative_path": "src/FormatLineAutomatically.html"
         }
       },
       "version": ""
@@ -537,30 +1337,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/HideShowNote.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/HideShowNote.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "src/IGES.md",
       "output": {
         ".html": {
           "relative_path": "src/IGES.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/ISO & Shaded With Edges.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/ISO & Shaded With Edges.html"
         }
       },
       "version": ""
@@ -597,16 +1377,6 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/Instances.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/Instances.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "src/Isolate.md",
       "output": {
         ".html": {
@@ -617,60 +1387,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/LinkNoteToConfig.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/LinkNoteToConfig.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/MatToPipeFromAssy.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/MatToPipeFromAssy.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/MatchTextProperties.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/MatchTextProperties.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/McMaster Screw Fix.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/McMaster Screw Fix.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "src/MeasureSketchAndAddLengthProperty.md",
       "output": {
         ".html": {
           "relative_path": "src/MeasureSketchAndAddLengthProperty.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/OpenAndSaveAsPartNumber.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/OpenAndSaveAsPartNumber.html"
         }
       },
       "version": ""
@@ -697,16 +1417,6 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/PARASOLID.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/PARASOLID.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "src/ParallelMate.md",
       "output": {
         ".html": {
@@ -721,36 +1431,6 @@
       "output": {
         ".html": {
           "relative_path": "src/ParentSelect.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/PrepForNewFeatures.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/PrepForNewFeatures.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/Rebuild Referenced File.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/Rebuild Referenced File.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/RebuildNSaveAllParts.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/RebuildNSaveAllParts.html"
         }
       },
       "version": ""
@@ -797,26 +1477,6 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/Rotate All Bodies in Part.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/Rotate All Bodies in Part.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/Save AssemblyAsEasm.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/Save AssemblyAsEasm.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "src/Save Assy As Part (Exterior Components).md",
       "output": {
         ".html": {
@@ -827,40 +1487,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/Save Assy As Part.md",
+      "source_relative_path": "src/Save Drawing To Pdf Automatically.md",
       "output": {
         ".html": {
-          "relative_path": "src/Save Assy As Part.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/SaveAndCloseDocument.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/SaveAndCloseDocument.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/SaveAsSTL.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/SaveAsSTL.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/SaveAssemblyAsPartAndStep.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/SaveAssemblyAsPartAndStep.html"
+          "relative_path": "src/Save Drawing To Pdf Automatically.html"
         }
       },
       "version": ""
@@ -917,6 +1547,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "src/Save_Drawing_As_Pdf_2.md",
+      "output": {
+        ".html": {
+          "relative_path": "src/Save_Drawing_As_Pdf_2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "src/Save_Each_Sheet_As_PDF.md",
       "output": {
         ".html": {
@@ -937,16 +1577,6 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/SendEmailViaSolidWorks.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/SendEmailViaSolidWorks.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "src/SetLayersAndDrawLine.md",
       "output": {
         ".html": {
@@ -957,40 +1587,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/SetReadOnly.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/SetReadOnly.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "src/ShowHideBodies.md",
       "output": {
         ".html": {
           "relative_path": "src/ShowHideBodies.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/StripColors.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/StripColors.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/SweepLength.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/SweepLength.html"
         }
       },
       "version": ""
@@ -1017,46 +1617,6 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/ToggleContext.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/ToggleContext.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/Tolerances.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/Tolerances.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/Traverse and Export SOLIDWORKS Components to DXF.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/Traverse and Export SOLIDWORKS Components to DXF.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/Utilities_Analyze_Geom.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/Utilities_Analyze_Geom.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "src/addmasscenter.md",
       "output": {
         ".html": {
@@ -1077,36 +1637,6 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/create_boundingbox_feature_for_all_components.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/create_boundingbox_feature_for_all_components.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/export_all_assembly_components_to_multiple_formats.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/export_all_assembly_components_to_multiple_formats.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/exportbomtoexcelwiththumbnails.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/exportbomtoexcelwiththumbnails.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "src/fract_dec_toggle1.md",
       "output": {
         ".html": {
@@ -1117,40 +1647,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "src/getsuffaceareaforpainting.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/getsuffaceareaforpainting.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "src/introduction.md",
       "output": {
         ".html": {
           "relative_path": "src/introduction.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/madechangesbutforgottocheckout.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/madechangesbutforgottocheckout.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/masseditfilesdatacardfromexcel.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/masseditfilesdatacardfromexcel.html"
         }
       },
       "version": ""
@@ -1174,16 +1674,6 @@
         },
         ".json": {
           "relative_path": "src/toc.json"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "src/traverse_assembly_component_tree_recursively_solidworks_vba_macro.md",
-      "output": {
-        ".html": {
-          "relative_path": "src/traverse_assembly_component_tree_recursively_solidworks_vba_macro.html"
         }
       },
       "version": ""

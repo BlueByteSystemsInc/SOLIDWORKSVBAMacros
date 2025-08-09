@@ -1,5 +1,7 @@
 # Save All Parts of an Assembly as Parasolid Files
 
+<img src="../images/ExportAsPARASOLID.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro opens all parts of the currently active assembly and saves each part as a Parasolid file. It simplifies the process of exporting parts from an assembly by automatically saving them in the desired format. The macro should be used when the active document is an assembly, and it will save the parts in the specified location.
 
@@ -71,6 +73,9 @@ Sub main()
 
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/ExportToParasolid2.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

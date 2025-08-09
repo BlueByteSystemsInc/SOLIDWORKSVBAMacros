@@ -1,5 +1,7 @@
 # Custom Properties and Save As Macro
 
+<img src="../images/FileCopy.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro automates the process of managing custom properties and saving a SolidWorks model with a new file name in a user-specified folder. It is particularly useful for standardizing and organizing files with consistent metadata and locations.
 
@@ -171,6 +173,9 @@ Function BrowseFolder(Optional Caption As String = "Select a Folder") As String
     End If
 End Function
 ```
+
+## Macro
+You can download the macro from [here](../images/FileCopy.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

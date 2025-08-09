@@ -1,5 +1,5 @@
 # Save Part as eDrawings File (.eprt) Macro
-
+<video src="../images/Save_as_eDRAWING.mkv" autoplay muted controls style="width: 100%; border-radius: 12px;"></video>
 ## Description
 This macro saves the active SolidWorks part as an **eDrawings Part (.eprt)** file in the same directory as the original part file. If a file with the same name already exists, the macro increments a counter to avoid overwriting, creating a unique file name as necessary.
 
@@ -78,6 +78,6 @@ Sub main()
     End If
 End Sub
 ```
-
+You can download the macro from [here](../images/Save_as_eDRAWING.swp)
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

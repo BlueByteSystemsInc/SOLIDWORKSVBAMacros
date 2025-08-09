@@ -1,5 +1,5 @@
 # Export Active Document as STEP File
-
+<video src="../images/Save_as_STEP.mkv" autoplay muted controls style="width: 100%; border-radius: 12px;"></video>
 ## Description
 This macro exports the active SolidWorks document (part or assembly) as a STEP file to the same directory where the original file is saved. It automatically names the STEP file with the same name as the active document but with the `.step` extension. This macro is convenient for quickly exporting parts and assemblies as STEP files.
 
@@ -64,6 +64,6 @@ Sub main()
     MsgBox "Saved " & Path, vbInformation
 End Sub
 ```
-
+You can download the macro from [here](../images/Save_as_STEP.swp)
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

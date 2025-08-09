@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Set Layer &amp; Draw Line in SolidWorks Drawing | SOLIDWORKS Macros Lib </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Set Layer &amp; Draw Line in SolidWorks Drawing | SOLIDWORKS Macros Lib ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/V2/LAST/src/SetLayersAndDrawLine.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/fav.png" alt="SOLIDWORKS VBA Macros Lib">
+            SOLIDWORKS VBA Macros Lib
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="set-layer--draw-line-in-solidworks-drawing">Set Layer &amp; Draw Line in SolidWorks Drawing</h1>
+
+<img src="../images/SetLayersAndDrawLine.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+<h2 id="description">Description</h2>
+<p>This macro sets the specified layer as the current layer in the active SolidWorks drawing document and adds a sketched line on that layer. It automates the process of layer management and drawing creation, ensuring that all subsequent sketched entities are added to the specified layer. This is particularly useful for organizing different sketch entities in separate layers.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<ul>
+<li><strong>SolidWorks Version</strong>: SolidWorks 2014 or newer</li>
+<li><strong>Operating System</strong>: Windows 7 or later</li>
+</ul>
+<h2 id="pre-conditions">Pre-Conditions</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>The active document must be a drawing document.</li>
+<li>The specified layer (<code>Grain</code>) must already exist in the active drawing.</li>
+</ul>
+</div>
+<h2 id="results">Results</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<ul>
+<li>The specified layer (<code>Grain</code>) will be set as the active layer.</li>
+<li>A new sketch line will be created on the specified layer at the given coordinates.</li>
+</ul>
+</div>
+<h2 id="vba-macro-code">VBA Macro Code</h2>
+<pre><code class="lang-vbnet">' Disclaimer:
+' The code provided should be used at your own risk.  
+' Blue Byte Systems Inc. assumes no responsibility for any issues or damages that may arise from using or modifying this code.  
+' For more information, visit [Blue Byte Systems Inc.](https://bluebyte.biz).
+
+Option Explicit
+' Define necessary variables for SolidWorks application, drawing, and layer manager
+Dim swApp As Object                 ' Application object (SldWorks)
+Dim pDrawing As Object              ' Active drawing document object
+Dim pLayerMgr As Object             ' Layer manager object
+Dim pSketchSegment1 As Object       ' Sketch segment object (line)
+
+Sub main()
+    
+    ' Initialize SolidWorks application
+    Set swApp = Application.SldWorks
+    
+    ' Get the active drawing document
+    Set pDrawing = swApp.ActiveDoc
+    
+    ' Check if the active document is a drawing
+    If pDrawing Is Nothing Then
+        swApp.SendMsgToUser &quot;No active drawing document found. Please open a drawing and try again.&quot;
+        Exit Sub
+    End If
+    
+    ' Get LayerMgr object from the active drawing document
+    Set pLayerMgr = pDrawing.GetLayerManager
+    
+    ' Check if LayerMgr was obtained successfully
+    If pLayerMgr Is Nothing Then
+        swApp.SendMsgToUser &quot;Failed to get Layer Manager. Make sure you are in a drawing document.&quot;
+        Exit Sub
+    End If
+    
+    ' Set &quot;Grain&quot; as the current layer
+    Dim res As Boolean
+    res = pLayerMgr.SetCurrentLayer(&quot;Grain&quot;)
+    
+    ' Check if the layer activation was successful
+    If res = False Then
+        swApp.SendMsgToUser &quot;Error activating the layer 'Grain'. Please ensure the layer exists in the drawing.&quot;
+        Exit Sub
+    End If
+    
+    ' Enable adding objects to the database without displaying them
+    pDrawing.SetAddToDB True
+    
+    ' Create a line sketch on the active layer
+    Set pSketchSegment1 = pDrawing.CreateLine2(0.15, 0.25, 0, 0.45, 0.25, 0)
+    
+    ' Check if the line was created successfully
+    If pSketchSegment1 Is Nothing Then
+        swApp.SendMsgToUser &quot;Failed to create the sketch line. Please check the sketch coordinates.&quot;
+        pDrawing.SetAddToDB False
+        Exit Sub
+    End If
+    
+    ' Disable adding objects to the database
+    pDrawing.SetAddToDB False
+    
+    ' Clear all selections in the drawing
+    pDrawing.ClearSelection
+    
+    ' Notify user of successful operation
+    swApp.SendMsgToUser &quot;Layer set and line created successfully on the active layer.&quot;
+
+End Sub
+</code></pre>
+<h2 id="macro">Macro</h2>
+<p>You can download the macro from <a href="../files/SetLayersAndDrawLine.swp">here</a></p>
+<h2 id="customization">Customization</h2>
+<p>Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. <a href="https://bluebyte.biz/contact">Contact us</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BlueByteSystemsInc/SOLIDWORKSVBAMacros/blob/main/V2/LAST/src/SetLayersAndDrawLine.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Hosted and provided by <a href='https://bluebyte.biz'>Blue Byte Systems Inc</a>. Made with Maple syrup 🍁 and Couscous 🍲.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

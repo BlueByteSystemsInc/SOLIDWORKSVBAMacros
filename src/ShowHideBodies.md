@@ -1,5 +1,7 @@
 # Show and Hide Solid Bodies in SolidWorks
 
+<img src="../images/ShowHideBodies.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro toggles the visibility of solid bodies in a SolidWorks model by selecting the "Solid Bodies" folder (named "Corps volumiques" in French) and using the `HideBodies` and `ShowBodies` methods. This macro is useful for quickly hiding and then showing all solid bodies in a part document.
 
@@ -60,6 +62,9 @@ Sub main()
     
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/ShowHideBodies.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

@@ -1,5 +1,5 @@
 # Match Unit System of All Sub-Parts and Sub-Assemblies with Main Assembly
-
+<video src="../images/change_part_uint_as_per_assemnly.mkv" autoplay muted controls style="width: 100%; border-radius: 12px;"></video>
 ## Description
 This macro changes the unit system of all sub-parts and sub-assemblies in the active assembly to match the unit system of the main assembly. The macro ensures that all components in the assembly have a consistent unit system, which is crucial for accurate measurement and interoperability.
 
@@ -147,7 +147,7 @@ Sub Traverse(swcomp As SldWorks.Component2, nlevel As Long)
 
 End Sub
 ```
-
+You can download the macro from [here](../images/Change_Part_Unit_As_Per_Assembly.swp)
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).
 

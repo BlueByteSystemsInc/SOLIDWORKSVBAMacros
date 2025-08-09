@@ -1,4 +1,7 @@
 # Align All Dimensions Automatically 
+
+<img src="../images/Align_All_Dimensions_Automatically.png" alt="Description of image" width="500" style="display: block; margin: 0 auto;">
+
 ## Description
 This VBA macro automates selecting and arranging dimensions in SOLIDWORKS drawings. It loops through views, selects display dimensions, and auto-arranges them.
 
@@ -65,6 +68,9 @@ To run this VBA macro, ensure that your system meets the following requirements:
 - SOLIDWORKS Version: SOLIDWORKS 2018 or later
 - VBA Environment: Pre-installed with SOLIDWORKS (Access via Tools > Macro > New or Edit)
 - Operating System: Windows 7, 8, 10, or later
+
+## Macro
+You can download the macro from [here](../images/AddMassCenter.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

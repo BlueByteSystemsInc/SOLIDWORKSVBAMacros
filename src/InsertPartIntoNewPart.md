@@ -1,5 +1,7 @@
 # Insert Part into a New Part Macro for SolidWorks
 
+<img src="../images/InsertPartIntoNewPart.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro creates a new part document in SolidWorks and inserts the currently active part into it. It also copies the material properties from the original part to the new part. This is particularly useful for creating derived parts with similar material properties but potentially different geometries or features.
 
@@ -92,6 +94,9 @@ Sub main()
     Set Part = Nothing
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/InsertPartIntoNewPart.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

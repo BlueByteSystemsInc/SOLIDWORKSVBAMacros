@@ -1,5 +1,7 @@
 # Save Assembly as Part (Exterior Components) Macro for SolidWorks
 
+<img src="../images/SaveAssemblyasPartExteriorComponents.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro converts an active SolidWorks assembly into a part file that contains only the exterior components. This feature is useful for reducing the complexity of the assembly when sharing with external stakeholders or for performance improvements in visualization and analysis.
 
@@ -90,6 +92,9 @@ Sub main()
     End If
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/SaveAssemblyasPartExteriorComponents.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

@@ -1,5 +1,7 @@
 # DeleteAllConfigs: Configuration Management Macro for SolidWorks
 
+<img src="../images/DeleteConfigurations.png" alt="Description of image" width="600" style="display: block; margin: 0 auto;">
+
 ## Description
 This macro allows for the deletion of configurations from a SolidWorks model while optionally retaining a selected configuration. It provides an interface for users to select configurations for deletion and ensures that at least one configuration remains active in the model.
 
@@ -162,6 +164,9 @@ Private Sub UserForm_Initialize()
   LabelConfigsDeleted = ""
 End Sub
 ```
+
+## Macro
+You can download the macro from [here](../images/DeleteConfigurations.swp)
 
 ## Customization
 Need to modify the macro to meet specific requirements or integrate it with other processes? We provide custom macro development tailored to your needs. [Contact us](https://bluebyte.biz/contact).

@@ -66,7 +66,7 @@ Sub main()
     ' Prepare file path and name variables
     Dim path As String, fname As String, current As String, prefix As String, dirName As String
     path = swModel.GetPathName
-    fname = Mid(path, InStrRev(path, "\") + 1, Len(path) - InStr(path, ".") - 1)
+    fname = Mid(path, InStrRev(path, "\") + 1, InStrRev(path, ".") - InStrRev(path, "\") - 1)
     path = Left(path, InStrRev(path, "\") - 1)
     current = swModel.GetActiveConfiguration.Name
     Dim configs As Variant
